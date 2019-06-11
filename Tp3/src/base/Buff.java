@@ -9,8 +9,8 @@ package base;
  *
  * @author Juan
  */
-public class Buff extends Status{
-    
+public class Buff extends Status {
+
     private int dmgB;
     private int accB;
     private int dodgeB;
@@ -18,24 +18,36 @@ public class Buff extends Status{
     private int critB;
     private int defB;
 
-    
-    public Buff(){
-        dmgB=0;
-        accB=0;
-        dodgeB=0;
-        speedB=0;
-        critB=0;
-        defB=0;
+    public Buff() {
+        super();
+        dmgB = 0;
+        accB = 0;
+        dodgeB = 0;
+        speedB = 0;
+        critB = 0;
+        defB = 0;
     }
-    public Buff(int dmgB,int accB,int dodgeB,int speedB,int critB,int defB){
+
+    public Buff(int dmgB, int accB, int dodgeB, int speedB, int critB, int defB, int duration) {
+        super(duration);
         this.dmgB = dmgB;
         this.accB = accB;
         this.dodgeB = dodgeB;
         this.speedB = speedB;
         this.critB = critB;
-        this.defB=defB;
+        this.defB = defB;
     }
-    
+
+    public Buff(Buff b) {
+        super(b.getDuration());
+        this.dmgB = b.getDmgB();
+        this.accB = b.getAccB();
+        this.dodgeB = b.getDodgeB();
+        this.speedB = b.getSpeedB();
+        this.critB = b.getCritB();
+        this.defB = b.getDefB();
+    }
+
     public int getDmgB() {
         return dmgB;
     }
