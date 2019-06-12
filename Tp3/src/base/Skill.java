@@ -19,6 +19,7 @@ public class Skill extends GameObject {
     private int statusChance;
     private Stun stun;
     private Poison poison;
+    private Buff buff;
 
     public Skill() {
         super();
@@ -28,6 +29,7 @@ public class Skill extends GameObject {
         statusChance = 0;
         stun = new Stun();
         poison = new Poison();
+        buff=new Buff();
     }
 
     public Skill(String name, int id, int dmgMod, int accMod, int critMod) {
@@ -38,7 +40,20 @@ public class Skill extends GameObject {
         this.statusChance = 0;
         stun = new Stun();
         poison = new Poison();
+         buff=new Buff();
     }
+    
+    public Skill(String name, int id, int dmgMod, int accMod, int critMod, int statusChance, Buff buff) {
+        super(name, id);
+        this.dmgMod = dmgMod;
+        this.accMod = accMod;
+        this.critMod = critMod;
+        this.statusChance = statusChance;
+        stun=new Stun();
+        poison = new Poison();
+         this.buff=buff;
+    }
+    
 
     public Skill(String name, int id, int dmgMod, int accMod, int critMod, int statusChance, Stun stun) {
         super(name, id);
@@ -48,6 +63,7 @@ public class Skill extends GameObject {
         this.statusChance = statusChance;
         this.stun = stun;
         poison = new Poison();
+         buff=new Buff();
     }
 
     public Skill(String name, int id, int dmgMod, int accMod, int critMod, int statusChance, Poison poison) {
@@ -69,6 +85,18 @@ public class Skill extends GameObject {
         this.stun = stun;
         this.poison = poison;
     }
+    
+    public Skill(String name, int id, int dmgMod, int accMod, int critMod, int statusChance, Stun stun, Poison poison,Buff buff) {
+        super(name, id);
+        this.dmgMod = dmgMod;
+        this.accMod = accMod;
+        this.critMod = critMod;
+        this.statusChance = statusChance;
+        this.stun = stun;
+        this.poison = poison;
+        this.buff=buff;
+    }
+    
 
     public int getDmgMod() {
         return dmgMod;

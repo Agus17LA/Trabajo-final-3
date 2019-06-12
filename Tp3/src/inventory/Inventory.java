@@ -1,5 +1,6 @@
 package inventory;
 
+import base.Item;
 import java.util.HashMap;
 
 public class Inventory {
@@ -60,6 +61,7 @@ public class Inventory {
 		if (inventorySize((getWeight() + i.getWeight()), getMaxWeight())) {// comprueba si hay espacio suficiente para
 																			// el item a agregar
 			inventory.put(i.getId(), i.getName());
+                        setWeight(getWeight()+i.getWeight());
 			flag = true;
 		}
 		return flag;
@@ -67,6 +69,7 @@ public class Inventory {
 
 	public void removeItem(Item i) {
 		inventory.remove(i.getId());
+                setWeight(getWeight()-i.getWeight());
 	}
 
 	public void emptyInventory() {

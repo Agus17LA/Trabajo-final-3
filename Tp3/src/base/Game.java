@@ -19,6 +19,7 @@ public class Game {
         byte playerSkill = 0;
         //Skill playerSkill=new Skill();
         byte enemySkill = 0;
+        System.out.println("EL DAÑO ORIGINAL DE JESUS MALO ES: "+enemy.getDmg());
         while (player.isAlive() && enemy.isAlive()) {
             System.out.println(showHps(player, enemy));
             if (playerTurn) {
@@ -26,6 +27,7 @@ public class Game {
                 System.out.println(player.statusEffect());
                 }
                 else{
+                    
                 System.out.println(player.statusEffect());
                 System.out.println("Elija habilidad:");
                 System.out.println(player.showSkills()); //crear excepciones 
@@ -34,6 +36,7 @@ public class Game {
                 }
                 playerTurn = false;
             } else {
+                System.out.println("EL DAÑO ACTUAL DE JESUS MALO ES: "+enemy.getDmg());
                 if(enemy.isStunned()){
                 System.out.println(enemy.statusEffect());
                 }

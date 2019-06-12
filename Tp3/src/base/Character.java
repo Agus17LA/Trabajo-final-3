@@ -5,6 +5,7 @@
  */
 package base;
 
+import inventory.Inventory;
 import java.util.Vector;
 import java.util.Random;
 
@@ -26,7 +27,7 @@ public class Character extends GameObject {
     private int crit;
     private int def;
     private Vector<Status> vStatus;
-    private Vector<Item> inventory;
+    private Inventory inventory;
     public Vector<Skill> vSkills; //vector of skills
     private Weapon weapon;
     private Armor armor;
@@ -45,7 +46,7 @@ public class Character extends GameObject {
         crit = 0;
         def = 0;
         vStatus = new Vector<Status>();
-        inventory = new Vector<Item>();
+        inventory = new Inventory();
         vSkills = new Vector<Skill>();
         weapon = new Weapon();
         armor = new Armor();
@@ -65,7 +66,7 @@ public class Character extends GameObject {
         this.crit = crit;
         this.def = def;
         this.vStatus = new Vector<Status>();
-        this.inventory = new Vector<Item>();
+        this.inventory = new Inventory();
         this.vSkills = new Vector<Skill>();
         this.weapon = new Weapon();
         this.armor = new Armor();
@@ -84,7 +85,7 @@ public class Character extends GameObject {
         this.speed = speed;
         this.crit = crit;
         this.def = def;
-        this.inventory = inventory;
+        this.inventory = new Inventory();
         this.vSkills = vSkills;
         this.weapon = weapon;
         this.armor = armor;
@@ -199,13 +200,7 @@ public class Character extends GameObject {
         this.def = def;
     }
 
-    public Vector<Item> getInventory() {
-        return inventory;
-    }
-
-    public void setInventory(Vector<Item> inventory) {
-        this.inventory = inventory;
-    }
+  
 
     public Vector<Skill> getvSkills() {
         return vSkills;
@@ -321,6 +316,11 @@ public class Character extends GameObject {
         return vSkills.size();
     }
 
+    /**
+     * 
+     * @param status
+     * @return 
+     */
     public String addStatus(Status status) {   
         String s = " ";
         if (status instanceof Stun) {
@@ -333,17 +333,27 @@ public class Character extends GameObject {
             vStatus.add(poison);
             s = getName() + " fue envenenado!";
         }
+        if(status instanceof Buff){
+            Buff buff=new Buff((Buff)status);
+            vStatus.add(buff);
+            s=getName()+" sufre una modificacion en sus estadisticas!!";
+        }
         return s;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public String statusEffect() { // aca puedo meter un try catch? preguntar cuando me acuerde
         StringBuilder builder = new StringBuilder();
         if (!vStatus.isEmpty()) {
             int i = 0;
             for (i = 0; i < vStatus.size(); i++) {
-                builder.append(vStatus.elementAt(i).statusTurn(this));//preguntar a benofiiiiiiii
+                builder.append(vStatus.elementAt(i).statusTurn(this));//preguntar a benoffiiiiiiii
                 if (vStatus.elementAt(i).getDuration() == 0) {
                     vStatus.remove(i);
+                    i--;
                 }
             }
 
@@ -360,5 +370,7 @@ public class Character extends GameObject {
        }
         return flag;
     }
+    
+
 
 }

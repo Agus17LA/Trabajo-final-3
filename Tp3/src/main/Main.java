@@ -5,6 +5,7 @@
  */
 package main;
 
+import base.Buff;
 import base.Game;
 import base.Poison;
 import base.Skill;
@@ -21,14 +22,15 @@ public class Main {
  
           System.out.println("1");
 		Game game=new Game();
-                Poison poison=new Poison(500,5); //daño duracion
-                Stun stun=new Stun(3);
-		Skill hb1=new Skill("Golpe divino",001,0,100,75,100,poison);//dmg,prec,crit
+                Poison poison=new Poison(); //daño duracion
+                Stun stun=new Stun();//duracion
+                Buff buff=new Buff(2000,0,0,0,0,0,5);
+		Skill hb1=new Skill("Golpe divino",001,0,100,75,100,buff);//dmg,prec,crit
 		Skill hm1=new Skill("golpe divino malo",001,0,100,50);
 		Skill hb2=new Skill("purificacion ",001,0,100,75);
 		Skill hm2=new Skill("putrefaccion",001,0,100,50);
 		Skill hb3=new Skill("bokita pasion",001,0,20,75);
-		Skill hm3=new Skill("gallinas putas",001,0,100,50);
+		Skill hm3=new Skill("Velez campeón",001,0,100,50);
                 //hp,mana,dmg/max,acc,dodge,speed,crit,def
                 //Hay un constructor con solo estadisticas y otro con items y vectores
                 //Inventario, skills, arma, armadura,    nombre , Id

@@ -52,5 +52,47 @@ public class Item extends GameObject{
         this.total = i.total;
         this.stackSize = i.stackSize;
     }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
+    public int getSellPrice() {
+        return sellPrice;
+    }
+
+    public void setSellPrice(int sellPrice) {
+        this.sellPrice = sellPrice;
+    }
+
+    public int getBuyPrice() {
+        return buyPrice;
+    }
+
+    public void setBuyPrice(int buyPrice) {
+        this.buyPrice = buyPrice;
+    }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
+
+    public int getStackSize() {
+        return stackSize;
+    }
+
+    public void setStackSize(int stackSize) {
+        this.stackSize = stackSize;
+    }
      
+    
+    
 }

@@ -1,3 +1,9 @@
+package inventory;
+
+import base.Armor;
+import base.Consumible;
+import base.Item;
+import base.Weapon;
 import java.util.ArrayList;
 import java.util.Vector;
 

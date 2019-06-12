@@ -17,6 +17,7 @@ public class Buff extends Status {
     private int speedB;
     private int critB;
     private int defB;
+    private boolean active; //sirve para ver si ya se aplico o no
 
     public Buff() {
         super();
@@ -26,16 +27,18 @@ public class Buff extends Status {
         speedB = 0;
         critB = 0;
         defB = 0;
+        active=false;
     }
 
     public Buff(int dmgB, int accB, int dodgeB, int speedB, int critB, int defB, int duration) {
-        super(duration);
+        super(duration + 1);
         this.dmgB = dmgB;
         this.accB = accB;
         this.dodgeB = dodgeB;
         this.speedB = speedB;
         this.critB = critB;
         this.defB = defB;
+        active=false;
     }
 
     public Buff(Buff b) {
@@ -46,6 +49,7 @@ public class Buff extends Status {
         this.speedB = b.getSpeedB();
         this.critB = b.getCritB();
         this.defB = b.getDefB();
+        active=false;
     }
 
     public int getDmgB() {
@@ -95,4 +99,38 @@ public class Buff extends Status {
     public void setDefB(int defB) {
         this.defB = defB;
     }
+
+    public String statusTurn(Character c) {
+        String res = " ";
+        System.out.println("HOLAAA");
+        
+        super.statusTurn(c);
+
+        if (getDuration() > 0) {
+             res="La modificacion esta activa.";
+            if (!active) {
+                System.out.println(" 8888");
+                active = true;
+                c.setDmg(c.getDmg() + dmgB);
+                c.setAcc(c.getAcc() + accB);
+                c.setDodge(c.getDodge() + dodgeB);
+                c.setSpeed(c.getSpeed() + speedB);
+                c.setCrit(c.getCrit() + critB);
+                c.setDef(c.getDef() + defB);
+                
+            }
+            
+        } else {
+            c.setDmg(c.getDmg() - dmgB);
+            c.setAcc(c.getAcc() - accB);
+            c.setDodge(c.getDodge() - dodgeB);
+            c.setSpeed(c.getSpeed() - speedB);
+            c.setCrit(c.getCrit() - critB);
+            c.setDef(c.getDef() - defB);
+            
+           res= c.getName()+ " ya no sufre una modificacion en sus estadisticas";
+        }
+        return res;
+    }
+
 }
