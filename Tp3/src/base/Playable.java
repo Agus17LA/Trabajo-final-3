@@ -5,6 +5,7 @@ public class Playable extends Character{
 	private int lvl;
 	private int xpMax;//variable para saber a que punto de xp se sube de lvl
 	
+        //implementar subida de nivel, experiencia maxima variable e invantario
 	public Playable() {
 		super();
 		xp=0;

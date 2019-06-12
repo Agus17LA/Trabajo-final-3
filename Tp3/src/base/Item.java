@@ -1,15 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package base;
 
-/**
- *
- * @author Juan
- */
+//clase item, la implementacion poliforma y la del inventario todavia no esta hecha
 public class Item extends GameObject{
+    /*todavia no sabemos bien cual de todos estos atributos vamos a usar*/
      private double weight;
      private int sellPrice;
      private int buyPrice;

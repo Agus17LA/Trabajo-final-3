@@ -1,14 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package base;
 
-/**
- *
- * @author Juan
- */
+//otro status mas, ya esta explicado en buff y status
 public class Poison extends Status{
     private int dmg;
     private boolean poisoned;
@@ -17,7 +10,7 @@ public class Poison extends Status{
     public Poison(){
         super();
         dmg=0;
-        poisoned=false;
+        poisoned=false; //esta funcion sirve para identificar si la habilidad aplica este estatus o no 
     }
     public Poison(int dmg,int duration){
         super(duration);
@@ -53,6 +46,7 @@ public class Poison extends Status{
         String res=" "; 
             super.statusTurn(c);
             c.setHp(c.getHp()-dmg);
+            /*el veneno es conocido como algo dañino por eso hace daño*/
                  res= c.getName() + " sufre "+dmg+ " de daño por veneno!";          
         return res;
         

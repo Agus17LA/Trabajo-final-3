@@ -7,6 +7,8 @@ import base.Weapon;
 import java.util.ArrayList;
 import java.util.Vector;
 
+//esta funcion es de bianca
+
 public class Shop {
 
 	// private ArrayList <Item> shop;

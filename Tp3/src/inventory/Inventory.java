@@ -3,6 +3,8 @@ package inventory;
 import base.Item;
 import java.util.HashMap;
 
+//esta funcion es de bianca 
+
 public class Inventory {
 
 	private double weight;// peso actual del inventario

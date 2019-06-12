@@ -10,7 +10,12 @@ package base;
  * @author Juan
  */
 public class Consumible extends Item {
-        //Crear e implementar en algun momentos esta clase
+        //Crear e implementar en algun momento esta clase
+    /*ideas para la clase:
+    -Que tenga una habilidad
+    No hay mas, supongo que se pueden tirar en una pelea sin gastarte el turno de habilidades
+    tambien?
+    */
     
     
 }

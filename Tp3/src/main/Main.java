@@ -11,10 +11,7 @@ import base.Poison;
 import base.Skill;
 import base.Stun;
 
-/**
- *
- * @author Juan
- */
+//main con pruebas y nombres malos muy malos
 public class Main {
 
     

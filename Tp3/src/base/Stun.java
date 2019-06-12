@@ -9,6 +9,7 @@ package base;
  *
  * @author Juan
  */
+//Stun==aturdimiento
 public class Stun extends Status {
 
     private boolean stunned;
@@ -43,15 +44,11 @@ public class Stun extends Status {
         if (stunned == true) {
             super.statusTurn(c);
             res= c.getName()+ "esta aturdido! ";
-            
+            //el aturdimiento se chequea en la clase game, por eso esta funcion no hace nada especial
         }
                 
         return res;
 
     }
-    @Override
-    public boolean isStun(){
-        return true;
-    }
-
+   
 }

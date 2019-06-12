@@ -5,6 +5,8 @@
  */
 package races;
 
+//no hay nada implementado en este package, pero seguro que en algun momento lo  va a haber
+
 import base.Character;
 /**
  *

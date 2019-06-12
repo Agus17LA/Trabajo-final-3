@@ -13,24 +13,25 @@ import java.util.Random;
  *
  * @author Juan
  */
+//clase personaje, tecnicamente todo ente que puede tener una pelea
 public class Character extends GameObject {
 
-    private int hp;
+    private int hp;         //vida, si llega a 0 muere(o eso deberia pasar pero no esta implementado)
     private int maxHp;
-    private int mana;
+    private int mana;       //mana, energia mistica o algo asi para lanzar hechizos
     private int maxMana;
-    private int dmg;
+    private int dmg;        //daño, no confundir con daño fisico o fuerza, este es daño en si, no importa el tipo
     private int maxDmg;
-    private int acc;
-    private int dodge;
-    private int speed;
-    private int crit;
-    private int def;
-    private Vector<Status> vStatus;
-    private Inventory inventory;
-    public Vector<Skill> vSkills; //vector of skills
-    private Weapon weapon;
-    private Armor armor;
+    private int acc;        //accurecy/punteria, afecta las posibilidades de acertar un golpe
+    private int dodge;       //evacion aumenta las chances de esquivar un golpe, por cuestiones de balance no debeira ser muy alto 
+    private int speed;      //sinceramente no tiene lugar este atributo y lo deberia eliminar
+    private int crit;       //chances de golpe critico, sinceramente no se si dejarlo aca, con que este en las habilidades deberia ser suficiente
+    private int def;        //defensa PORCENTUAL por ende 100 de defensa implicaria no recibir daño, hay que limitarlo mas tarde
+    private Vector<Status> vStatus;//vector de estados o aflicciones de un personaje, un personaje puede estar aturdido y buffeado, o sufrir 2 o mas tipos distintos de veneno
+    private Inventory inventory; //inventario de un personaje, sinceramente tendria que bajar este atributo a la clase jugable
+    public Vector<Skill> vSkills; //vector de habilidades de un personaje
+    private Weapon weapon; //arma utilizada por el personaje
+    private Armor armor;    //armadura usada por el personaje
 
     public Character() {
         super();
@@ -90,6 +91,8 @@ public class Character extends GameObject {
         this.weapon = weapon;
         this.armor = armor;
     }
+    
+    //el bendito constructor de copia
 
     public Character(Character c) {
         super(c.getName(), c.getId());
@@ -110,7 +113,8 @@ public class Character extends GameObject {
         this.weapon = c.weapon;
         this.armor = c.armor;
 
-    }
+    }   
+    //muchos getters y setters que nose si usamos alguna vez, mejor que sobren a que falten supongo
 
     public int getHp() {
         return hp;
@@ -199,81 +203,63 @@ public class Character extends GameObject {
     public void setDef(int def) {
         this.def = def;
     }
+    
 
-  
-
-    public Vector<Skill> getvSkills() {
-        return vSkills;
-    }
-
-    public void setvSkills(Vector<Skill> vSkills) {
-        this.vSkills = vSkills;
-    }
-
-    public Weapon getWeapon() {
-        return weapon;
-    }
-
-    public void setWeapon(Weapon weapon) {
-        this.weapon = weapon;
-    }
-
-    public Armor getArmor() {
-        return armor;
-    }
-
-    public void setArmor(Armor armor) {
-        this.armor = armor;
-    }
-
+    //to string feo y desactualizado que queda ilegible en la consola, espero que con la interfaz grafica mejore algo
     public String toString() {
         return " " + getName() + "\n Vida: " + hp + "/" + maxHp + "\n Mana: " + mana + "/" + maxMana + "\n Daño: "
                 + dmg + "-" + maxDmg + " || Precision extra: +" + acc + "\n Evasion:  " + dodge + "|| Velocidad: " + speed
                 + " \n Defensa: " + def + "%" + "|| Critico: " + crit + "%";
     }
 
+        //solo para mostrar la vida, en la mayoria de juegos que juge la vida esta siempre visible xd
     public String showHp() {
         return " " + getName() + "|| Vida: " + hp + "/" + maxHp;
     }
 
+    
+    //no me acuerdo el nombre de la practica del OOP que esto va, creo que era encapsulamiento 
+    
     public boolean addSkill(Skill s) {
         return vSkills.add(s);
     }
 
+       
     public String attack(Character c, Skill s) { // Recibe un ataque de "c" personaje y la habilidad que uso
         StringBuilder builder = new StringBuilder();
         int dmgTotal = 0;
-        int hitChance = calculateHitChance(c, s);
-        if (hit(hitChance)) {
-            builder.append(s.useSkill(c, this));
+        int hitChance = calculateHitChance(c, s); //calculate hit chance devuelve un int que es el % de chances de golpear
+        if (hit(hitChance)) {//se usa ese % en una funcion que devuelve un boolean para saber si se pudo hacer el golpe
+            builder.append(s.useSkill(c, this)); //funcion en la que la habilidad es usada
         } else {
-            builder.append(c.getName() + " ha errado el golpe!! \n");
+            builder.append(c.getName() + " ha errado el golpe!! \n"); //en caso de errar se notifica
         }
-        return builder.toString();
+        return builder.toString(); //se devuelve lo que sea que haya pasado
 
     }
 
-    public int calculateHitChance(Character c, Skill s) {
+    public int calculateHitChance(Character c, Skill s) { //funcion simplona que devuelve las chances de que este personaje sea golpeado por "c"
         int hitChance = 0;
 
+        //los distintos atributos tiene lugar en esta linea para dejar un numero
         hitChance = c.getAcc() + c.weapon.getAccMod() + s.getAccMod() - dodge - armor.getDodgeMod();
-        if (hitChance < 10 || hitChance > 95) {
+        if (hitChance < 10 || hitChance > 95) { //para que los numeros tengan algo de sentido se hace eso
+            //tambien me gusta la idea de que no importa cuanta diferencia haya siempre vas a tener la chance de golpear o de fallar, como si fuera sacar un 1 o un 20 xd
             if (hitChance < 10) {
                 hitChance = 10;
             } else {
                 hitChance = 95;
             }
+            //por "diseño" la chance minima de golpear  es 10% y la maxima 95%
         }
         return hitChance;
     }
 
-    public boolean hit(int hitChance) {
+    public boolean hit(int hitChance) {  
         Random r = new Random(System.currentTimeMillis());
         return r.nextInt(100) < hitChance - 1; // nextInt(100) deja un numero entre 0 y 99, el cual comparamos
-        // con
-        // nuestra probabilidad de golpe, si el numero arrojado es menor
-        // quiere decir que el golpe fue un "miss", por ende devuelve
-        // false.
+        // con nuestra probabilidad de golpe, si el numero arrojado es menor
+        // quiere decir que el golpe fue un "miss", por ende devuelve false.
 
     }
 
@@ -281,23 +267,24 @@ public class Character extends GameObject {
         float totalDmg = 0;
         float totalDef = (100 - (def + armor.getDefMod())) / 100;
         if (totalDef > 75 / 100) {
-            totalDef = 75 / 100;
+            totalDef = 75 / 100; //la limitacion de defensa para que no puedas entrar en godmode inmortal
         }
-        totalDmg = (c.getDmg() + c.weapon.getDmgMod()) * (s.getDmgMod() / 100) * totalDef; // daño base+daño habilidad
-        // se le aplica el % de
-        // armadura
-
+        
+        //Tanto el daño de la habilidad como la defensa son PORCENTUALES por eso se multiplican al resultado, lo demas se suma
+        totalDmg = (c.getDmg() + c.weapon.getDmgMod()) * (s.getDmgMod() / 100) * totalDef; 
         if (totalDmg < 1) {
             totalDmg = 1;
         }
-        return (int) totalDmg;
+        return (int) totalDmg; //se lo pasa a int porque los atributos se basan en enteros
     }
-
+    
+    //se le pasa el% de critico y devuelve si fue crit o no, simple
     public boolean isCrit(int critChance) {
         Random r = new Random(System.currentTimeMillis());
         return r.nextInt(100) < critChance - 1;
     }
-
+    
+    //metodo para mostrar el vector de habilidades, se ve MUY feo en consola pero bueno
     public String showSkills() {
         StringBuilder builder = new StringBuilder();
         int i;
@@ -308,7 +295,8 @@ public class Character extends GameObject {
         return builder.toString();
     }
 
-    public boolean isAlive() {
+    //para saber si el personaje sigue vivo o no
+    public boolean isAlive() { 
         return hp > 0;
     }
 
@@ -316,11 +304,8 @@ public class Character extends GameObject {
         return vSkills.size();
     }
 
-    /**
-     * 
-     * @param status
-     * @return 
-     */
+   //para agregar un status al vector de status, aplica polimorfismo pero no me acuerdo el nombre exacto
+    //y tambien devuelve un mensaje diciendo que status se agrego!
     public String addStatus(Status status) {   
         String s = " ";
         if (status instanceof Stun) {
@@ -341,26 +326,25 @@ public class Character extends GameObject {
         return s;
     }
 
-    /**
-     * 
-     * @return 
-     */
-    public String statusEffect() { // aca puedo meter un try catch? preguntar cuando me acuerde
+    //este metodo hace que los status presentes en el personaje tengan efecto, es como si fuera su "turno"
+    public String statusEffect() { 
         StringBuilder builder = new StringBuilder();
         if (!vStatus.isEmpty()) {
             int i = 0;
             for (i = 0; i < vStatus.size(); i++) {
-                builder.append(vStatus.elementAt(i).statusTurn(this));//preguntar a benoffiiiiiiii
-                if (vStatus.elementAt(i).getDuration() == 0) {
+                builder.append(vStatus.elementAt(i).statusTurn(this));//statusTurn es la funcion que ejecuta el turno dle status
+                if (vStatus.elementAt(i).getDuration() == 0) {//si la duracion es 0 o sea termino se lo saca del vector
                     vStatus.remove(i);
-                    i--;
+                    i--;//este -- es para correr para el costado el indice, ya que al borrar java automaticamente corre todo a un costado
                 }
             }
 
         }
         return builder.toString();
     }
-
+    
+    
+//recorre el vector de estados buscando si esta aturdido el personaje
     public boolean isStunned() {
         boolean flag=false;
        int i=0;
