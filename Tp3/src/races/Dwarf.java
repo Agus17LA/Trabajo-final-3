@@ -57,6 +57,7 @@ public class Dwarf extends Playable implements Iwarrior {
         }
         else
         {
+        }
     }
 
     public void heavyTraining() {

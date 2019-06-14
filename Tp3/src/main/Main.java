@@ -18,8 +18,8 @@ public class Main {
     public static void main(String[] args) {
 
         // TODO code application logic here
-        
-        PrincipalManager pm = new PrincipalManager("",Constants.WINDOW_WIDTH,Constants.WINDOW_HEIGHT);
+
+        PrincipalManager pm = new PrincipalManager("jueguito",Constants.WINDOW_WIDTH,Constants.WINDOW_HEIGHT);
         pm.startGame(Constants.RUTA_MAGOGNOMO); //acá cargamos la ruta del personaje que se seleccionó
         pm.startPrincipalLoop();
  
@@ -50,6 +50,7 @@ public class Main {
 		System.out.println(p2.showSkills());
 		System.out.println(p1.attack(p2,p2.vSkills.elementAt(0)));
                 */
+        
 		
     }
     

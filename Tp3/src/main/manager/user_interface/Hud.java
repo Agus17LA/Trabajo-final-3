@@ -14,6 +14,7 @@ import java.awt.image.BufferedImage;
 import main.manager.Constants;
 import main.manager.control.Mouse;
 import main.manager.entities.Player;
+import main.manager.maps.Map;
 import main.manager.tools.ResourceLoader;
 
 /**
@@ -42,7 +43,27 @@ public class Hud {
         g.fillRect(layoutInventoryArea.x, layoutInventoryArea.y, layoutInventoryArea.width, layoutInventoryArea.height);
     }
     
-    public static void drawLife(Graphics g, int life){
+    public void drawBattleArea(Graphics g, Map map){
+        g.setColor(Color.CYAN);
+        g.drawRect((int)map.getEnemyZone1().getX(), (int)map.getEnemyZone1().getY(), (int)map.getEnemyZone1().getWidth(), (int)map.getEnemyZone1().getHeight());
+        g.drawRect((int)map.getEnemyZone2().getX(), (int)map.getEnemyZone2().getY(), (int)map.getEnemyZone2().getWidth(), (int)map.getEnemyZone2().getHeight());
+        g.drawRect((int)map.getEnemyZone3().getX(), (int)map.getEnemyZone3().getY(), (int)map.getEnemyZone3().getWidth(), (int)map.getEnemyZone3().getHeight());
+    }
+    
+    public void drawCollisions(Graphics g, Map map){
+            g.setColor(Color.red);   //hago visibles las colisiones
+            for(int r = 0; r<map.collisionAreas.size();r++){
+                Rectangle a = map.collisionAreas.get(r);
+                g.drawRect(a.x,a.y,a.width,a.height);
+            }
+    }
+    
+    public void drawTP(Graphics g, Map map){
+        g.setColor(Color.green);
+        g.drawRect((int)map.getExitZone().getX(), (int)map.getExitZone().getY(), (int)map.getExitZone().getWidth(), (int)map.getExitZone().getHeight());
+    }
+    
+    public void drawLife(Graphics g, int life){
         int width = (100* life/1000);
         Color darkRed = new Color(153,0,0);
         g.setColor(Color.WHITE);
@@ -53,7 +74,7 @@ public class Hud {
         g.drawString("Vida", 505, 550);
     }
     
-    public static void drawMana(Graphics g, int mana){
+    public void drawMana(Graphics g, int mana){
         int width = (100* mana/1000);
         Color darkRed = new Color(81,209,246);
         g.setColor(Color.WHITE);
@@ -64,7 +85,7 @@ public class Hud {
         g.drawString("Mana", 500, 570);
     }
     
-    public static void drawResistance(Graphics g, int resistance){
+    public void drawResistance(Graphics g, int resistance){
         int width = (100* resistance/600);
         Color darkYellow = new Color(255,255,0);
         g.setColor(Color.WHITE);
@@ -75,21 +96,21 @@ public class Hud {
         g.drawString("Stamina", 490, 589);
     }
     
-    public static void drawMessage(Graphics g){
+    public void drawMessage(Graphics g){
         g.setColor(Color.red);
         g.drawString("ENEMIGO ENCONTRADO, SI DESEA COMENZAR UNA BATALLA PULSE ENTER",20,580);
     }    
-    public static void drawXY(Graphics g,Player player){
+    public void drawXY(Graphics g,Player player){
         g.setColor(Color.blue);
         g.drawString("X = "+player.getPositionX(),730,580);
         g.drawString("Y = "+player.getPositionY(),730,560);
     }
     
-    public static void drawLayout(Graphics g,BufferedImage layout){
+    public void drawLayout(Graphics g,BufferedImage layout){
         g.drawImage(layout, 0, 0, null);
     }
     
-    public static void drawMousePosition(Graphics g,Point p){
+    public void drawMousePosition(Graphics g,Point p){
         g.setColor(Color.RED);
         g.drawString("RX: "+p.getX(),650,580);
         g.drawString("RX: "+p.getY(),650,560);

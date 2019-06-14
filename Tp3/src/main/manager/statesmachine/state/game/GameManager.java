@@ -10,6 +10,8 @@ import java.awt.Point;
 import java.awt.image.BufferedImage;
 import main.manager.Constants;
 import main.manager.control.ControlManager;
+import main.manager.control.Keyboard;
+import main.manager.entities.Enemy;
 import main.manager.entities.Player;
 import main.manager.graphics.DrawSurface;
 import main.manager.maps.Map;
@@ -28,6 +30,7 @@ public class GameManager implements GameState{
     Point p;
     String typeOfPlayer;
     Hud hud;
+    Enemy enemy;
     
     
     
@@ -36,6 +39,7 @@ public class GameManager implements GameState{
         this.typeOfPlayer = typeOfPlayer;
         startMap(Constants.RUTA_MAP);
         startPlayer(map,typeOfPlayer);
+        enemy = new Enemy(map);
         hud = new Hud(player);
         layout = ResourceLoader.loadCompatibleImageTranslucent(Constants.RUTA_LAYOUT);
         
@@ -72,25 +76,29 @@ public class GameManager implements GameState{
     }
     public void draw(Graphics g){
         map.draw(g,(int)player.getPositionX(),(int)player.getPositionY());
-        player.draw(g);
+        player.draw(g);;
         //Hud.drawLayout(g,layout);
         g.setColor(Color.red);
-        g.drawRect((int)map.getEnemyZone1().getX(), (int)map.getEnemyZone1().getY(), (int)map.getEnemyZone1().getWidth(), (int)map.getEnemyZone1().getHeight());
-        g.drawRect((int)map.getEnemyZone2().getX(), (int)map.getEnemyZone2().getY(), (int)map.getEnemyZone2().getWidth(), (int)map.getEnemyZone2().getHeight());
-        g.drawRect((int)map.getEnemyZone3().getX(), (int)map.getEnemyZone3().getY(), (int)map.getEnemyZone3().getWidth(), (int)map.getEnemyZone3().getHeight());
-        g.setColor(Color.green);
-        g.drawRect((int)map.getExitZone().getX(), (int)map.getExitZone().getY(), (int)map.getExitZone().getWidth(), (int)map.getExitZone().getHeight());
-        hud.drawBar(g, player);
-        Hud.drawMousePosition(g, p);
-        Hud.drawXY(g, player);
-        Hud.drawResistance(g, player.resistance);
-        Hud.drawLife(g, 1000);
-        Hud.drawMana(g, 1000);
-        if(player.getLEFT_COLLISION().intersects(map.getEnemyZone1()) || player.getLEFT_COLLISION().intersects(map.getEnemyZone2()) || player.getLEFT_COLLISION().intersects(map.getEnemyZone3())){
-            Hud.drawMessage(g);
+        enemy.draw(g);
+        if(Keyboard.hud){
+            hud.drawTP(g, map);
+            hud.drawCollisions(g, map);
+            hud.drawBattleArea(g, map);
         }
-        //Hud.drawMessage(g);
-        //g.drawString("Next map: "+map.getNextMap(),380,580);
-        
+        hud.drawBar(g, player);
+        hud.drawMousePosition(g, p);
+        hud.drawXY(g, player);
+        hud.drawResistance(g, player.resistance);
+        hud.drawLife(g, 1000);
+        hud.drawMana(g, 1000);
+        if(battleZone()){
+            hud.drawMessage(g);
+        }
     }
+    
+    public boolean battleZone(){
+        return (player.getLEFT_COLLISION().intersects(map.getEnemyZone1()) || player.getRIGHT_COLLISION().intersects(map.getEnemyZone1()) || player.getABOVE_COLLISION().intersects(map.getEnemyZone1()) || player.getDOWN_COLLISION().intersects(map.getEnemyZone1()))   ||   (player.getLEFT_COLLISION().intersects(map.getEnemyZone2()) || player.getRIGHT_COLLISION().intersects(map.getEnemyZone2()) || player.getABOVE_COLLISION().intersects(map.getEnemyZone2()) || player.getDOWN_COLLISION().intersects(map.getEnemyZone2()))   ||   (player.getLEFT_COLLISION().intersects(map.getEnemyZone3()) || player.getRIGHT_COLLISION().intersects(map.getEnemyZone3()) || player.getABOVE_COLLISION().intersects(map.getEnemyZone3()) || player.getDOWN_COLLISION().intersects(map.getEnemyZone3()));
+    }
+    
+    
 }

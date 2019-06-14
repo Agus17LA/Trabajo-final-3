@@ -23,6 +23,7 @@ public class Keyboard implements KeyListener {
     public boolean run = false;
     public boolean menu = false;
     public boolean combate = false;
+    public static boolean hud = false;
     public Key exit=new Key();
     
     @Override
@@ -58,6 +59,9 @@ public class Keyboard implements KeyListener {
                 if(Constants.BATTLE){
                     combate = !combate;
                 }
+                break;
+            case KeyEvent.VK_F3:
+                hud = !hud;
                 break;
         }
     }
