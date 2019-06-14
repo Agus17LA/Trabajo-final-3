@@ -51,6 +51,10 @@ public class GameManager implements GameState{
         player.setMap(map);
         player.setPositionX(map.getInitialPosition().getX());
         player.setPositionY(map.getInitialPosition().getY());
+        
+        enemy = new Enemy(map);
+        
+        
     }
     
     private void startMap(final String rute){
