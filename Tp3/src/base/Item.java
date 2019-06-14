@@ -1,15 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package base;
 
-/**
- *
- * @author Juan
- */
+//clase item, la implementacion poliforma y la del inventario todavia no esta hecha
 public class Item extends GameObject{
+    /*todavia no sabemos bien cual de todos estos atributos vamos a usar*/
      private double weight;
      private int sellPrice;
      private int buyPrice;
@@ -52,5 +46,47 @@ public class Item extends GameObject{
         this.total = i.total;
         this.stackSize = i.stackSize;
     }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
+    public int getSellPrice() {
+        return sellPrice;
+    }
+
+    public void setSellPrice(int sellPrice) {
+        this.sellPrice = sellPrice;
+    }
+
+    public int getBuyPrice() {
+        return buyPrice;
+    }
+
+    public void setBuyPrice(int buyPrice) {
+        this.buyPrice = buyPrice;
+    }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
+
+    public int getStackSize() {
+        return stackSize;
+    }
+
+    public void setStackSize(int stackSize) {
+        this.stackSize = stackSize;
+    }
      
+    
+    
 }

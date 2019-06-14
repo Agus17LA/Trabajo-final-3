@@ -9,6 +9,8 @@ package base;
  *
  * @author Juan
  */
+
+//lo mismo que armor
 public class Weapon extends Item{
     private int dmgMod;
     private int accMod;

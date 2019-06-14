@@ -5,12 +5,12 @@
  */
 package races;
  
-import base.Character;
+import base.Playable;
 /**
  *
  * @author Juan
  */
-public class Gnome extends Character implements Image{
+public class Gnome extends Playable implements Image{
 
     @Override
     public void castSpeel() {
