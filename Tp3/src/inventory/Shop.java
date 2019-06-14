@@ -89,9 +89,11 @@ public class Shop {
 		flag = canBuy(c, i);
 		if (flag) {
 			flag=removeItem(i);
+                        if(c.inventory.inventorySize(c.inventory.getWeight()+i.getWeight(),c.inventory.getMaxWeight())){
 			c.inventory.addItem(i);
 			c.inventory.setWeight(c.inventory.getWeight()+i.getWeight());
 			c.setMoney(c.getMoney() - i.getBuyPrice());
+                        }
 			
 		}
 	}
@@ -113,7 +115,7 @@ public class Shop {
 												// disponibilidad,
 												// faltaria agregar si puede por lvl o tipo de item
 		boolean flag = false;
-		flag=c.inventory.inventorySize();
+		flag=c.inventory.inventorySize(c.inventory.getWeight(),c.inventory.getMaxWeight());
 		if (checkCharacterMoney(c) > i.getBuyPrice() && flag) {//ver como implementar la parte de inventario
 			flag = true;
 		}

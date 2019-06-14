@@ -1,6 +1,8 @@
 
 package base;
 
+import java.util.Random;
+
 
 //super clase que no tiene ningun metodo especial (todavia?)
 public class GameObject {
@@ -33,6 +35,11 @@ public class GameObject {
 
     public void setId(int id) {
         this.id = id;
+    }
+    
+     public int ranNum(int min,int max){
+        Random r=new Random(System.nanoTime());
+        return r.nextInt(max-min)+ min;  
     }
     
 }

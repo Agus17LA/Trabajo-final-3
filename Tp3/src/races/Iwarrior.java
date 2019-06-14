@@ -11,7 +11,7 @@ package races;
  */
 public interface Iwarrior {
     
-    public void castMelee();
-    
+    public void gainPower();
+    public void heavyTraining();
     
 }

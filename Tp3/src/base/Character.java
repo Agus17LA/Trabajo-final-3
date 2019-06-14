@@ -5,6 +5,7 @@ import java.util.Vector;
 import java.util.Random;
 
 
+
 //clase personaje, tecnicamente todo ente que puede tener una pelea
 public class Character extends GameObject {
 
@@ -200,7 +201,14 @@ public class Character extends GameObject {
     public void setArmor(Armor armor) {
         this.armor = armor;
     }
-    
+    //inicializa los objetos que tiene un character
+    public void iniCharacterObjects(){
+         this.vStatus = new Vector<Status>();
+        this.vSkills = new Vector<Skill>();
+        this.weapon = new Weapon();
+        this.armor = new Armor();
+    }
+          
 
     /*toString feo y desactualizado que queda ilegible en la consola, 
     espero que con la interfaz grafica mejore algo*/
@@ -237,10 +245,12 @@ public class Character extends GameObject {
     }
 
     public int calculateHitChance(Character c, Skill s) { //funcion simplona que devuelve las chances de que este personaje sea golpeado por "c"
-        int hitChance = 0;
-
-        //los distintos atributos tiene lugar en esta linea para dejar un numero
-        hitChance = c.getAcc() + c.weapon.getAccMod() + s.getAccMod() - dodge - armor.getDodgeMod();
+           /*Se suma el total de punteria del q ataca y de esquive del que defiende y se saca una chance de acc en el total*/
+        int accTotal=c.getAcc() + c.weapon.getAccMod() + s.getAccMod();
+        int dodgeTotal=dodge + armor.getDodgeMod();
+        int suma=dodgeTotal+accTotal;
+        int hitChance=(int)(suma/acc)*100;
+        
         if (hitChance < 10 || hitChance > 95) { //para que los numeros tengan algo de sentido se hace eso
             //tambien me gusta la idea de que no importa cuanta diferencia haya siempre vas a tener la chance de golpear o de fallar, como si fuera sacar un 1 o un 20 xd
             if (hitChance < 10) {
@@ -352,7 +362,7 @@ public class Character extends GameObject {
        }
         return flag;
     }
-    
+   
 
 
 }

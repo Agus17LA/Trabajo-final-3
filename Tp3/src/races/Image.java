@@ -11,8 +11,11 @@ package races;
  */
 public interface Image {
     
-    public void castSpeel();
-    public String timeStop();
+    
+    
+   public void manaTransmutation();
+   public void magicGain();
+           
     
     
 }
