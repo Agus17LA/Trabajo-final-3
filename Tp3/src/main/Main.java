@@ -20,14 +20,8 @@ public class Main {
         // TODO code application logic here
         
         PrincipalManager pm = new PrincipalManager("",Constants.WINDOW_WIDTH,Constants.WINDOW_HEIGHT);
-        
-        
-        
         pm.startGame(Constants.RUTA_MAGOGNOMO); //acá cargamos la ruta del personaje que se seleccionó
-        
-        
         pm.startPrincipalLoop();
-        
  
           System.out.println("1");
 		Game game=new Game();
