@@ -2,8 +2,9 @@ package inventory;
 
 import base.Item;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
-//esta funcion es de bianca 
 
 public class Inventory {
 
@@ -90,6 +91,16 @@ public class Inventory {
 		}
 		return builder.toString();
 	}
+        
+        public String showInventoryIt(){
+            StringBuilder builder=new StringBuilder();
+            Iterator it=inventory.entrySet().iterator();
+            while(it.hasNext()){
+                Map.Entry<Integer,String> mapEntry= (Map.Entry<Integer,String>)it.next();
+                builder.append(mapEntry.getKey()+" "+mapEntry.getValue());
+            }
+            return builder.toString();
+        }
 	
 	public String showPerType(String type) { //mostrar por tipo de item
 		StringBuilder builder = new StringBuilder();
@@ -108,5 +119,25 @@ public class Inventory {
 		}
 		return builder.toString();
 	}
+        
+        public String showPerTypeIt(String type){
+            StringBuilder builder=new StringBuilder();
+            Iterator it=inventory.entrySet().iterator();
+            while(it.hasNext()){
+                Map.Entry<Integer,String> mapEntry=(Map.Entry<Integer,String>)it.next();
+                        if (type.equals("Armor")) {
+				builder.append(mapEntry.toString()+"\n");
+			}
+			if (type.equals("Weapon")) {
+				builder.append(mapEntry.toString()+"\n");
+			}
+			if (type.equals("Consumible")) {
+				builder.append(mapEntry.toString()+"\n");
+			}
+            }
+            
+            return builder.toString();
+        }
 	
+       
 }

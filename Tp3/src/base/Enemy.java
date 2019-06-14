@@ -25,6 +25,21 @@ public class Enemy extends Character{
 		super(hp, mana, dmg, maxDmg,acc,dodge,crit,def,name,id);
 		this.dropItemChance=dropItemChance;
 	}
+        public Enemy(Character c,int expDrop,Vector<Item> dropItems,int dropItemChance){
+            super(c);
+            this.expDrop=expDrop;
+            this.dropItems=dropItems;// esto creo que esta mal, hace constructores de copia
+            this.dropItemChance=dropItemChance;
+            
+        }
+        public Enemy(Enemy e){
+            super((Character)e);
+            //arreglar y crear para asignar
+            this.expDrop=e.expDrop;
+            this.dropItems=e.dropItems;
+            this.dropItemChance=dropItemChance;
+            
+        }
 
 	public int getDropItemChance() {
 		return dropItemChance;

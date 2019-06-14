@@ -25,7 +25,7 @@ public class Armor extends Item {
 //constructor de copia
     public Armor(Armor a) {
 
-        super((Item) a);  //preguntarle a benoffi si esto es legal
+        super((Item) a);  
         this.hpMod = a.hpMod;
         this.dodgeMod = a.dodgeMod;
         this.defMod = a.defMod;
