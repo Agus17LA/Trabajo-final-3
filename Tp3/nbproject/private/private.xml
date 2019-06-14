@@ -3,7 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Juan/Documents/NetBeansProjects/Tp3/src/main/Main.java</file>
+            <file>file:/C:/Users/Agus_/Desktop/Facultad/Trabajo-final-3/Tp3/src/main/manager/control/Keyboard.java</file>
+            <file>file:/C:/Users/Agus_/Desktop/Facultad/Trabajo-final-3/Tp3/src/main/manager/entities/Enemy.java</file>
+            <file>file:/C:/Users/Agus_/Desktop/Facultad/Trabajo-final-3/Tp3/src/main/manager/PrincipalManager.java</file>
+            <file>file:/C:/Users/Agus_/Desktop/Facultad/Trabajo-final-3/Tp3/src/main/manager/statesmachine/state/game/BattleManager.java</file>
+            <file>file:/C:/Users/Agus_/Desktop/Facultad/Trabajo-final-3/Tp3/src/main/manager/statesmachine/StateManager.java</file>
+            <file>file:/C:/Users/Agus_/Desktop/Facultad/Trabajo-final-3/Tp3/src/main/manager/statesmachine/state/game/MenuManager.java</file>
+            <file>file:/C:/Users/Agus_/Desktop/Facultad/Trabajo-final-3/Tp3/src/main/manager/statesmachine/state/game/GameManager.java</file>
+            <file>file:/C:/Users/Agus_/Desktop/Facultad/Trabajo-final-3/Tp3/src/main/manager/sprites/SpritesSheet.java</file>
+            <file>file:/C:/Users/Agus_/Desktop/Facultad/Trabajo-final-3/Tp3/src/main/manager/control/ControlManager.java</file>
+            <file>file:/C:/Users/Agus_/Desktop/Facultad/Trabajo-final-3/Tp3/src/main/manager/graphics/DrawSurface.java</file>
+            <file>file:/C:/Users/Agus_/Desktop/Facultad/Trabajo-final-3/Tp3/src/main/manager/entities/Player.java</file>
         </group>
     </open-files>
 </project-private>
