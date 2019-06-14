@@ -31,7 +31,7 @@ public class ResourceLoader {
     public static BufferedImage loadCompatibleImageOpaque(final String rute){ //Cargamos imagenes que serán totalmente opacas (Pisos, paredes, etc)
         Image image = null;        
         try {
-            image = ImageIO.read(ClassLoader.getSystemResource(rute));//class.getResource(rute)); //Intentamos cargar una imagen
+            image = ImageIO.read(ClassLoader.getSystemResource(rute)); //Intentamos cargar una imagen (CREAR EXEPCION PROPIA)
         } catch (IOException ex) {
             Logger.getLogger(ResourceLoader.class.getName()).log(Level.SEVERE, null, ex);
         }
