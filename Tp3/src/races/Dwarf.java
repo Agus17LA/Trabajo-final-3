@@ -7,14 +7,16 @@ package races;
 
 //no hay nada implementado en este package, pero seguro que en algun momento lo  va a haber
 
-import base.Character;
+import base.Playable;
 /**
  *
  * @author Juan
  */
-public class Dwarf extends Character implements Iwarrior{
+public class Dwarf extends Playable implements Iwarrior{
 
-   
+   public Dwarf(){
+       sethp
+   }
     
     
     @Override

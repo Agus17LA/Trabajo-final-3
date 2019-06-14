@@ -5,12 +5,12 @@
  */
 package races;
 
-import base.Character;
+import base.Playable;
 /**
  *
  * @author Juan
  */
-public class Human extends Character implements Iwarrior{
+public class Human extends Playable implements Iwarrior{
 
     @Override
     public void castMelee(){

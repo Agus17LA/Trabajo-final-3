@@ -5,12 +5,12 @@
  */
 package races;
 
-import base.Character;
+import base.Playable;
 /**
  *
  * @author Juan
  */
-public class Elf extends Character implements Image{
+public class Elf extends Playable implements Image{
 
   
 

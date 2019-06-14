@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package main;
 
 import base.Buff;
@@ -21,18 +16,18 @@ public class Main {
 		Game game=new Game();
                 Poison poison=new Poison(); //daño duracion
                 Stun stun=new Stun();//duracion
-                Buff buff=new Buff(2000,0,0,0,0,0,5);
+                Buff buff=new Buff(2000,0,0,0,0,5);
 		Skill hb1=new Skill("Golpe divino",001,0,100,75,100,buff);//dmg,prec,crit
 		Skill hm1=new Skill("golpe divino malo",001,0,100,50);
 		Skill hb2=new Skill("purificacion ",001,0,100,75);
 		Skill hm2=new Skill("putrefaccion",001,0,100,50);
 		Skill hb3=new Skill("bokita pasion",001,0,20,75);
 		Skill hm3=new Skill("Velez campeón",001,0,100,50);
-                //hp,mana,dmg/max,acc,dodge,speed,crit,def
+                //hp,mana,dmg/max,acc,dodge,crit,def
                 //Hay un constructor con solo estadisticas y otro con items y vectores
                 //Inventario, skills, arma, armadura,    nombre , Id
-		base.Character p1=new base.Character(5000,250,100,150,50,25,10,25,10,"Jesus",002);
-		base.Character p2=new base.Character(10000,500,150,50,25,10,10,25,10,"Jesus Malo",003);
+		base.Character p1=new base.Character(5000,250,100,150,50,25,25,10,"Jesus",002);
+		base.Character p2=new base.Character(10000,500,150,50,25,10,25,10,"Jesus Malo",003);
 		p2.addSkill(hm1);
 		p2.addSkill(hm2);
 		p2.addSkill(hm3);

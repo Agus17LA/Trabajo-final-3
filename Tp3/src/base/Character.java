@@ -1,18 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package base;
 
 import inventory.Inventory;
 import java.util.Vector;
 import java.util.Random;
 
-/**
- *
- * @author Juan
- */
+
 //clase personaje, tecnicamente todo ente que puede tener una pelea
 public class Character extends GameObject {
 
@@ -23,14 +15,19 @@ public class Character extends GameObject {
     private int dmg;        //daño, no confundir con daño fisico o fuerza, este es daño en si, no importa el tipo
     private int maxDmg;
     private int acc;        //accurecy/punteria, afecta las posibilidades de acertar un golpe
+    
     private int dodge;       //evacion aumenta las chances de esquivar un golpe, por cuestiones de balance no debeira ser muy alto 
-    private int speed;      //sinceramente no tiene lugar este atributo y lo deberia eliminar
+   
     private int crit;       //chances de golpe critico, sinceramente no se si dejarlo aca, con que este en las habilidades deberia ser suficiente
+    
     private int def;        //defensa PORCENTUAL por ende 100 de defensa implicaria no recibir daño, hay que limitarlo mas tarde
-    private Vector<Status> vStatus;//vector de estados o aflicciones de un personaje, un personaje puede estar aturdido y buffeado, o sufrir 2 o mas tipos distintos de veneno
-    private Inventory inventory; //inventario de un personaje, sinceramente tendria que bajar este atributo a la clase jugable
+    
+    private Vector<Status> vStatus;//vector de estados o aflicciones de un personaje, un personaje puede estar aturdido y buffeado, o sufrir 2 o mas tipos distintos de venenO
+    
     public Vector<Skill> vSkills; //vector de habilidades de un personaje
+    
     private Weapon weapon; //arma utilizada por el personaje
+    
     private Armor armor;    //armadura usada por el personaje
 
     public Character() {
@@ -43,17 +40,15 @@ public class Character extends GameObject {
         maxDmg = 0;
         acc = 0;
         dodge = 0;
-        speed = 0;
         crit = 0;
         def = 0;
         vStatus = new Vector<Status>();
-        inventory = new Inventory();
         vSkills = new Vector<Skill>();
         weapon = new Weapon();
         armor = new Armor();
     }
 
-    public Character(int hp, int mana, int dmg, int maxDmg, int acc, int dodge, int speed, int crit, int def, String name, int id) {
+    public Character(int hp, int mana, int dmg, int maxDmg, int acc, int dodge, int crit, int def, String name, int id) {
         super(name, id);
         this.hp = hp;
         this.maxHp = hp;
@@ -63,17 +58,15 @@ public class Character extends GameObject {
         this.maxDmg = maxDmg;
         this.acc = acc;
         this.dodge = dodge;
-        this.speed = speed;
         this.crit = crit;
         this.def = def;
         this.vStatus = new Vector<Status>();
-        this.inventory = new Inventory();
         this.vSkills = new Vector<Skill>();
         this.weapon = new Weapon();
         this.armor = new Armor();
     }
 
-    public Character(int hp, int mana, int dmg, int maxDmg, int acc, int dodge, int speed, int crit, int def, Vector<Item> inventory, Vector<Skill> vSkills, Weapon weapon, Armor armor, String name, int id) {
+    public Character(int hp, int mana, int dmg, int maxDmg, int acc, int dodge, int crit, int def, Vector<Skill> vSkills, Weapon weapon, Armor armor, String name, int id) {
         super(name, id);
         this.hp = hp;
         this.maxHp = hp;
@@ -83,10 +76,8 @@ public class Character extends GameObject {
         this.maxDmg = maxDmg;
         this.acc = acc;
         this.dodge = dodge;
-        this.speed = speed;
         this.crit = crit;
-        this.def = def;
-        this.inventory = new Inventory();
+        this.def = def;    
         this.vSkills = vSkills;
         this.weapon = weapon;
         this.armor = armor;
@@ -104,11 +95,9 @@ public class Character extends GameObject {
         this.maxDmg = c.maxDmg;
         this.acc = c.acc;
         this.dodge = c.dodge;
-        this.speed = c.speed;
         this.crit = c.crit;
         this.def = c.def;
         this.vStatus = c.vStatus;
-        this.inventory = c.inventory;
         this.vSkills = c.vSkills;
         this.weapon = c.weapon;
         this.armor = c.armor;
@@ -180,14 +169,6 @@ public class Character extends GameObject {
         this.dodge = dodge;
     }
 
-    public int getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(int speed) {
-        this.speed = speed;
-    }
-
     public int getCrit() {
         return crit;
     }
@@ -203,12 +184,29 @@ public class Character extends GameObject {
     public void setDef(int def) {
         this.def = def;
     }
+
+    public Weapon getWeapon() {
+        return weapon;
+    }
+
+    public void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
+    }
+
+    public Armor getArmor() {
+        return armor;
+    }
+
+    public void setArmor(Armor armor) {
+        this.armor = armor;
+    }
     
 
-    //to string feo y desactualizado que queda ilegible en la consola, espero que con la interfaz grafica mejore algo
+    /*toString feo y desactualizado que queda ilegible en la consola, 
+    espero que con la interfaz grafica mejore algo*/
     public String toString() {
         return " " + getName() + "\n Vida: " + hp + "/" + maxHp + "\n Mana: " + mana + "/" + maxMana + "\n Daño: "
-                + dmg + "-" + maxDmg + " || Precision extra: +" + acc + "\n Evasion:  " + dodge + "|| Velocidad: " + speed
+                + dmg + "-" + maxDmg + " || Precision extra: +" + acc + "\n Evasion:  " + dodge
                 + " \n Defensa: " + def + "%" + "|| Critico: " + crit + "%";
     }
 
@@ -304,8 +302,8 @@ public class Character extends GameObject {
         return vSkills.size();
     }
 
-   //para agregar un status al vector de status, aplica polimorfismo pero no me acuerdo el nombre exacto
-    //y tambien devuelve un mensaje diciendo que status se agrego!
+   /*para agregar un status al vector de status, aplica polimorfismo pero no me acuerdo el 
+    nombre exactO y tambien devuelve un mensaje diciendo que status se agrego!*/
     public String addStatus(Status status) {   
         String s = " ";
         if (status instanceof Stun) {

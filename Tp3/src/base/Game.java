@@ -19,7 +19,6 @@ public class Game {
         boolean playerTurn = true;
         byte playerSkill = 0; //usamos byte no va a haber mas de 16 habilidades
         byte enemySkill = 0;
-        System.out.println("EL DAÑO ORIGINAL DE JESUS MALO ES: "+enemy.getDmg());
         //si algun personaje muere ya termina la pelea
         while (player.isAlive() && enemy.isAlive()) {
             System.out.println(showHps(player, enemy));
@@ -40,7 +39,7 @@ public class Game {
                 }
                 playerTurn = false;
             } else {
-                System.out.println("EL DAÑO ACTUAL DE JESUS MALO ES: "+enemy.getDmg());
+                
                 if(enemy.isStunned()){
                 System.out.println(enemy.statusEffect());
                 }

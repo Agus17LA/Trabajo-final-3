@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package base;
 
-/**
- *
- * @author Juan
- */
 /*Clase armadura, viene a ser tecnicamente la "ropa" que usa un personaje jugablo o npc, 
 ofrece modicicaciones fijas de distintas estadisticas defensivas, todavia no esta claro si el "tipo"
 de armadura va a ser un atributo o clases nuevas que hereden de esta*/
