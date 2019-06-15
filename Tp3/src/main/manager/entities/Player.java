@@ -185,7 +185,7 @@ public class Player {
         for(int r =0;r<map.collisionAreas.size();r++){
             final Rectangle area = map.collisionAreas.get(r);
             int xOrigin = area.x;
-            int yOrigin = area.y + velocityY*(int)velocity + 3 * (int) velocity;
+            int yOrigin = area.y + velocityY*(int)velocity + 2 * (int) velocity;
             final Rectangle futureArea = new Rectangle(xOrigin,yOrigin,Constants.SIDE_SPRITE,Constants.SIDE_SPRITE);
             if(ABOVE_COLLISION.intersects(futureArea)){
                 return true;
@@ -197,7 +197,7 @@ public class Player {
         for(int r =0;r<map.collisionAreas.size();r++){
             final Rectangle area = map.collisionAreas.get(r);
             int xOrigin = area.x;
-            int yOrigin = area.y + velocityY*(int)velocity - 3 * (int) velocity;
+            int yOrigin = area.y + velocityY*(int)velocity - 2 * (int) velocity;
             final Rectangle futureArea = new Rectangle(xOrigin,yOrigin,Constants.SIDE_SPRITE,Constants.SIDE_SPRITE);
             if(DOWN_COLLISION.intersects(futureArea)){
                 return true;
@@ -209,7 +209,7 @@ public class Player {
     private boolean leftCollision(int velocityX){
         for(int r =0;r<map.collisionAreas.size();r++){
             final Rectangle area = map.collisionAreas.get(r);
-            int xOrigin = area.x + velocityX*(int)velocity + 3 * (int) velocity;
+            int xOrigin = area.x + velocityX*(int)velocity + 2 * (int) velocity;
             int yOrigin = area.y;
             final Rectangle futureArea = new Rectangle(xOrigin,yOrigin,Constants.SIDE_SPRITE,Constants.SIDE_SPRITE);
             if(LEFT_COLLISION.intersects(futureArea)){
@@ -222,7 +222,7 @@ public class Player {
     private boolean rightCollision(int velocityX){
         for(int r =0;r<map.collisionAreas.size();r++){
             final Rectangle area = map.collisionAreas.get(r);
-            int xOrigin = area.x + velocityX*(int)velocity - 3 * (int) velocity;
+            int xOrigin = area.x + velocityX*(int)velocity - 2 * (int) velocity;
             int yOrigin = area.y;
             final Rectangle futureArea = new Rectangle(xOrigin,yOrigin,Constants.SIDE_SPRITE,Constants.SIDE_SPRITE);
             if(RIGHT_COLLISION.intersects(futureArea)){
@@ -302,6 +302,20 @@ public class Player {
     public Rectangle getLEFT_COLLISION() {
         return LEFT_COLLISION;
     }
+
+    public Rectangle getABOVE_COLLISION() {
+        return ABOVE_COLLISION;
+    }
+
+    public Rectangle getDOWN_COLLISION() {
+        return DOWN_COLLISION;
+    }
+
+    public Rectangle getRIGHT_COLLISION() {
+        return RIGHT_COLLISION;
+    }
+    
+    
 
     public void setMap(Map map) {
         this.map = map;

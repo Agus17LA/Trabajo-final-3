@@ -123,15 +123,15 @@ public class Map {
     private void refreshEnemiesZone(final int positionX,final int positionY){
         int pointX = ((int)enemyPoint1.getX())*Constants.SIDE_SPRITE - positionX + EDGE_X;
         int pointY = ((int)enemyPoint1.getY())*Constants.SIDE_SPRITE - positionY + EDGE_Y;
-        enemyZone1 = new Rectangle(pointX,pointY,Constants.SIDE_SPRITE,Constants.SIDE_SPRITE);
+        enemyZone1 = new Rectangle(pointX-32,pointY-32,96,96);
         
         int pointX2 = ((int)enemyPoint2.getX())*Constants.SIDE_SPRITE - positionX + EDGE_X;
         int pointY2 = ((int)enemyPoint2.getY())*Constants.SIDE_SPRITE - positionY + EDGE_Y;
-        enemyZone2 = new Rectangle(pointX2,pointY2,Constants.SIDE_SPRITE,Constants.SIDE_SPRITE);
+        enemyZone2 = new Rectangle(pointX2-32,pointY2-32,96,96);
         
         int pointX3 = ((int)enemyPoint3.getX())*Constants.SIDE_SPRITE - positionX + EDGE_X;
         int pointY3 = ((int)enemyPoint3.getY())*Constants.SIDE_SPRITE - positionY + EDGE_Y;
-        enemyZone3 = new Rectangle(pointX3,pointY3,Constants.SIDE_SPRITE,Constants.SIDE_SPRITE);
+        enemyZone3 = new Rectangle(pointX3-32,pointY3-32,96,96);
     }
 
     public Rectangle getEnemyZone1() {
@@ -240,18 +240,10 @@ public class Map {
         for(int y=0;y<this.height;y++){
             for(int x=0;x<this.width;x++){
                 BufferedImage image = palette[sprites[x+y*this.width]].getImage();
-                
                 int pointX = x*Constants.SIDE_SPRITE - positionX + EDGE_X;
                 int pointY = y*Constants.SIDE_SPRITE - positionY + EDGE_Y;
-                
                 g.drawImage(image,pointX,pointY,null);
-                /*
-                g.setColor(Color.red);   //hago visibles las colisiones
-                for(int r = 0; r<collisionAreas.size();r++){
-                    Rectangle a = collisionAreas.get(r);
-                    g.drawRect(a.x,a.y,a.width,a.height);
-                }
-                */
+                
             }
         }
     }
@@ -275,6 +267,20 @@ public class Map {
     public String getNextMap() {
         return nextMap;
     }
+
+    public Point getEnemyPoint1() {
+        return enemyPoint1;
+    }
+
+    public Point getEnemyPoint2() {
+        return enemyPoint2;
+    }
+
+    public Point getEnemyPoint3() {
+        return enemyPoint3;
+    }
+    
+    
     
     
 }

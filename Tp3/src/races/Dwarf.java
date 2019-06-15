@@ -67,6 +67,8 @@ public class Dwarf extends Playable implements Iwarrior {
 			m.manaError();
 		}
 
+
+
 	}
 
 	public void heavyTraining() {

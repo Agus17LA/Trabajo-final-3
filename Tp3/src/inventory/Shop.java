@@ -84,7 +84,7 @@ public class Shop {
 		return flag;
 	}
 
-	public void buyItem(Character c, Item i) {//remueve el item de la store, le resta el dinero al pj y se lo agrega al inventory
+/*	public void buyItem(Character c, Item i) {//remueve el item de la store, le resta el dinero al pj y se lo agrega al inventory
 		boolean flag = true;
 		flag = canBuy(c, i);
 		if (flag) {
@@ -121,7 +121,7 @@ public class Shop {
 		}
 		return flag;
 	}
-	
+	*/
 	public void removeStore() {
 		weapons.clear();
 		armors.clear();
