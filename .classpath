@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="Inventory/src"/>
+	<classpathentry kind="src" path="Tp3/src"/>
+	<classpathentry kind="lib" path="Tp3/lib/CopyLibs/org-netbeans-modules-java-j2seproject-copylibstask.jar"/>
+	<classpathentry kind="output" path="Inventory/bin"/>
+</classpath>

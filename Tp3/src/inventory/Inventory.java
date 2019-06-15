@@ -1,6 +1,8 @@
 package inventory;
 
 import base.Item;
+import base.Messages;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -41,13 +43,6 @@ public class Inventory {
 		this.maxWeight = maxWeight;
 	}
 
-	public HashMap<Integer, String> getInventory() {
-		return inventory;
-	}
-
-	public void setInventory(HashMap<Integer, String> inventory) {
-		this.inventory = inventory;
-	}
 
 	public boolean inventorySize(double weight, double maxWeight) { // esta funcion comprueba que haya espacio libre en
 																	// el inventario basandose en el peso maximo y el
@@ -55,6 +50,10 @@ public class Inventory {
 		boolean flag = false;
 		if (weight < maxWeight) {
 			flag = true;
+		}
+		else {
+			Messages m = new Messages();
+			m.inventorySpaceError();
 		}
 		return flag;
 	}
@@ -66,6 +65,10 @@ public class Inventory {
 			inventory.put(i.getId(), i.getName());
                         setWeight(getWeight()+i.getWeight());
 			flag = true;
+		}
+		else {
+			Messages m = new Messages();
+			m.inventorySpaceError();
 		}
 		return flag;
 	}
@@ -84,7 +87,7 @@ public class Inventory {
 		return inventory.size();
 	}
 
-	public String showInventory() { //mostrar todos los items del inventario
+	public String showInventory() { //mostrar todos los items del inventario con for each
 		StringBuilder builder = new StringBuilder();
 		for (Integer id : inventory.keySet()) {
 			builder.append(id.toString());
@@ -92,7 +95,7 @@ public class Inventory {
 		return builder.toString();
 	}
         
-        public String showInventoryIt(){
+        public String showInventoryIt(){ //mostrar todos los items del inventario con iterator
             StringBuilder builder=new StringBuilder();
             Iterator it=inventory.entrySet().iterator();
             while(it.hasNext()){
@@ -102,7 +105,7 @@ public class Inventory {
             return builder.toString();
         }
 	
-	public String showPerType(String type) { //mostrar por tipo de item
+	public String showPerType(String type) { //mostrar por tipo de item con for each (creo habria que eliminarlo)
 		StringBuilder builder = new StringBuilder();
 		for (Integer i : inventory.keySet()) {
 
@@ -120,7 +123,7 @@ public class Inventory {
 		return builder.toString();
 	}
         
-        public String showPerTypeIt(String type){
+        public String showPerTypeIt(String type){ //mostrar por tipo de item con iterator (creo habria que eliminarlo)
             StringBuilder builder=new StringBuilder();
             Iterator it=inventory.entrySet().iterator();
             while(it.hasNext()){
