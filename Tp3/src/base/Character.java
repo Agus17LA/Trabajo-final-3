@@ -235,6 +235,7 @@ public class Character extends GameObject {
         StringBuilder builder = new StringBuilder();
         int dmgTotal = 0;
         int hitChance = calculateHitChance(c, s); //calculate hit chance devuelve un int que es el % de chances de golpear
+        c.setMana(c.getMana()-s.getManaCost());//aplica el coste de mana de la habilidad(el control para que le alcanze se hace mas arriba)
         if (hit(hitChance)) {//se usa ese % en una funcion que devuelve un boolean para saber si se pudo hacer el golpe
             builder.append(s.useSkill(c, this)); //funcion en la que la habilidad es usada
         } else {
