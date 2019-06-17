@@ -74,7 +74,7 @@ public class Enemy {
         g.setColor(Color.CYAN);
         g.drawImage(enemyImageStart()[0],(int)map.getEnemyZone1().getX()+18,(int)map.getEnemyZone1().getY(),null);
         g.drawImage(enemyImageStart()[1],(int)map.getEnemyZone2().getX()+18,(int)map.getEnemyZone2().getY(),null);
-        g.drawImage(enemyImageStart()[2],(int)map.getEnemyZone3().getX()+18,(int)map.getEnemyZone3().getY(),null);
+        g.drawImage(enemyImageStart()[2],(int)map.getEnemyZone3().getX()+18,(int)map.getEnemyZone3().getY()-10,null);
     }
 
     
