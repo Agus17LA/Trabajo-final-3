@@ -10,6 +10,7 @@ public class Skill extends GameObject {
      */
     private int accMod;//estos ya son lineales
     private int critMod;
+    private int manaCost;
     private int statusChance;//la posiblidad de aplicar el status en el objetivo
     //los distintos status, aca es donde podria hacer un vector de status, pero por ahora esto es suficiente
     private Stun stun;
@@ -21,6 +22,7 @@ public class Skill extends GameObject {
         dmgMod = 0;
         accMod = 0;
         critMod = 0;
+        manaCost=0;
         statusChance = 0;
         stun = new Stun();
         poison = new Poison();
@@ -28,70 +30,88 @@ public class Skill extends GameObject {
     }
 
     //MUCHOS constructores
-    public Skill(String name, int id, int dmgMod, int accMod, int critMod) {
+    public Skill(String name, int id, int dmgMod, int accMod, int critMod,int manaCost) {
         super(name, id);
         this.dmgMod = dmgMod;
         this.accMod = accMod;
         this.critMod = critMod;
+        this.manaCost=manaCost;
         this.statusChance = 0;
         stun = new Stun();
         poison = new Poison();
         buff = new Buff();
     }
 
-    public Skill(String name, int id, int dmgMod, int accMod, int critMod, int statusChance, Buff buff) {
+    public Skill(String name, int id, int dmgMod, int accMod, int critMod, int manaCost,int statusChance, Buff buff) {
         super(name, id);
         this.dmgMod = dmgMod;
         this.accMod = accMod;
         this.critMod = critMod;
+        this.manaCost=manaCost;
         this.statusChance = statusChance;
         stun = new Stun();
         poison = new Poison();
         this.buff = buff;
     }
 
-    public Skill(String name, int id, int dmgMod, int accMod, int critMod, int statusChance, Stun stun) {
+    public Skill(String name, int id, int dmgMod, int accMod, int critMod, int manaCost,int statusChance, Stun stun) {
         super(name, id);
         this.dmgMod = dmgMod;
         this.accMod = accMod;
         this.critMod = critMod;
+        this.manaCost=manaCost;
         this.statusChance = statusChance;
         this.stun = stun;
         poison = new Poison();
         buff = new Buff();
     }
 
-    public Skill(String name, int id, int dmgMod, int accMod, int critMod, int statusChance, Poison poison) {
+    public Skill(String name, int id, int dmgMod, int accMod, int critMod, int manaCost,int statusChance, Poison poison) {
         super(name, id);
         this.dmgMod = dmgMod;
         this.accMod = accMod;
         this.critMod = critMod;
+        this.manaCost=manaCost;
         this.statusChance = statusChance;
         stun = new Stun();
         this.poison = poison;
     }
 
-    public Skill(String name, int id, int dmgMod, int accMod, int critMod, int statusChance, Stun stun, Poison poison) {
+    public Skill(String name, int id, int dmgMod, int accMod, int critMod, int manaCost,int statusChance, Stun stun, Poison poison) {
         super(name, id);
         this.dmgMod = dmgMod;
         this.accMod = accMod;
         this.critMod = critMod;
+        this.manaCost=manaCost;
         this.statusChance = statusChance;
         this.stun = stun;
         this.poison = poison;
     }
 
-    public Skill(String name, int id, int dmgMod, int accMod, int critMod, int statusChance, Stun stun, Poison poison, Buff buff) {
+    public Skill(String name, int id, int dmgMod, int accMod, int critMod, int manaCost,int statusChance, Stun stun, Poison poison, Buff buff) {
         super(name, id);
         this.dmgMod = dmgMod;
         this.accMod = accMod;
         this.critMod = critMod;
+        this.manaCost=manaCost;
         this.statusChance = statusChance;
         this.stun = stun;
         this.poison = poison;
         this.buff = buff;
     }
 
+   public Skill(Skill s){
+       super(s.getName(),s.getId());
+        this.dmgMod = s.getDmgMod();
+        this.accMod = s.getAccMod();
+        this.critMod = s.getCritMod();
+        this.manaCost=s.getManaCost();
+        this.statusChance = s.getStatusChance();
+        stun=new Stun(s.stun);
+        poison=new Poison(s.poison);
+        buff=new Buff(s.buff);
+   }
+    
     public int getDmgMod() {
         return dmgMod;
     }
@@ -116,6 +136,23 @@ public class Skill extends GameObject {
         this.critMod = critMod;
     }
 
+    public int getManaCost() {
+        return manaCost;
+    }
+
+    public void setManaCost(int manaCost) {
+        this.manaCost = manaCost;
+    }
+
+    public int getStatusChance() {
+        return statusChance;
+    }
+
+    public void setStatusChance(int statusChance) {
+        this.statusChance = statusChance;
+    }
+
+    
     public String toString() {
         return getName() + ": \n Mod daño: " + dmgMod + "+ || Mod precision: " + accMod + "+|| Mod crit: " + critMod + "+";
     }

@@ -5,6 +5,7 @@
  */
 package races;
  
+import base.Messages;
 import base.Playable;
 import inventory.Inventory;
 /**
@@ -12,6 +13,7 @@ import inventory.Inventory;
  * @author Juan
  */
 public class Gnome extends Playable implements Image{
+	
 
     //Poner para ponerle un nombre
     public Gnome(){
@@ -46,15 +48,27 @@ public class Gnome extends Playable implements Image{
     
     @Override
     public void manaTransmutation() {
+    	if(getMana()-10>=0) {
         setMana(getMana()-10);
         setHp(getHp()+15);
+    	}
+    	else {
+    		Messages m = new Messages();
+    		m.manaError();
+    	}
     }
 
     @Override
     public void magicGain() {
-    setMana(getMana()-30);
+    	if(getMana()-30>=0) {
+    	setMana(getMana()-30);
         setMaxDmg(getMaxDmg()+1);   
         setDmg(getDmg()+1);  
+    	}
+    	else {
+    		Messages m = new Messages();
+    		m.manaError();
+    	}
     }
     
     
