@@ -106,7 +106,7 @@ public class Hud {
         g.drawString("Y = "+player.getPositionY(),730,560);
     }
     
-    public void drawLayout(Graphics g,BufferedImage layout){
+    public void drawFilter(Graphics g,BufferedImage layout){
         g.drawImage(layout, 0, 0, null);
     }
     

@@ -51,10 +51,7 @@ public class GameManager implements GameState{
         player.setMap(map);
         player.setPositionX(map.getInitialPosition().getX());
         player.setPositionY(map.getInitialPosition().getY());
-        
         enemy = new Enemy(map);
-        
-        
     }
     
     private void startMap(final String rute){
@@ -65,23 +62,21 @@ public class GameManager implements GameState{
         player = new Player(map,rute);
     }
     
+    @Override
     public void refresh(){
         if(player.getLEFT_COLLISION().intersects(map.getExitZone())){
             refreshGame();
         }
-        if(player.getLEFT_COLLISION().intersects(map.getEnemyZone1()) || player.getLEFT_COLLISION().intersects(map.getEnemyZone2()) || player.getLEFT_COLLISION().intersects(map.getEnemyZone3())){
-            Constants.BATTLE = true;
-        }else{
-            Constants.BATTLE = false;
-        }
+        Constants.BATTLE = battleZone();
         
         player.refresh();
         map.refresh((int)player.getPositionX(),(int)player.getPositionY());
     }
+    @Override
     public void draw(Graphics g){
         map.draw(g,(int)player.getPositionX(),(int)player.getPositionY());
-        player.draw(g);;
-        //Hud.drawLayout(g,layout);
+        //hud.drawFilter(g,layout);
+        player.draw(g);
         g.setColor(Color.red);
         enemy.draw(g);
         if(Keyboard.hud){

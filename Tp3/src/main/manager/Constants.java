@@ -29,5 +29,5 @@ public class Constants {
     public static int ENEMY_AMOUNT = 3;
     
     
-    public static String RUTA_LAYOUT = "textures/borde.png";
+    public static String RUTA_LAYOUT = "textures/filtro.png";
 }

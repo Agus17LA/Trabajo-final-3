@@ -19,7 +19,7 @@ public class Messages {
 	}
 	//Error dodge insuficiente
 	public void dodgeError() {
-		System.out.println("Error, no hay suficientes puntos de dodge para realizar esa acción."+"\n");//dodge/esquive
+		System.out.println("Error, no hay suficientes puntos de dodge para realizar esa accion."+"\n");//dodge/esquive
 	}
 	//El personaje no puede subir mas de lvl porque ya esta en el lvl maximo
 	public void lvlError() {

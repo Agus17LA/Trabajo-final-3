@@ -54,6 +54,7 @@ public class Map {
         height = Integer.parseInt(parts[1]); 
         
         String sheets = parts[2];
+        
         String[] separateSheets = sheets.split(",");
         String wholePalette = parts[3];
         String[] paletteParts = wholePalette.split("#");
