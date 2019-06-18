@@ -1,7 +1,6 @@
 package base;
 
 import java.util.Scanner;
-
 /**
  *
  * @author Juan
@@ -17,6 +16,7 @@ public class Game {
         boolean playerTurn = true;
         byte playerSkill = 0; //usamos byte no va a haber mas de 16 habilidades
         byte enemySkill = 0;
+        Messages m=new Messages();
         //si algun personaje muere ya termina la pelea
         while (player.isAlive() && enemy.isAlive()) {
             System.out.println(showHps(player, enemy));
@@ -35,6 +35,9 @@ public class Game {
                         System.out.println(player.showSkills()); //crear excepciones 
                         playerSkill = scan.nextByte();
                     } while (playerSkill >= player.vSkills.size() && playerSkill > 0);
+                    if(player.getMana()<player.vSkills.elementAt(playerSkill-1).getManaCost()){
+                        m.manaError();
+                    }
                    }while (player.getMana()<player.vSkills.elementAt(playerSkill-1).getManaCost());
                     System.out.println(enemy.attack(player, player.vSkills.elementAt(playerSkill - 1)));
                 }

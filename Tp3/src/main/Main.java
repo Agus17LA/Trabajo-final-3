@@ -19,9 +19,8 @@ public class Main {
 
         // TODO code application logic here
         System.setProperty("sun.java2d.opengl","true");
-
         PrincipalManager pm = new PrincipalManager("jueguito",Constants.WINDOW_WIDTH,Constants.WINDOW_HEIGHT);
-        pm.startGame(Constants.RUTA_MAGOGNOMO); //acá cargamos la ruta del personaje que se seleccionó
+        pm.startGame(Constants.RUTA_MAGOELFO); //acá cargamos la ruta del personaje que se seleccionó
         pm.startPrincipalLoop();
  
          
