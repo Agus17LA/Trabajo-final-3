@@ -9,6 +9,8 @@ import main.manager.Constants;
 import main.manager.PrincipalManager;
 
 import base.Stun;
+import races.Dwarf;
+import races.Gnome;
 
 
 //main con pruebas y nombres malos muy malos
@@ -19,12 +21,12 @@ public class Main {
 
         // TODO code application logic here
         
-        
+        /*
         System.setProperty("sun.java2d.opengl","true");
         PrincipalManager pm = new PrincipalManager("jueguito",Constants.WINDOW_WIDTH,Constants.WINDOW_HEIGHT);
         pm.startGame();
         pm.startPrincipalLoop();
-        
+        */
          
 		Game game=new Game();
                 Poison poison=new Poison(); //daño duracion
@@ -36,21 +38,23 @@ public class Main {
 		Skill hm2=new Skill("putrefaccion",001,0,100,50,200);
 		Skill hb3=new Skill("bokita pasion",001,0,20,75,200);
 		Skill hm3=new Skill("Velez campeón",001,0,100,50,200);
+                Dwarf d=new Dwarf();
+                Gnome g=new Gnome();
                 //hp,mana,dmg/max,acc,dodge,crit,def
                 //Hay un constructor con solo estadisticas y otro con items y vectores
                 //Inventario, skills, arma, armadura,    nombre , Id
 		base.Character p1=new base.Character(5000,250,100,150,50,25,25,10,"Jesus",002);
 		base.Character p2=new base.Character(10000,500,150,50,25,10,25,10,"Jesus Malo",003);
+                
 		p2.addSkill(hm1);
 		p2.addSkill(hm2);
 		p2.addSkill(hm3);
 		p1.addSkill(hb1);
 		p1.addSkill(hb2);
 		p1.addSkill(hb3);
-                game.battle(p1, p2);
-		System.out.println(p1.showSkills());
-		System.out.println(p2.showSkills());
-		System.out.println(p1.attack(p2,p2.vSkills.elementAt(0)));
+                d.toString();
+                game.battle(d, g);
+		
                
         
 		

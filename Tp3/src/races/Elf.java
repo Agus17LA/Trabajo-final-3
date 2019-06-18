@@ -7,6 +7,8 @@ package races;
 
 import base.Messages;
 import base.Playable;
+import base.Skill;
+import base.Weapon;
 import inventory.Inventory;
 
 /**
@@ -20,7 +22,7 @@ public class Elf extends Playable implements Image {
 		setMaxHp(ranNum(25, 32));
 		setHp(getMaxHp());
 		setMaxMana(ranNum(25, 33));
-		setMana(getMana());
+		setMana(getMaxMana());
 		setDmg(ranNum(10, 11));
 		setMaxDmg(ranNum(13, 15));
 		setAcc(ranNum(25, 35));
@@ -44,6 +46,23 @@ public class Elf extends Playable implements Image {
 		setDef(0);
 
 		iniCharacterObjects();
+                
+                Skill s=new Skill();
+                s.skillGolpeBasico();
+                this.addSkill(s);
+                s=new Skill();
+                s.skillAguijon();
+                this.addSkill(s);
+                 s=new Skill();
+                s.skillTormentaElectrica();
+                this.addSkill(s);
+                 s=new Skill();
+                s.skillApocalipsis();
+                this.addSkill(s);
+                
+                 Weapon w=new Weapon();
+                w.weaponPalo();
+                
 	}
 
 	@Override

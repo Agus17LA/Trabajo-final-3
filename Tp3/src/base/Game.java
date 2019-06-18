@@ -34,8 +34,11 @@ public class Game {
                         System.out.println("Elija habilidad:");
                         System.out.println(player.showSkills()); //crear excepciones 
                         playerSkill = scan.nextByte();
-                    } while (playerSkill >= player.vSkills.size() && playerSkill > 0);
+                    } while (playerSkill > player.vSkills.size()|| playerSkill <= 0);
                     if(player.getMana()<player.vSkills.elementAt(playerSkill-1).getManaCost()){
+                        System.out.println(player.vSkills.elementAt(playerSkill-1).getManaCost());
+                        System.out.println("mana jugador"+player.getMana());
+                        System.out.println("No hay mana");
                         StringBuilder builder = new StringBuilder();
                         builder.append(m.manaError());
                     	builder.toString();
@@ -51,7 +54,7 @@ public class Game {
                 } else {
                     /* Esta IA es la envidia de elon musk, lo unico que hace es dar vueltas
                     por el arreglo de habilidades 
-                    */do{
+                    */
                     System.out.println(enemy.statusEffect());
                     if (enemySkill > enemy.totalSkills() - 1) {
                         enemySkill = 0;
@@ -59,7 +62,7 @@ public class Game {
 
                     System.out.println(player.attack(enemy, enemy.vSkills.elementAt(enemySkill)));
                     enemySkill++;
-                    } while (enemySkill >= enemy.vSkills.size() && enemySkill > 0);
+                  
                 }
                 playerTurn = true;
             }

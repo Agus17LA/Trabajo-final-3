@@ -7,6 +7,8 @@ package races;
 
 import base.Messages;
 import base.Playable;
+import base.Skill;
+import base.Weapon;
 import inventory.Inventory;
 
 /**
@@ -20,7 +22,7 @@ public class Human extends Playable implements Iwarrior {
 		setMaxHp(ranNum(35, 45));
 		setHp(getMaxHp());
 		setMaxMana(ranNum(9, 15));
-		setMana(getMana());
+		setMana(getMaxMana());
 		setDmg(ranNum(6, 9));
 		setMaxDmg(ranNum(11, 16));
 		setAcc(ranNum(11, 16));
@@ -44,6 +46,21 @@ public class Human extends Playable implements Iwarrior {
 		setDef(0);
 
 		iniCharacterObjects();
+                Skill s=new Skill();
+                s.skillGolpeBasico();
+                System.out.println("Daño de mi personaje: " +getDmg());
+                this.addSkill(s);
+                s=new Skill();
+                s.skillAtaque2Manos();
+                this.addSkill(s);
+                 s=new Skill();
+                s.skillDesgarrar();
+                this.addSkill(s);
+                 s=new Skill();
+                s.skillGritoDeGuerra();
+                this.addSkill(s);
+                Weapon w=new Weapon();
+                w.weaponEspadaGastada();
 	}
 
 	@Override
