@@ -60,14 +60,17 @@ public class Dwarf extends Playable implements Iwarrior {
 			} else {
 				Messages m = new Messages();// pongo la creacion del objeto aca para que se cree solo si es necesario y
 											// no quede creado sin usarse
-				m.hpError();
+				StringBuilder builder = new StringBuilder();
+				builder.append(m.hpError());
+				builder.toString();
 			}
 		} else {
 			Messages m = new Messages();
-			m.manaError();
+			StringBuilder builder = new StringBuilder();
+			builder.append(m.manaError());
+			builder.toString();
+
 		}
-
-
 
 	}
 
@@ -78,7 +81,10 @@ public class Dwarf extends Playable implements Iwarrior {
 			setHp(getHp() + 10);
 		} else {
 			Messages m = new Messages();
-			m.dodgeError();
+			StringBuilder builder = new StringBuilder();
+			builder.append(m.dodgeError());
+			builder.toString();
+
 		}
 	}
 

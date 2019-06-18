@@ -121,12 +121,17 @@ public class Playable extends Character {
 				this.statsUp();
 			} else {
 				Messages m = new Messages();
-				m.lvlError();
+				StringBuilder builder = new StringBuilder();
+				builder.append(m.lvlError());
+				builder.toString();
+
 			}
 		} else {
 			Messages m = new Messages();
-			m.xpError(); // aca se muestra el mensaje de que no puede subir de lvl aun y se muestra el
-							// mensaje de la funcion showXpState para que el jugador tenga una referencia
+			StringBuilder builder = new StringBuilder();
+			builder.append(m.xpError()); // aca se muestra el mensaje de que no puede subir de lvl aun y se muestra el
+									// mensaje de la funcion showXpState para que el jugador tenga una referencia
+			builder.toString();
 			showXpState();
 		}
 

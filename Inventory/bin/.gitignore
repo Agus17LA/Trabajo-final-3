@@ -2,11 +2,11 @@
 /Consumible.class
 /GameObject.class
 /Inventory.class
-/Item.class
-/Shop.class
-/Skill.class
-/Weapon.class
 /base/
 /inventory/
 /main/
 /races/
+/Item.class
+/Shop.class
+/Skill.class
+/Weapon.class

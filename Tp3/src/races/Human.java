@@ -56,25 +56,30 @@ public class Human extends Playable implements Iwarrior {
 				setDmg(getDmg() + 2);
 			} else {
 				Messages m = new Messages();
-				m.hpError();
+				StringBuilder builder = new StringBuilder();
+				builder.append(m.hpError());
+				builder.toString();
 			}
 		} else {
 			Messages m = new Messages();
-			m.manaError();
+			StringBuilder builder = new StringBuilder();
+			builder.append(m.manaError());
+			builder.toString();
 		}
 
 	}
 
 	@Override
 	public void heavyTraining() {
-		if(getDodge()-1>=0) {
-		setDodge(getDodge() - 1);
-		setMaxHp(getMaxHp() + 10);
-		setHp(getHp() + 5);
-		}
-		else {
+		if (getDodge() - 1 >= 0) {
+			setDodge(getDodge() - 1);
+			setMaxHp(getMaxHp() + 10);
+			setHp(getHp() + 5);
+		} else {
 			Messages m = new Messages();
-			m.dodgeError();
+			StringBuilder builder = new StringBuilder();
+			builder.append(m.dodgeError());
+			builder.toString();
 		}
 	}
 
