@@ -25,6 +25,11 @@ public class Keyboard implements KeyListener {
     public boolean combate = false;
     public static boolean hud = false;
     public Key exit=new Key();
+    public boolean newGame = false;
+    public boolean prsnj1 = false;
+    public boolean prsnj2 = false;
+    public boolean prsnj3 = false;
+    public boolean prsnj4 = false;
     
     @Override
     public void keyTyped(KeyEvent e) {
@@ -62,6 +67,23 @@ public class Keyboard implements KeyListener {
                 break;
             case KeyEvent.VK_F3:
                 hud = !hud;
+                break;
+            case KeyEvent.VK_N:
+                newGame = !newGame;
+                break;
+            case KeyEvent.VK_1:
+                prsnj1 = !prsnj1;
+                break;
+            case KeyEvent.VK_2:
+                prsnj2 = !prsnj2;
+                break;
+            case KeyEvent.VK_3:
+                prsnj3 = !prsnj3;
+                break;
+            case KeyEvent.VK_4:
+                prsnj4 = !prsnj4;
+                break;
+            default:
                 break;
         }
     }

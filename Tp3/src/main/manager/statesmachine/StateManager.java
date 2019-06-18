@@ -8,6 +8,7 @@ package main.manager.statesmachine;
 import java.awt.Graphics;
 import main.manager.statesmachine.state.game.BattleManager;
 import main.manager.statesmachine.state.game.GameManager;
+import main.manager.statesmachine.state.game.InitialMenu;
 import main.manager.statesmachine.state.game.MenuManager;
 
 /**
@@ -18,16 +19,17 @@ public class StateManager {
     private GameState[] state;
     private GameState currentState;
 
-    public StateManager(String characterRute) {
-        startState(characterRute);
+    public StateManager() {
+        startState();
         startCurrentState();
     }
     
-    private void startState(String characterRute){
+    private void startState(){
         state = new GameState[4];
-        state[0] = new GameManager(characterRute);
-        state[1] = new MenuManager();
-        state[2] = new BattleManager();
+        state[0] = new InitialMenu();
+        state[1] = new GameManager();
+        state[2] = new MenuManager();
+        state[3] = new BattleManager();
         
     }
 
@@ -40,11 +42,12 @@ public class StateManager {
     }
     
     public void draw(final Graphics g){
-        currentState.draw(g);  // encontraremos el metodo "draw" en la clase "GameManager" que implementa "GameState".
+        currentState.draw(g);  // encontraremos el metodo "draw" en la clase "GameManager/BattleManager/InitialMenu" que implementa "GameState".
     }
     
     public void changeCurrentState(int newState){
         currentState = state[newState];
+        
     }
 
     public GameState getCurrentState() {

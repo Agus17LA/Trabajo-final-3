@@ -12,7 +12,6 @@ import java.awt.image.BufferedImage;
 import main.manager.Constants;
 import main.manager.maps.Map;
 import main.manager.sprites.SpritesSheet;
-import main.manager.user_interface.Hud;
 
 /**
  *

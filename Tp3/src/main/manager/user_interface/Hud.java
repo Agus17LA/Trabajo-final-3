@@ -32,6 +32,11 @@ public class Hud {
         layoutInventoryArea = new Rectangle(inventoryArea.x,inventoryArea.y-1,inventoryArea.width,1);
     }
     
+    public Hud(){
+        
+    }
+    
+    
     public void drawBar(final Graphics g, final Player player){
         drawInventoryArea(g);
     }

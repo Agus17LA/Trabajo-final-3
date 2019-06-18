@@ -8,7 +8,9 @@ import main.manager.control.ControlManager;
 import main.manager.control.Mouse;
 import main.manager.graphics.DrawSurface;
 import main.manager.graphics.Window;
+import main.manager.statesmachine.GameState;
 import main.manager.statesmachine.StateManager;
+import main.manager.statesmachine.state.game.InitialMenu;
 
 /**
  *
@@ -29,15 +31,15 @@ public class PrincipalManager {
         this.height = height;
     }
     
-    public void startGame(String characterRute){
+    public void startGame(){
         inWorking = true;
-        start(characterRute);
+        start();
     }
     
-    private void start(String characterRute){
+    private void start(){
         ds = new DrawSurface(width,height);
         win = new Window(title,ds);
-        sm = new StateManager(characterRute);
+        sm = new StateManager();
     }
     
     public void startPrincipalLoop(){
@@ -74,18 +76,17 @@ public class PrincipalManager {
     }
     
     private void refresh(){
-        if(ControlManager.keyboard.menu){
+        if(ControlManager.keyboard.newGame){
             sm.changeCurrentState(1);
-        }else{
-            sm.changeCurrentState(0);
-        }
-        if(ControlManager.keyboard.combate){
+            ControlManager.keyboard.newGame = false;
+        }else if(ControlManager.keyboard.combate){
+            sm.changeCurrentState(3);
+            ControlManager.keyboard.combate = false;
+        }else if(ControlManager.keyboard.menu){
             sm.changeCurrentState(2);
-        }else{
-            sm.changeCurrentState(0);
+            ControlManager.keyboard.menu = false;
         }
-        
-        
+
         sm.refresh();
         ds.refresh();
     }

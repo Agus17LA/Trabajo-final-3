@@ -31,18 +31,37 @@ public class GameManager implements GameState{
     String typeOfPlayer;
     Hud hud;
     Enemy enemy;
+    private boolean refresh = false;
     
     
     
-    public GameManager(String typeOfPlayer){
+    public GameManager(){
         this.p = DrawSurface.mouse.getPosition();
-        this.typeOfPlayer = typeOfPlayer;
+        loadRuteCharacter();
         startMap(Constants.RUTA_MAP);
-        startPlayer(map,typeOfPlayer);
         enemy = new Enemy(map);
         hud = new Hud(player);
         layout = ResourceLoader.loadCompatibleImageTranslucent(Constants.RUTA_LAYOUT);
         
+    }
+    
+    public void loadRuteCharacter(){
+        switch(Constants.SELECTED_CHARACTER){
+            case 1:
+                typeOfPlayer = Constants.RUTA_MAGOELFO;
+                break;
+            case 2:
+                typeOfPlayer = Constants.RUTA_MAGOGNOMO;
+                break;
+            case 3:
+                typeOfPlayer = Constants.RUTA_GUERREROHUMANO;
+                break;
+            case 4:
+                typeOfPlayer = Constants.RUTA_GUERREROENANO;
+                break;
+            default:
+                break;
+        }
     }
     
     private void refreshGame(){
@@ -64,6 +83,11 @@ public class GameManager implements GameState{
     
     @Override
     public void refresh(){
+        if(!refresh){
+            loadRuteCharacter();
+            startPlayer(map,typeOfPlayer);  //Inicializamos acá el jugador para poder hacer la correcta eleccion del personaje que se hizo en el menu de inicio
+            refresh = true;
+        }
         if(player.getLEFT_COLLISION().intersects(map.getExitZone())){
             refreshGame();
         }

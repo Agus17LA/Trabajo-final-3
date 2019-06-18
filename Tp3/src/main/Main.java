@@ -18,11 +18,13 @@ public class Main {
     public static void main(String[] args) {
 
         // TODO code application logic here
+        
+        
         System.setProperty("sun.java2d.opengl","true");
         PrincipalManager pm = new PrincipalManager("jueguito",Constants.WINDOW_WIDTH,Constants.WINDOW_HEIGHT);
-        pm.startGame(Constants.RUTA_MAGOELFO); //acá cargamos la ruta del personaje que se seleccionó
+        pm.startGame();
         pm.startPrincipalLoop();
- 
+        
          
 		Game game=new Game();
                 Poison poison=new Poison(); //daño duracion
