@@ -53,7 +53,9 @@ public class Elf extends Playable implements Image {
 			setHp(getHp() + 50);
 		} else {
 			Messages m = new Messages();
-			m.manaError();
+			StringBuilder builder = new StringBuilder();
+			builder.append(m.manaError());
+			builder.toString();
 		}
 
 	}
@@ -65,7 +67,10 @@ public class Elf extends Playable implements Image {
 			setMaxDmg(getMaxDmg() + 3);
 		} else {
 			Messages m = new Messages();
-			m.manaError();
+			StringBuilder builder = new StringBuilder();
+			builder.append(m.manaError());
+			builder.toString();
+
 		}
 	}
 }

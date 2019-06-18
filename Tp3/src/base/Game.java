@@ -36,7 +36,9 @@ public class Game {
                         playerSkill = scan.nextByte();
                     } while (playerSkill >= player.vSkills.size() && playerSkill > 0);
                     if(player.getMana()<player.vSkills.elementAt(playerSkill-1).getManaCost()){
-                        m.manaError();
+                        StringBuilder builder = new StringBuilder();
+                        builder.append(m.manaError());
+                    	builder.toString();
                     }
                    }while (player.getMana()<player.vSkills.elementAt(playerSkill-1).getManaCost());
                     System.out.println(enemy.attack(player, player.vSkills.elementAt(playerSkill - 1)));
