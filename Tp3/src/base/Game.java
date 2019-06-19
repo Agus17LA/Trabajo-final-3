@@ -12,7 +12,7 @@ public class Game {
     //batalla entre 2 entes
     //funcion extremadamente modularizable
     @SuppressWarnings("empty-statement")
-    public void battle(Character player, Character enemy) {
+    public void battle(Playable player, Enemy enemy) {
         Scanner scan = new Scanner(System.in);
         boolean playerTurn = true;
         byte playerSkill = 0; //usamos byte no va a haber mas de 16 habilidades
@@ -71,10 +71,14 @@ public class Game {
                 }
                 playerTurn = true;
             }
+        
+            
         }
 
         if (player.isAlive()) {
             System.out.println(player.getName() + " ha matado a " + enemy.getName());
+            System.out.println(player.addXp(enemy.getExpDrop()));
+            
         } else {
             System.out.println(enemy.getName() + " te ha matado!!");
         }

@@ -40,6 +40,10 @@ public class Poison extends Status{
         this.poisoned = poisoned;
     }
     
+    @Override
+    public boolean isPoison(){
+        return true;
+    }
     
     @Override
     public String statusTurn(Character c){

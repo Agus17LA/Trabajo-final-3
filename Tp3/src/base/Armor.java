@@ -227,8 +227,8 @@ public class Armor extends Item {
         defMod =5;
     }
     
-    public void armorRamaDeAbedul() {
-        setName("Rama de Abedul");
+    public void armorPonchoSucio() {
+        setName("Poncho Sucio");
         setId(0);
         hpMod =5;
         dodgeMod =10;
