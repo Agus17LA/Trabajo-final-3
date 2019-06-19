@@ -5,11 +5,9 @@
  */
 package main.manager.entities;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
-import main.manager.Constants;
 import main.manager.maps.Map;
 import main.manager.sprites.SpritesSheet;
 
@@ -18,64 +16,44 @@ import main.manager.sprites.SpritesSheet;
  * @author Agus_
  */
 public class Enemy {
-    private final Point[] point = new Point[Constants.ENEMY_AMOUNT];
-    private BufferedImage actualEnemy1;
-    private BufferedImage actualEnemy2;
-    private BufferedImage actualEnemy3;
-        
-    private SpritesSheet enemy1;
-    private SpritesSheet enemy2;
-    private SpritesSheet enemy3;
+    private final Point[] point;
     private Map map;
+    private SpritesSheet [] enemies;
+    private BufferedImage [] images;
     
     public Enemy(Map map){
         this.map = map;
-        enemyStart();
-        enemySpriteStart();
-        enemyImageStart();
+        point = new Point[map.getEnemyAmount()];
+        enemies = new SpritesSheet[map.getEnemyAmount()];
+        images = new BufferedImage[map.getEnemyAmount()];
+        enemiesStart();
+        enemiesSpriteStart();
+        enemiesImageStart();
     }
-
     
-    private void enemyStart(){
-        for(int i = 0;i<Constants.ENEMY_AMOUNT;i++){
+    private void enemiesStart(){
+        for(int i=0;i<map.getEnemyAmount();i++){
             point[i] = new Point();
-            switch (i) {
-                case 0:
-                    point[i].setLocation(map.getEnemyPoint1());
-                    break;
-                case 1:
-                    point[i].setLocation(map.getEnemyPoint2());
-                    break;
-                case 2:
-                    point[i].setLocation(map.getEnemyPoint3());
-                    break;
-                default:
-                    break;
-            }
+            point[i].setLocation(map.getEnemiesPoint()[i]);
         }
     }
     
-    private void enemySpriteStart(){
-        enemy1 = new SpritesSheet(Constants.RUTA_GUERREROENANO,64,false);
-        enemy2 =  new SpritesSheet(Constants.RUTA_MAGOGNOMO,64,false);
-        enemy3 =  new SpritesSheet(Constants.RUTA_GUERREROHUMANO,64,false);
+    private void enemiesSpriteStart(){
+        for(int i=0;i<map.getEnemyAmount();i++){
+            enemies[i] = new SpritesSheet("textures/"+map.getNameSheetEnemy(),64,false);
+        }
     }
     
-    public BufferedImage[] enemyImageStart(){
-        BufferedImage[] todos = new BufferedImage[3];
-        todos[0] = actualEnemy1 = enemy1.getSprite(0).getImage();
-        todos[1] = actualEnemy2 = enemy2.getSprite(0).getImage();
-        todos[2] = actualEnemy3 = enemy3.getSprite(0).getImage();
-        return todos;
+    private void enemiesImageStart(){
+        for(int i = 0;i<map.getEnemyAmount();i++){
+            images[i] = enemies[i].getSprite(i).getImage();
+        }
     }
     
     public void draw(Graphics g){
-        g.setColor(Color.CYAN);
-        g.drawImage(enemyImageStart()[0],(int)map.getEnemyZone1().getX()+18,(int)map.getEnemyZone1().getY(),null);
-        g.drawImage(enemyImageStart()[1],(int)map.getEnemyZone2().getX()+18,(int)map.getEnemyZone2().getY(),null);
-        g.drawImage(enemyImageStart()[2],(int)map.getEnemyZone3().getX()+18,(int)map.getEnemyZone3().getY()-10,null);
+        for(int i=0;i<map.getEnemyAmount();i++){
+            g.drawImage(images[i],(int)map.getEnemyZone()[i].x+16,(int)map.getEnemyZone()[i].y-10,null);
+        }
     }
-
-    
     
 }

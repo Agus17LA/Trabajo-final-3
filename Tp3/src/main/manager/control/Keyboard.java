@@ -24,7 +24,7 @@ public class Keyboard implements KeyListener {
     public boolean menu = false;
     public boolean combate = false;
     public static boolean hud = false;
-    public Key exit=new Key();
+    public boolean exit= false;
     public boolean newGame = false;
     public boolean prsnj1 = false;
     public boolean prsnj2 = false;
@@ -55,7 +55,7 @@ public class Keyboard implements KeyListener {
                 run = true;
                 break;
             case KeyEvent.VK_ESCAPE:
-                exit.keyPressed();
+                exit = true;
                 break;
             case KeyEvent.VK_I:
                 menu = !menu;
@@ -107,7 +107,7 @@ public class Keyboard implements KeyListener {
                 run = false;
                 break;
             case KeyEvent.VK_ESCAPE:
-                exit.keyFree();
+                exit = false;
                 break;
         }
     }

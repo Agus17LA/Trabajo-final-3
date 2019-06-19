@@ -50,10 +50,10 @@ public class Hud {
     
     public void drawBattleArea(Graphics g, Map map){
         g.setColor(Color.CYAN);
-        g.drawRect((int)map.getEnemyZone1().getX(), (int)map.getEnemyZone1().getY(), (int)map.getEnemyZone1().getWidth(), (int)map.getEnemyZone1().getHeight());
-        g.drawRect((int)map.getEnemyZone2().getX(), (int)map.getEnemyZone2().getY(), (int)map.getEnemyZone2().getWidth(), (int)map.getEnemyZone2().getHeight());
-        g.drawRect((int)map.getEnemyZone3().getX(), (int)map.getEnemyZone3().getY(), (int)map.getEnemyZone3().getWidth(), (int)map.getEnemyZone3().getHeight());
-    }
+        for(int i=0;i<map.getEnemyAmount();i++){
+            g.drawRect((int)map.getEnemyZone()[i].getX(), (int)map.getEnemyZone()[i].getY(), (int)map.getEnemyZone()[i].getWidth(), (int)map.getEnemyZone()[i].getHeight());
+        }
+}
     
     public void drawCollisions(Graphics g, Map map){
             g.setColor(Color.red);   //hago visibles las colisiones

@@ -166,6 +166,10 @@
 *
 30:17:mapTemplate2.txt
 *
+3
+*
+spriteSheetE.png
+*
 9:8
 #
 15:17

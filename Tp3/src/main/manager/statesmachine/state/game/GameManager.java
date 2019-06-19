@@ -7,6 +7,7 @@ package main.manager.statesmachine.state.game;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import main.manager.Constants;
 import main.manager.control.ControlManager;
@@ -91,18 +92,18 @@ public class GameManager implements GameState{
         if(player.getLEFT_COLLISION().intersects(map.getExitZone())){
             refreshGame();
         }
-        Constants.BATTLE = battleZone();
         
         player.refresh();
         map.refresh((int)player.getPositionX(),(int)player.getPositionY());
+        Constants.BATTLE = battleZone();
     }
     @Override
     public void draw(Graphics g){
         map.draw(g,(int)player.getPositionX(),(int)player.getPositionY());
-        //hud.drawFilter(g,layout);
         player.draw(g);
         g.setColor(Color.red);
         enemy.draw(g);
+        //hud.drawFilter(g,layout);
         if(Keyboard.hud){
             hud.drawTP(g, map);
             hud.drawCollisions(g, map);
@@ -120,7 +121,19 @@ public class GameManager implements GameState{
     }
     
     public boolean battleZone(){
-        return (player.getLEFT_COLLISION().intersects(map.getEnemyZone1()) || player.getRIGHT_COLLISION().intersects(map.getEnemyZone1()) || player.getABOVE_COLLISION().intersects(map.getEnemyZone1()) || player.getDOWN_COLLISION().intersects(map.getEnemyZone1()))   ||   (player.getLEFT_COLLISION().intersects(map.getEnemyZone2()) || player.getRIGHT_COLLISION().intersects(map.getEnemyZone2()) || player.getABOVE_COLLISION().intersects(map.getEnemyZone2()) || player.getDOWN_COLLISION().intersects(map.getEnemyZone2()))   ||   (player.getLEFT_COLLISION().intersects(map.getEnemyZone3()) || player.getRIGHT_COLLISION().intersects(map.getEnemyZone3()) || player.getABOVE_COLLISION().intersects(map.getEnemyZone3()) || player.getDOWN_COLLISION().intersects(map.getEnemyZone3()));
+        boolean flag = false;
+        for(int i=0;i<map.getEnemyAmount();i++){ 
+            if(player.getLEFT_COLLISION().intersects(map.getEnemyZone()[i])  || player.getABOVE_COLLISION().intersects(map.getEnemyZone()[i]) || player.getRIGHT_COLLISION().intersects(map.getEnemyZone()[i]) || player.getDOWN_COLLISION().intersects(map.getEnemyZone()[i])){
+                flag = true;
+                Constants.ACTUAL_ENEMY_ZONE = i;
+            }
+            if("spriteSheetE2.png".equals(map.getNameSheetEnemy())){
+                Constants.ACTUAL_MAP = 2;
+            }else{
+                Constants.ACTUAL_MAP = 1;
+            }
+        }
+       return flag;
     }
     
     

@@ -76,9 +76,10 @@ public class PrincipalManager {
     }
     
     private void refresh(){
-        if(ControlManager.keyboard.newGame){
+        if(ControlManager.keyboard.exit){
             sm.changeCurrentState(1);
-            ControlManager.keyboard.newGame = false;
+            System.out.println(ControlManager.keyboard.exit);
+            //ControlManager.keyboard.exit = false;
         }else if(ControlManager.keyboard.combate){
             sm.changeCurrentState(3);
             ControlManager.keyboard.combate = false;
@@ -86,7 +87,12 @@ public class PrincipalManager {
             sm.changeCurrentState(2);
             ControlManager.keyboard.menu = false;
         }
-
+        
+        if(Constants.NEWGAME){
+            sm.changeCurrentState(1);
+            Constants.NEWGAME = false;
+        }
+        
         sm.refresh();
         ds.refresh();
     }

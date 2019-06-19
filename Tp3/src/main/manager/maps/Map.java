@@ -28,13 +28,15 @@ public class Map {
     private Rectangle exitZone;
     
     
-    private Point enemyPoint1;
-    private Point enemyPoint2;
-    private Point enemyPoint3;
-    private Rectangle enemyZone1;
-    private Rectangle enemyZone2;
-    private Rectangle enemyZone3;
     
+    private final Point[] enemiesPoint;
+    
+    
+    private final Rectangle[] enemiesZone;
+    private ArrayList<Rectangle> enemiesZone1;
+    
+    private final int enemyAmount;
+    private final String nameSheetEnemy;
     
     
     private final Sprite[] palette;
@@ -83,68 +85,53 @@ public class Map {
         nextMap = exitDats[2];
         exitZone = new Rectangle();
         
-        String enemies = parts[8];
+        
+        
+        enemyAmount = Integer.parseInt(parts[8]);
+        nameSheetEnemy = parts[9];
+        enemiesPoint = new Point[enemyAmount];
+        enemiesZone = new Rectangle[enemyAmount];
+        String enemies = parts[10];
         String[] allEnemies = enemies.split("#");
         enemyAssign(allEnemies);
-        enemyZone1 = new Rectangle();
-        enemyZone2 = new Rectangle();
-        enemyZone3 = new Rectangle();
-        
     }
     
-    private void enemyAssign(final String[] allEnemies ){
+    private void enemyAssign(final String[] allEnemies){
         String enemy;
         String[] enemyDats;
-        for(int i=0;i<allEnemies.length;i++){
+        for(int i = 0;i<allEnemies.length;i++){
             enemy = allEnemies[i];
             enemyDats = enemy.split(":");
-            switch(i){
-                case 0:
-                    enemyPoint1 = new Point();
-                    enemyPoint1.x = Integer.parseInt(enemyDats[0]);
-                    enemyPoint1.y = Integer.parseInt(enemyDats[1]);
-                    break;
-                case 1:
-                    enemyPoint2 = new Point();
-                    enemyPoint2.x = Integer.parseInt(enemyDats[0]);
-                    enemyPoint2.y = Integer.parseInt(enemyDats[1]);
-                    break;
-                case 2:
-                    enemyPoint3 = new Point();
-                    enemyPoint3.x = Integer.parseInt(enemyDats[0]);
-                    enemyPoint3.y = Integer.parseInt(enemyDats[1]);
-                    break;
-                default:
-                    break;
-            }
+            enemiesPoint[i] = new Point();
+            enemiesPoint[i].x = Integer.parseInt(enemyDats[0]);
+            enemiesPoint[i].y = Integer.parseInt(enemyDats[1]);
         }
     }
     
-    
     private void refreshEnemiesZone(final int positionX,final int positionY){
-        int pointX = ((int)enemyPoint1.getX())*Constants.SIDE_SPRITE - positionX + EDGE_X;
-        int pointY = ((int)enemyPoint1.getY())*Constants.SIDE_SPRITE - positionY + EDGE_Y;
-        enemyZone1 = new Rectangle(pointX-32,pointY-32,96,96);
-        
-        int pointX2 = ((int)enemyPoint2.getX())*Constants.SIDE_SPRITE - positionX + EDGE_X;
-        int pointY2 = ((int)enemyPoint2.getY())*Constants.SIDE_SPRITE - positionY + EDGE_Y;
-        enemyZone2 = new Rectangle(pointX2-32,pointY2-32,96,96);
-        
-        int pointX3 = ((int)enemyPoint3.getX())*Constants.SIDE_SPRITE - positionX + EDGE_X;
-        int pointY3 = ((int)enemyPoint3.getY())*Constants.SIDE_SPRITE - positionY + EDGE_Y;
-        enemyZone3 = new Rectangle(pointX3-32,pointY3-32,96,96);
+        int pointX,pointY;
+        for(int i=0;i<enemyAmount;i++){
+            pointX = ((int)enemiesPoint[i].getX())*Constants.SIDE_SPRITE - positionX + EDGE_X;
+            pointY = ((int)enemiesPoint[i].getY())*Constants.SIDE_SPRITE - positionY + EDGE_Y;
+            enemiesZone[i] = new Rectangle(pointX-32,pointY-32,96,96);
+        }
+    }
+  
+    
+    public Rectangle[] getEnemyZone() {
+        return enemiesZone;
+    }
+    
+    public Rectangle getEnemyZone1(){
+        return enemiesZone[0];
     }
 
-    public Rectangle getEnemyZone1() {
-        return enemyZone1;
+    public ArrayList<Rectangle> getEnemiesZone1() {
+        return enemiesZone1;
     }
 
-    public Rectangle getEnemyZone2() {
-        return enemyZone2;
-    }
-
-    public Rectangle getEnemyZone3() {
-        return enemyZone3;
+    public int getEnemyAmount() {
+        return enemyAmount;
     }
     
     private void refreshExitZone(final int positionX,final int positionY){
@@ -156,9 +143,7 @@ public class Map {
     public Rectangle getExitZone() {
         return exitZone;
     }
-    
 
-    
     private Sprite[] spritesAssign(final String[] paletteParts, final String[] separateSheets){
         Sprite[] palette = new Sprite[paletteParts.length];
         
@@ -268,18 +253,16 @@ public class Map {
     public String getNextMap() {
         return nextMap;
     }
-
-    public Point getEnemyPoint1() {
-        return enemyPoint1;
+    
+    
+    public Point[] getEnemiesPoint(){
+        return enemiesPoint;
     }
 
-    public Point getEnemyPoint2() {
-        return enemyPoint2;
+    public String getNameSheetEnemy() {
+        return nameSheetEnemy;
     }
-
-    public Point getEnemyPoint3() {
-        return enemyPoint3;
-    }
+    
     
     
     

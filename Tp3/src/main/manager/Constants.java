@@ -21,6 +21,8 @@ public class Constants {
     
     public static int SELECTED_CHARACTER = 1;
     
+    public static String RUTA_ENEMIGOS = "textures/spriteSheetE.png";
+    
     public static String RUTA_MAP = "resources/text/mapTemplate.txt";
     public static String RUTA_MAGOELFO = "textures/magoElfo.png";
     public static String RUTA_MAGOGNOMO = "textures/MagoGnomo.png";
@@ -37,9 +39,9 @@ public class Constants {
     public static String RUTA_HUMANOE = "textures/HumanoE.png";
     public static String RUTA_ENANOE = "textures/EnanoE.png";
     
-    
-    
-    public static int ENEMY_AMOUNT = 3;
+    public static boolean NEWGAME = false;
+    public static int ACTUAL_ENEMY_ZONE = 0;
+    public static int ACTUAL_MAP = 0;
     
     
     public static String RUTA_LAYOUT = "textures/filtro.png";
