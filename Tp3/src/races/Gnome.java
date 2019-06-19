@@ -5,6 +5,7 @@
  */
 package races;
 
+import base.Armor;
 import base.Messages;
 import base.Playable;
 import base.Skill;
@@ -63,6 +64,9 @@ public class Gnome extends Playable implements Image {
                         
         Weapon w = new Weapon();
         w.weaponBolsasDePiedras();
+        
+         Armor a=new Armor();
+          a.armorRopaSucia();
 
     }
 

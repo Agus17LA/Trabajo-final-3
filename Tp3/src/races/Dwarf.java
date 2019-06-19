@@ -5,6 +5,7 @@
  */
 package races;
 
+import base.Armor;
 import base.Messages;
 //no hay nada implementado en este package, pero seguro que en algun momento lo  va a haber
 import base.Playable;
@@ -65,6 +66,8 @@ public class Dwarf extends Playable implements Iwarrior {
                 Weapon w=new Weapon();
                 w.weaponHachaSinFilo();
                 
+                 Armor a=new Armor();
+                a.armorMediaArmadura();
 
 	}
 

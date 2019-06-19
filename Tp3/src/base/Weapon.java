@@ -197,4 +197,27 @@ public class Weapon extends Item {
         accMod = 20;
         critMod = 5;
     }
+       
+        public void weaponCimitarraMercurial() {
+        setName("Cimitarra mercurial");
+        setId(0);
+        dmgMod = 15;
+        accMod = 15;
+        critMod = 15;
+    }
+        public void weaponRamaDeAbedul() {
+        setName("Rama de Abedul");
+        setId(0);
+        dmgMod = 3;
+        accMod = 10;
+        critMod = 5;
+    }
+        public void weaponHachaOxidada() {
+        setName("Hacha Oxidada");
+        setId(0);
+        dmgMod = 1;
+        accMod = 5;
+        critMod = 1;
+    }
+            
 }

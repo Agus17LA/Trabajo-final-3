@@ -5,6 +5,7 @@
  */
 package races;
 
+import base.Armor;
 import base.Messages;
 import base.Playable;
 import base.Skill;
@@ -61,6 +62,9 @@ public class Human extends Playable implements Iwarrior {
                 this.addSkill(s);
                 Weapon w=new Weapon();
                 w.weaponEspadaGastada();
+                
+                Armor a=new Armor();
+                 a.armorEscudoChico();
 	}
 
 	@Override

@@ -124,99 +124,124 @@ public class Armor extends Item {
     }
 
     public void armorRopaSucia() {
-        setName("");
+        setName("Ropa Sucia");
         setId(0);
-        hpMod =;
-        dodgeMod =;
-        defMod =;
+        hpMod =0;
+        dodgeMod =5;
+        defMod =0;
     }
 
-    public void armor() {
-        setName("");
+    public void armorTelaRobada() {
+        setName("Tela Robada");
         setId(0);
-        hpMod =;
-        dodgeMod =;
-        defMod =;
+        hpMod =5;
+        dodgeMod =0;
+        defMod =1;
     }
 
-    public void armor() {
-        setName("");
+    public void armorMediaArmadura() {
+        setName("Media armudura");
         setId(0);
-        hpMod =;
-        dodgeMod =;
-        defMod =;
+        hpMod =20;
+        dodgeMod =-5;
+        defMod =5;
     }
 
-    public void armor() {
-        setName("");
+    public void armorEscudoChico() {
+        setName("Escudo chico");
         setId(0);
-        hpMod =;
-        dodgeMod =;
-        defMod =;
+        hpMod =5;
+        dodgeMod =0;
+        defMod =5;
     }
 
-    public void armor() {
-        setName("");
+    public void armorAuraDeMuerte() {
+        setName("Aura de Muerte");
         setId(0);
-        hpMod =;
-        dodgeMod =;
-        defMod =;
+        hpMod =100;
+        dodgeMod =-25;
+        defMod =15;
     }
 
-    public void armor() {
-        setName("");
+    public void armorCabezalDeHierro() {
+        setName("Cabezal de Hierro");
         setId(0);
-        hpMod =;
-        dodgeMod =;
-        defMod =;
+        hpMod =50;
+        dodgeMod =-10;
+        defMod =10;
     }
 
-    public void armor() {
-        setName("");
+    public void armorPlacasAncestrales() {
+        setName("Placas Ancestrales");
         setId(0);
-        hpMod =;
-        dodgeMod =;
-        defMod =;
+        hpMod =30;
+        dodgeMod =-20;
+        defMod =20;
     }
 
-    public void armor() {
-        setName("");
+    public void armorAmuletoDeEvasion() {
+        setName("Amuleto de Evasion");
         setId(0);
-        hpMod =;
-        dodgeMod =;
-        defMod =;
+        hpMod =0;
+        dodgeMod =20;
+        defMod =0;
     }
 
-    public void armor() {
-        setName("");
+    public void armorBataDeHospital() {
+        setName("Bata de Hospital");
         setId(0);
-        hpMod =;
-        dodgeMod =;
-        defMod =;
+        hpMod =150;
+        dodgeMod =0;
+        defMod =0;
     }
 
-    public void armor() {
-        setName("");
+    public void armorPiedraMagica() {
+        setName("Piedra Magica");
         setId(0);
-        hpMod =;
-        dodgeMod =;
-        defMod =;
+        hpMod =15;
+        dodgeMod =0;
+        defMod =15;
     }
 
-    public void armor() {
-        setName("");
+    public void armorEscudoMistico() {
+        setName("Escudo Mistico");
         setId(0);
-        hpMod =;
-        dodgeMod =;
-        defMod =;
+        hpMod =50;
+        dodgeMod =0;
+        defMod =25;
     }
 
-    public void armor() {
-        setName("");
+    public void armorLaArmaduraOscura() {
+        setName("La Armadura Oscura");
         setId(0);
-        hpMod =;
-        dodgeMod =;
-        defMod =;
+        hpMod =100;
+        dodgeMod =10;
+        defMod =20;
     }
+    
+    public void armorPantalosHeroicosDeHeroe() {
+        setName("Pantalones Heroicos de Heroe");
+        setId(0);
+        hpMod =10;
+        dodgeMod =0;
+        defMod =5;
+    }
+    
+    public void armorRamaDeAbedul() {
+        setName("Rama de Abedul");
+        setId(0);
+        hpMod =5;
+        dodgeMod =10;
+        defMod =1;
+    }
+    
+    public void armorCinturonDelCampeon() {
+        setName("Cinturon del Campeon");
+        setId(0);
+        hpMod =30;
+        dodgeMod =20;
+        defMod =10;
+    }
+
 
 }
