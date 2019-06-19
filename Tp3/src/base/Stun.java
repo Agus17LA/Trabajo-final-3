@@ -36,6 +36,10 @@ public class Stun extends Status {
         this.stunned = stunned;
     }
     
+    @Override
+     public boolean isStun(){//se usa para controlar no aplicar el mismo tipo de status 2 veces
+         return true;
+     }
     
 
     @Override

@@ -171,7 +171,7 @@ public class Skill extends GameObject {
         c2.setHp(c2.getHp() - dmgTotal);
         builder.append(c1.getName() + "  ha usado " + getName() + " en " + c2.getName() + " por "
                 + dmgTotal + " de daño!! \n");
-        if (statusHit()) {
+        if (statusHit()) { //Los metodos "isStatus" sirven para chekear si este skill aplica esos status
             if (stun.isStunned()) {
                 builder.append(c2.addStatus(stun));
             }
@@ -179,7 +179,9 @@ public class Skill extends GameObject {
                 builder.append(c2.addStatus(poison));
             }
             if (buff.isBuffed()) {
+                
                 builder.append(c2.addStatus(buff));
+                
             }
         } else {
         }
@@ -221,7 +223,7 @@ public class Skill extends GameObject {
         critMod = 10;
         manaCost = 1;
         statusChance = 100;
-        stun = new Stun(1);
+        stun = new Stun(5);
         poison = new Poison();
         buff = new Buff();
     }

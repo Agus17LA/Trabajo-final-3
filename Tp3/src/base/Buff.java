@@ -95,7 +95,10 @@ public class Buff extends Status {
     public boolean isBuffed() {
         return buffed;
     }
-
+    
+    public boolean isBuff(){
+        return true;
+    }
     /*la funcion principal de cada heredero de status, en un resumen lo que hace es que lleva a cabo la
    accion de la afliccion en un turno, y resta duracion en el proceso*/
     public String statusTurn(Character c) {

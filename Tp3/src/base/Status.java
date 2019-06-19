@@ -34,7 +34,14 @@ public class Status { // cendria a ser el estado en el que esta un personaje(stu
             duration=0;
         return " ";
     }
+    //Sirve para poder aplicar poliformismo
     public boolean isStun(){
+        return false;
+    }
+    public boolean isPoison(){
+        return false;
+    }
+    public boolean isBuff(){
         return false;
     }
     

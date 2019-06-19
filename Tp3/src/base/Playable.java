@@ -143,7 +143,15 @@ public class Playable extends Character {
         setMaxDmg(getMaxDmg() + dmgMaxBase);
         setAcc(getAcc() + accBase);
         setDodge(getDodge() + dodgeBase);
-        setLvl(getLvl()+1);
+        setLvl(getLvl() + 1);
     }
 
+    public String addXp(int xpDrop) {
+        StringBuilder builder = new StringBuilder();
+        xp += xpDrop;
+        if (xp > xpMax) {
+            builder.append(this.lvlUp());
+        }
+        return builder.toString();
+    }
 }
