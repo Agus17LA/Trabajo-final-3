@@ -16,6 +16,7 @@ public class Armor extends Item {
         defMod = 0;
     }
 //constructor completo
+
     public Armor(int hpMod, int dodgeMod, int defMod, double weight, int sellPrice, int buyPrice, int total, int stackSize, String name, int id) {
         super(weight, sellPrice, buyPrice, total, stackSize, name, id);
         this.hpMod = hpMod;
@@ -23,9 +24,10 @@ public class Armor extends Item {
         this.defMod = defMod;
     }
 //constructor de copia
+
     public Armor(Armor a) {
 
-        super((Item) a);  
+        super((Item) a);
         this.hpMod = a.hpMod;
         this.dodgeMod = a.dodgeMod;
         this.defMod = a.defMod;
@@ -57,5 +59,164 @@ public class Armor extends Item {
     }
 
     //dudo bastante que se tengan que agregar metodos nuevos
-    
+    public void armorYelmoIndestructible() {
+        setName("Yelmo Indestructible");
+        setId(0);
+        hpMod =50;
+        dodgeMod =-7;
+        defMod =25;
+    }
+
+    public void armorPecheraDeBatalla() {
+        setName("Pechera de Batalla");
+        setId(0);
+        hpMod =50;
+        dodgeMod =-5;
+        defMod =5;
+    }
+
+    public void armorCinturonDorado() {
+        setName("Cintura Dorado");
+        setId(0);
+        hpMod =0;
+        dodgeMod =0;
+        defMod =5;
+    }
+
+    public void armorAmuletoDelCentinela() {
+        setName("Amuleto del Centinela");
+        setId(0);
+        hpMod =10;
+        dodgeMod =-5;
+        defMod =15;
+    }
+
+    public void armorArmaduraDelConquistador() {
+        setName("Armadura del Conquistador");
+        setId(0);
+        hpMod =20;
+        dodgeMod =0;
+        defMod =5;
+    }
+
+    public void armorNokia1100() {
+        setName("Nokia 1100");
+        setId(0);
+        hpMod =0;
+        dodgeMod =0;
+        defMod =50;
+    }
+
+    public void armorEscudoDelCapi() {
+        setName("Escudo del Capi");
+        setId(0);
+        hpMod =0;
+        dodgeMod =15;
+        defMod =15;
+    }
+
+    public void armorPanDeAyer() {
+        setName("Pan de ayer");
+        setId(0);
+        hpMod =10;
+        dodgeMod =-5;
+        defMod =15;
+    }
+
+    public void armorRopaSucia() {
+        setName("");
+        setId(0);
+        hpMod =;
+        dodgeMod =;
+        defMod =;
+    }
+
+    public void armor() {
+        setName("");
+        setId(0);
+        hpMod =;
+        dodgeMod =;
+        defMod =;
+    }
+
+    public void armor() {
+        setName("");
+        setId(0);
+        hpMod =;
+        dodgeMod =;
+        defMod =;
+    }
+
+    public void armor() {
+        setName("");
+        setId(0);
+        hpMod =;
+        dodgeMod =;
+        defMod =;
+    }
+
+    public void armor() {
+        setName("");
+        setId(0);
+        hpMod =;
+        dodgeMod =;
+        defMod =;
+    }
+
+    public void armor() {
+        setName("");
+        setId(0);
+        hpMod =;
+        dodgeMod =;
+        defMod =;
+    }
+
+    public void armor() {
+        setName("");
+        setId(0);
+        hpMod =;
+        dodgeMod =;
+        defMod =;
+    }
+
+    public void armor() {
+        setName("");
+        setId(0);
+        hpMod =;
+        dodgeMod =;
+        defMod =;
+    }
+
+    public void armor() {
+        setName("");
+        setId(0);
+        hpMod =;
+        dodgeMod =;
+        defMod =;
+    }
+
+    public void armor() {
+        setName("");
+        setId(0);
+        hpMod =;
+        dodgeMod =;
+        defMod =;
+    }
+
+    public void armor() {
+        setName("");
+        setId(0);
+        hpMod =;
+        dodgeMod =;
+        defMod =;
+    }
+
+    public void armor() {
+        setName("");
+        setId(0);
+        hpMod =;
+        dodgeMod =;
+        defMod =;
+    }
+
 }

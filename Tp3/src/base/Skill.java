@@ -207,7 +207,7 @@ public class Skill extends GameObject {
     //aca van "constructores" de habilidades para los pjs(supongo que despues lo metemos a un json
     //No se si esto esta bien pero bueno
     
-    public Skill skillGolpeBasico(){
+    public void skillGolpeBasico(){
          setName("Golpe Basico");
          setId(0);
         dmgMod = 100;
