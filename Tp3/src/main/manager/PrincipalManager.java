@@ -78,8 +78,6 @@ public class PrincipalManager {
     private void refresh(){
         if(ControlManager.keyboard.exit){
             sm.changeCurrentState(1);
-            System.out.println(ControlManager.keyboard.exit);
-            //ControlManager.keyboard.exit = false;
         }else if(ControlManager.keyboard.combate){
             sm.changeCurrentState(3);
             ControlManager.keyboard.combate = false;

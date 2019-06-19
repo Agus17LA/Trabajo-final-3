@@ -21,12 +21,13 @@ public class Main {
 
     public static void main(String[] args) {
 
-        /*
+        
         System.setProperty("sun.java2d.opengl", "true");
+        
         PrincipalManager pm = new PrincipalManager("jueguito", Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
         pm.startGame();
         pm.startPrincipalLoop();
-         */
+         
         Game game = new Game();
         Dwarf d = new Dwarf();
         Gnome g = new Gnome();

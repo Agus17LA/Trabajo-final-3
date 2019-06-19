@@ -58,6 +58,7 @@ public class BattleManager implements GameState{
         g.setColor(Color.RED);
         
         
+        
         g.drawString("PANTALLA DE COMBATE - PROXIMAMENTE",340,480); //Hay que ver como generar una consola scroll
         
         
@@ -84,7 +85,7 @@ public class BattleManager implements GameState{
                 }
                 break;
             case 3:
-                g.drawImage(humano, 50, 40, null);
+                g.drawImage(humano, 0, 40, null);
                 if(Constants.ACTUAL_MAP != 2){
                     drawEnemy(g);                
                 }else{
@@ -107,13 +108,13 @@ public class BattleManager implements GameState{
     private void drawEnemy(Graphics g){
         switch (Constants.ACTUAL_ENEMY_ZONE) {
             case 0:
-                g.drawImage(humanoE, 500, 40, null);
+                g.drawImage(humanoE, 600, 40, null);
                 break;
             case 1:
-                g.drawImage(enanoE, 500, 40, null);
+                g.drawImage(enanoE, 500, 150, null);
                 break;
             case 2:
-                g.drawImage(elfoE, 500, 40, null);
+                g.drawImage(elfoE, 550, 40, null);
                 break;
             default:
                 break;
@@ -123,10 +124,10 @@ public class BattleManager implements GameState{
     private void drawEnemy2(Graphics g){
         switch (Constants.ACTUAL_ENEMY_ZONE) {
             case 0:
-                g.drawImage(elfoE, 500, 40, null);
+                g.drawImage(elfoE, 550, 40, null);
                 break;
             case 1:
-                g.drawImage(gnomoE, 500, 40, null);
+                g.drawImage(gnomoE, 510, 90, null);
                 break;
             default:
                 break;
