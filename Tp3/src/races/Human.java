@@ -5,8 +5,11 @@
  */
 package races;
 
+import base.Armor;
 import base.Messages;
 import base.Playable;
+import base.Skill;
+import base.Weapon;
 import inventory.Inventory;
 
 /**
@@ -20,12 +23,12 @@ public class Human extends Playable implements Iwarrior {
 		setMaxHp(ranNum(35, 45));
 		setHp(getMaxHp());
 		setMaxMana(ranNum(9, 15));
-		setMana(getMana());
+		setMana(getMaxMana());
 		setDmg(ranNum(6, 9));
 		setMaxDmg(ranNum(11, 16));
 		setAcc(ranNum(11, 16));
 		setDodge(ranNum(4, 7));
-
+                setLvl(0);
 		// Los valores base sirven para indicar el cambio de estadisticas cuando se sube
 		// de nivel
 		// Toman el mismo valor que las estadisticas iniciales
@@ -44,6 +47,23 @@ public class Human extends Playable implements Iwarrior {
 		setDef(0);
 
 		iniCharacterObjects();
+                Skill s=new Skill();
+                s.skillGolpeBasico();
+                this.addSkill(s);
+                s=new Skill();
+                s.skillAtaque2Manos();
+                this.addSkill(s);
+                 s=new Skill();
+                s.skillDesgarrar();
+                this.addSkill(s);
+                 s=new Skill();
+                s.skillGritoDeGuerra();
+                this.addSkill(s);
+                Weapon w=new Weapon();
+                w.weaponEspadaGastada();
+                
+                Armor a=new Armor();
+                 a.armorEscudoChico();
 	}
 
 	@Override

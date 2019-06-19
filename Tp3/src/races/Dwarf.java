@@ -5,9 +5,12 @@
  */
 package races;
 
+import base.Armor;
 import base.Messages;
 //no hay nada implementado en este package, pero seguro que en algun momento lo  va a haber
 import base.Playable;
+import base.Skill;
+import base.Weapon;
 import inventory.Inventory;
 
 /**
@@ -22,12 +25,12 @@ public class Dwarf extends Playable implements Iwarrior {
 		setMaxHp(ranNum(40, 50));
 		setHp(getMaxHp());
 		setMaxMana(ranNum(7, 12));
-		setMana(getMana());
-		setDmg(ranNum(4, 8));
+		setMana(getMaxMana());
+		setDmg(ranNum(4, 6));
 		setMaxDmg(ranNum(10, 19));
-		setAcc(ranNum(10, 15));
+		setAcc(ranNum(15, 20));
 		setDodge(ranNum(6, 9));
-
+                setLvl(0);
 		// Los valores base sirven para indicar el cambio de estadisticas cuando se sube
 		// de nivel
 		// Toman el mismo valor que las estadisticas iniciales
@@ -46,6 +49,24 @@ public class Dwarf extends Playable implements Iwarrior {
 		setDef(0);
 
 		iniCharacterObjects();
+                Skill s=new Skill();
+                s.skillGolpeBasico();
+                this.addSkill(s);
+                s=new Skill();
+                s.skillAtaque2Manos();
+                this.addSkill(s);
+                 s=new Skill();
+                s.skillDesgarrar();
+                this.addSkill(s);
+                 s=new Skill();
+                s.skillGritoDeGuerra();
+                this.addSkill(s);
+                
+                Weapon w=new Weapon();
+                w.weaponHachaSinFilo();
+                
+                 Armor a=new Armor();
+                a.armorMediaArmadura();
 
 	}
 

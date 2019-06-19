@@ -24,6 +24,7 @@ public class Buff extends Status {
         buffed = false;
     }
 
+    
     public Buff(int dmgB, int accB, int dodgeB, int critB, int defB, int duration) {
         super(duration + 1);//el +1 es por la forma en la que funcionan los buffs en este juego, llameselo mal diseño o que juan no sabe como hacer que ande sin el +1
         this.dmgB = dmgB;

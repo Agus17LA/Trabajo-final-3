@@ -223,6 +223,10 @@ public class Character extends GameObject {
         return " " + getName() + "|| Vida: " + hp + "/" + maxHp;
     }
 
+    public String showMana() {
+        return "|| Mana: " + mana + "/" + maxMana;
+    }
+
     
     //no me acuerdo el nombre de la practica del OOP que esto va, creo que era encapsulamiento 
     
@@ -249,9 +253,8 @@ public class Character extends GameObject {
            /*Se suma el total de punteria del q ataca y de esquive del que defiende y se saca una chance de acc en el total*/
         int accTotal=c.getAcc() + c.weapon.getAccMod() + s.getAccMod();
         int dodgeTotal=dodge + armor.getDodgeMod();
-        int suma=dodgeTotal+accTotal;
-        int hitChance=(int)(suma/acc)*100;
-        
+        int suma=dodgeTotal+accTotal;       
+        int hitChance=(int)(100*accTotal)/suma; //A cuanto% equivale el hit en comparacion al total
         if (hitChance < 10 || hitChance > 95) { //para que los numeros tengan algo de sentido se hace eso
             //tambien me gusta la idea de que no importa cuanta diferencia haya siempre vas a tener la chance de golpear o de fallar, como si fuera sacar un 1 o un 20 xd
             if (hitChance < 10) {
@@ -274,16 +277,12 @@ public class Character extends GameObject {
 
     public int calculateDmg(Character c, Skill s) { // calcula el daño que recibe de "c"
         float totalDmg = 0;
-        float totalDef = (100 - (def + armor.getDefMod())) / 100;
-        if (totalDef > 75 / 100) {
-            totalDef = 75 / 100; //la limitacion de defensa para que no puedas entrar en godmode inmortal
-        }
+        float totalDef = (float)((100 - (def + armor.getDefMod()))/100);
+        float totalModSkill= (float)s.getDmgMod()/100;// el daño que modifica la habilidad
+        int inicialDmg=ranNum(c.getDmg(), c.getMaxDmg()); //Tira el dado del daño para saber cuanto pega
+        //Tanto el daño de la habilidad como la defensa son PORCENTUALES por eso se multiplican al resultado, lo demas se suma        
+        totalDmg = (float)( inicialDmg + c.weapon.getDmgMod()) * totalModSkill * totalDef; 
         
-        //Tanto el daño de la habilidad como la defensa son PORCENTUALES por eso se multiplican al resultado, lo demas se suma
-        totalDmg = (c.getDmg() + c.weapon.getDmgMod()) * (s.getDmgMod() / 100) * totalDef; 
-        if (totalDmg < 1) {
-            totalDmg = 1;
-        }
         return (int) totalDmg; //se lo pasa a int porque los atributos se basan en enteros
     }
     
@@ -358,7 +357,9 @@ public class Character extends GameObject {
         boolean flag=false;
        int i=0;
        for(i=0;i<vStatus.size()&&flag==false;i++){
+           System.out.println("base.Character.isStunned()");
            if(vStatus.elementAt(i).isStun())
+               System.out.println("base.Character.isStunned()Prueba ");
                flag=true;
        }
         return flag;
