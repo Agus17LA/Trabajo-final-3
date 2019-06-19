@@ -38,7 +38,7 @@ public class Elf extends Playable implements Image {
 		setDmgMaxBase(getMaxDmg());
 		setAccBase(getAcc());
 		setDodgeBase(getDodge());
-
+                setLvl(0);
 		// otras cosas de un personaje jugable
 		setXp(0);
 		setXpMax(100);

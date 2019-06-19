@@ -28,7 +28,7 @@ public class Human extends Playable implements Iwarrior {
 		setMaxDmg(ranNum(11, 16));
 		setAcc(ranNum(11, 16));
 		setDodge(ranNum(4, 7));
-
+                setLvl(0);
 		// Los valores base sirven para indicar el cambio de estadisticas cuando se sube
 		// de nivel
 		// Toman el mismo valor que las estadisticas iniciales
@@ -49,7 +49,6 @@ public class Human extends Playable implements Iwarrior {
 		iniCharacterObjects();
                 Skill s=new Skill();
                 s.skillGolpeBasico();
-                System.out.println("Daño de mi personaje: " +getDmg());
                 this.addSkill(s);
                 s=new Skill();
                 s.skillAtaque2Manos();

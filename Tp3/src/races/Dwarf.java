@@ -25,13 +25,12 @@ public class Dwarf extends Playable implements Iwarrior {
 		setMaxHp(ranNum(40, 50));
 		setHp(getMaxHp());
 		setMaxMana(ranNum(7, 12));
-                System.out.println("Mana : "+getMaxMana());
 		setMana(getMaxMana());
 		setDmg(ranNum(4, 6));
 		setMaxDmg(ranNum(10, 19));
 		setAcc(ranNum(15, 20));
 		setDodge(ranNum(6, 9));
-
+                setLvl(0);
 		// Los valores base sirven para indicar el cambio de estadisticas cuando se sube
 		// de nivel
 		// Toman el mismo valor que las estadisticas iniciales

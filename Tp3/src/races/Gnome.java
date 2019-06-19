@@ -29,7 +29,7 @@ public class Gnome extends Playable implements Image {
         setMaxDmg(ranNum(12, 13));
         setAcc(ranNum(30, 40));
         setDodge(ranNum(4, 7));
-
+        setLvl(0);
         // Los valores base sirven para indicar el cambio de estadisticas cuando se sube
         // de nivel
         // Toman el mismo valor que las estadisticas iniciales

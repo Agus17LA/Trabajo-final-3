@@ -153,7 +153,7 @@ public class Skill extends GameObject {
     }
 
     public String toString() {
-        return getName() + ": \n Mod daño: " + dmgMod + "+ || Mod precision: " + accMod + "+|| Mod crit: " + critMod + "+";
+        return getName() + ": \n Mod daño: " + dmgMod + "% || Mod precision: " + accMod + "+|| Mod crit: " + critMod + "%+" +" || Coste mana: "+manaCost;
     }
 
     /*en esta funcion usamos el skill, es muy basica en el sentido de que solo pega
@@ -220,7 +220,7 @@ public class Skill extends GameObject {
         accMod = -5;
         critMod = 10;
         manaCost = 1;
-        statusChance = 10;
+        statusChance = 100;
         stun = new Stun(1);
         poison = new Poison();
         buff = new Buff();

@@ -1,6 +1,7 @@
 package main;
 
 import base.Buff;
+import base.Character;
 import base.Game;
 import base.Poison;
 import base.Skill;
@@ -9,55 +10,54 @@ import main.manager.Constants;
 import main.manager.PrincipalManager;
 
 import base.Stun;
+import java.util.Vector;
 import races.Dwarf;
+import races.Elf;
 import races.Gnome;
-
+import races.Human;
 
 //main con pruebas y nombres malos muy malos
 public class Main {
 
-    
     public static void main(String[] args) {
 
-        // TODO code application logic here
-        
         /*
-        System.setProperty("sun.java2d.opengl","true");
-        PrincipalManager pm = new PrincipalManager("jueguito",Constants.WINDOW_WIDTH,Constants.WINDOW_HEIGHT);
+        System.setProperty("sun.java2d.opengl", "true");
+        PrincipalManager pm = new PrincipalManager("jueguito", Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
         pm.startGame();
         pm.startPrincipalLoop();
-        */
-         
-		Game game=new Game();
-                Poison poison=new Poison(); //daño duracion
-                Stun stun=new Stun();//duracion
-                Buff buff=new Buff(2000,0,0,0,0,5);
-		Skill hb1=new Skill("Golpe divino",001,0,100,75,0,100,buff);//dmg,prec,crit,mana,%status
-		Skill hm1=new Skill("golpe divino malo",001,0,100,50,200);
-		Skill hb2=new Skill("purificacion ",001,0,100,75,200);
-		Skill hm2=new Skill("putrefaccion",001,0,100,50,200);
-		Skill hb3=new Skill("bokita pasion",001,0,20,75,200);
-		Skill hm3=new Skill("Velez campeón",001,0,100,50,200);
-                Dwarf d=new Dwarf();
-                Gnome g=new Gnome();
-                //hp,mana,dmg/max,acc,dodge,crit,def
-                //Hay un constructor con solo estadisticas y otro con items y vectores
-                //Inventario, skills, arma, armadura,    nombre , Id
-		base.Character p1=new base.Character(5000,250,100,150,50,25,25,10,"Jesus",002);
-		base.Character p2=new base.Character(10000,500,150,50,25,10,25,10,"Jesus Malo",003);
-                
-		p2.addSkill(hm1);
-		p2.addSkill(hm2);
-		p2.addSkill(hm3);
-		p1.addSkill(hb1);
-		p1.addSkill(hb2);
-		p1.addSkill(hb3);
-                d.toString();
-                game.battle(d, g);
-		
-               
+         */
+        Game game = new Game();
+        Dwarf d = new Dwarf();
+        Gnome g = new Gnome();
+        Elf elf = new Elf();
+        Human h = new Human();
+        //hp,mana,dmg/max,acc,dodge,crit,def
+        //Hay un constructor con solo estadisticas y otro con items y vectores
+        //Inventario, skills, arma, armadura,    nombre , Id
+
+      
+        d.setName("Enano");
         
-		
+        
+       
+        
+        Vector<Character> enemigos = new Vector();
+        g.setName("Gnomo");
+        h.setName("Humano");
+        elf.setName("Elfo");
+        enemigos.add(g);
+        enemigos.add(elf);
+        enemigos.add(h);
+        do {
+            int ran = g.ranNum(0, 2);
+            Character c=new Character (enemigos.elementAt(ran));
+            game.battle(d, c);
+            if (d.getHp() > 0) {
+                d.lvlUp();
+            }
+        } while (d.getHp() > 0);
+
     }
-    
+
 }

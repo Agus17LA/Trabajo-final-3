@@ -11,6 +11,7 @@ public class Game {
     el main se le puede considerar el "corazon " del juego*/
     //batalla entre 2 entes
     //funcion extremadamente modularizable
+    @SuppressWarnings("empty-statement")
     public void battle(Character player, Character enemy) {
         Scanner scan = new Scanner(System.in);
         boolean playerTurn = true;
@@ -19,7 +20,7 @@ public class Game {
         Messages m=new Messages();
         //si algun personaje muere ya termina la pelea
         while (player.isAlive() && enemy.isAlive()) {
-            System.out.println(showHps(player, enemy));
+            System.out.println(showHpsMana(player, enemy));
             if (playerTurn) {
                 if (player.isStunned()) {
                     /*si esta stunneado no podra jugar su turno, 
@@ -48,18 +49,22 @@ public class Game {
                 }
                 playerTurn = false;
             } else {
-
+                System.out.println(enemy.isStunned());
                 if (enemy.isStunned()) {
+                    
                     System.out.println(enemy.statusEffect());
-                } else {
+                }
+                else {
                     /* Esta IA es la envidia de elon musk, lo unico que hace es dar vueltas
                     por el arreglo de habilidades 
                     */
                     System.out.println(enemy.statusEffect());
+                    
+                    do{
                     if (enemySkill > enemy.totalSkills() - 1) {
                         enemySkill = 0;
                     }
-
+                    }while(enemy.getMana()<enemy.vSkills.elementAt(playerSkill).getManaCost());
                     System.out.println(player.attack(enemy, enemy.vSkills.elementAt(enemySkill)));
                     enemySkill++;
                   
@@ -76,8 +81,8 @@ public class Game {
 
     }
 
-    public String showHps(Character p1, Character p2) {
+    public String showHpsMana(Character p1, Character p2) {
         //para tener el estado de como va la pelea !
-        return p1.showHp() + "\n" + p2.showHp();
+        return p1.showHp() + p1.showMana()+"\n" + p2.showHp()+ p2.showMana();
     }
 }
