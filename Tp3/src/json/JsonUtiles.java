@@ -124,7 +124,7 @@ public class JsonUtiles {
             playableArmor.put("id", player.getArmor().getId());
             playableArmor.put("name", player.getArmor().getName());
             playableArmor.put("weight", player.getArmor().getWeight());
-            playableArmor.put("hp mod", player.getArmor().getHpMod());
+            //playableArmor.put("hp mod", player.getArmor().getHpMod());
             playableArmor.put("dodge mod", player.getArmor().getDodgeMod());
             playableArmor.put("def mod", player.getArmor().getDefMod());
             
