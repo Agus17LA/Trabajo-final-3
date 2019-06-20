@@ -25,7 +25,7 @@ public class Human extends Playable implements Iwarrior {
 		setMaxMana(ranNum(9, 15));
 		setMana(getMaxMana());
 		setDmg(ranNum(6, 9));
-		setMaxDmg(ranNum(11, 16));
+		setMaxDmg(ranNum(11, 10000));
 		setAcc(ranNum(11, 16));
 		setDodge(ranNum(4, 7));
                 setLvl(0);

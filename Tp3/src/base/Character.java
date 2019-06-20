@@ -232,7 +232,6 @@ public class Character extends GameObject {
 
     public String attack(Character c, Skill s) { // Recibe un ataque de "c" personaje y la habilidad que uso
         StringBuilder builder = new StringBuilder();
-        int dmgTotal = 0;
         int hitChance = calculateHitChance(c, s); //calculate hit chance devuelve un int que es el % de chances de golpear
         c.setMana(c.getMana() - s.getManaCost());//aplica el coste de mana de la habilidad(el control para que le alcanze se hace mas arriba)
         if (hit(hitChance)) {//se usa ese % en una funcion que devuelve un boolean para saber si se pudo hacer el golpe
@@ -271,13 +270,13 @@ public class Character extends GameObject {
     }
 
     public int calculateDmg(Character c, Skill s) { // calcula el daño que recibe de "c"
-        float totalDmg = 0;
-        float totalDef = (float) ((100 - (def + armor.getDefMod())) / 100);
-        float totalModSkill = (float) s.getDmgMod() / 100;// el daño que modifica la habilidad
-        int inicialDmg = ranNum(c.getDmg(), c.getMaxDmg()); //Tira el dado del daño para saber cuanto pega
+        //usamos double porque las divisiones en enteros son aritmeticas y nos darian resultados inexactos
+        double totalDmg = 0;
+        double totalDef = ((double)(100 - (def + armor.getDefMod()))) / 100;
+        double totalModSkill = ((double) (s.getDmgMod() ))/ 100;// el daño que modifica la habilidad
+        int inicialDmg = ranNum(c.getDmg(), c.getMaxDmg())+c.weapon.getDmgMod(); //Tira el dado del daño para saber cuanto pega
         //Tanto el daño de la habilidad como la defensa son PORCENTUALES por eso se multiplican al resultado, lo demas se suma        
-        totalDmg = (float) (inicialDmg + c.weapon.getDmgMod()) * totalModSkill * totalDef;
-
+        totalDmg = (double)inicialDmg * totalModSkill * totalDef;
         return (int) totalDmg; //se lo pasa a int porque los atributos se basan en enteros
     }
 

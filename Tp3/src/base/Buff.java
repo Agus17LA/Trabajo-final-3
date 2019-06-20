@@ -109,7 +109,6 @@ public class Buff extends Status {
         if (getDuration() > 0) { //si todavia tiene duracion disponible surge el efecto del status
             res = "La modificacion esta activa. *";
             if (!active) {
-                System.out.println("JOJOOOOO");
                 /*aca es donde entra en juego el boolean de la clase, si es false quiere decir que 
                  es la primera vez que se le aplica el buff al objetivo, por ende hay que aplicarselo*/
                 active = true;// se pasa el boolean a true para que no vuelva a entrar en esta seccion del codigo

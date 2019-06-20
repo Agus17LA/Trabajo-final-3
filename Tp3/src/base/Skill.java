@@ -222,8 +222,8 @@ public class Skill extends GameObject {
         accMod = -5;
         critMod = 10;
         manaCost = 1;
-        statusChance = 100;
-        stun = new Stun(5);
+        statusChance = 10;
+        stun = new Stun(1);
         poison = new Poison();
         buff = new Buff();
     }

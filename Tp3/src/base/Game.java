@@ -38,8 +38,8 @@ public class Game extends Thread implements Runnable, GameState {
     private Graphics g;
     private Playable player;
     private Enemy enemy;
-    private byte playerSkill;
-    private byte enemySkill;
+    private int playerSkill;
+    private int enemySkill;
     private String totalSkills;
     private String[] partsSkills;
     private boolean mana;
@@ -80,7 +80,7 @@ public class Game extends Thread implements Runnable, GameState {
         dwarf.setName("ENANO");
         gnome.setName("GNOMO");
         human.setName("HUMANO");
-        
+    
         pMouse = new Point();
         skillBoxes = new Rectangle[4];
         for(int i = 0;i<skillBoxes.length;i++){
@@ -214,8 +214,8 @@ public class Game extends Thread implements Runnable, GameState {
         Constants.ESC = false;
         Scanner scan = new Scanner(System.in);
         boolean playerTurn = true;
-        playerSkill = 0; //usamos byte no va a haber mas de 16 habilidades
-        enemySkill = 0;
+        int  playerSkill = 0; //usamos byte no va a haber mas de 16 habilidades
+        int enemySkill = 0;
         Messages m = new Messages();
         totalSkills=player.showSkills();
         partsSkills=totalSkills.split("\\*");
