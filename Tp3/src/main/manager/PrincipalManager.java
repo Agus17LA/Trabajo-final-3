@@ -85,12 +85,10 @@ public class PrincipalManager {
             sm.changeCurrentState(2);
             ControlManager.keyboard.menu = false;
         }
-        
         if(Constants.NEWGAME){
             sm.changeCurrentState(1);
             Constants.NEWGAME = false;
         }
-        
         sm.refresh();
         ds.refresh();
     }

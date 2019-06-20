@@ -37,12 +37,12 @@ public class Window extends JFrame{
         pack();
         setLocationRelativeTo(null);
         
-        layout = new JLabel();
+        /*layout = new JLabel();
         jp = new JPanel();
         layout.setIcon(new ImageIcon("textures/borde.png"));
         jp.add(layout);
         add(jp);
-        validate();
+        validate();*/
         
         setVisible(true);
         

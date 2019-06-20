@@ -28,6 +28,7 @@ public class JsonUtiles {
         try {
             String c = new String(Files.readAllBytes(Paths.get(" ")));
             JSONObject object = new JSONObject(c);
+
             System.out.println(" ");
         } catch (IOException e) {
             e.printStackTrace();
@@ -40,12 +41,13 @@ public class JsonUtiles {
 
     public static void readArmor() {
         try {
-            String c = new String(Files.readAllBytes(Paths.get("")));
+            String c = new String(Files.readAllBytes(Paths.get(" ")));
             JSONObject object = new JSONObject(c);
-            System.out.println("");
-        } catch (IOException e){
+
+            System.out.println(" ");
+        } catch (IOException e) {
             e.printStackTrace();
-        } catch (JSONException e){
+        } catch (JSONException e) {
             System.out.println("Error");
             e.printStackTrace();
         }
@@ -56,6 +58,7 @@ public class JsonUtiles {
         try {
             String c = new String(Files.readAllBytes(Paths.get(" ")));
             JSONObject object = new JSONObject(c);
+
             System.out.println(" ");
         } catch (IOException e) {
             e.printStackTrace();

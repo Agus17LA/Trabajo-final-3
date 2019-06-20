@@ -46,7 +46,7 @@ public class Inventory {
 
 	public boolean inventorySize(double weight, double maxWeight) { // esta funcion comprueba que haya espacio libre en
 																	// el inventario basandose en el peso maximo y el
-																	// actual
+															// actual
 		boolean flag = false;
 		if (weight < maxWeight) {
 			flag = true;

@@ -5,6 +5,8 @@
  */
 package main.manager;
 
+import java.awt.Graphics;
+
 /**
  *
  * @author Agus_
@@ -42,6 +44,14 @@ public class Constants {
     public static boolean NEWGAME = false;
     public static int ACTUAL_ENEMY_ZONE = 0;
     public static int ACTUAL_MAP = 0;
+    
+    public static int PRUEBA = 0;
+    
+    public static boolean EN_BATALLA = false;
+    public static boolean ESC = true;
+    
+    
+    public static volatile Graphics g;
     
     
     public static String RUTA_LAYOUT = "textures/filtro.png";

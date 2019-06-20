@@ -49,13 +49,13 @@ public class GameManager implements GameState{
     public void loadRuteCharacter(){
         switch(Constants.SELECTED_CHARACTER){
             case 1:
-                typeOfPlayer = Constants.RUTA_MAGOELFO;
-                break;
-            case 2:
                 typeOfPlayer = Constants.RUTA_MAGOGNOMO;
                 break;
-            case 3:
+            case 2:
                 typeOfPlayer = Constants.RUTA_GUERREROHUMANO;
+                break;
+            case 3:
+                typeOfPlayer = Constants.RUTA_MAGOELFO;
                 break;
             case 4:
                 typeOfPlayer = Constants.RUTA_GUERREROENANO;
@@ -99,6 +99,7 @@ public class GameManager implements GameState{
     }
     @Override
     public void draw(Graphics g){
+        g.fillRect(0,0,800,600);
         map.draw(g,(int)player.getPositionX(),(int)player.getPositionY());
         player.draw(g);
         g.setColor(Color.red);
@@ -125,6 +126,7 @@ public class GameManager implements GameState{
         for(int i=0;i<map.getEnemyAmount();i++){ 
             if(player.getLEFT_COLLISION().intersects(map.getEnemyZone()[i])  || player.getABOVE_COLLISION().intersects(map.getEnemyZone()[i]) || player.getRIGHT_COLLISION().intersects(map.getEnemyZone()[i]) || player.getDOWN_COLLISION().intersects(map.getEnemyZone()[i])){
                 flag = true;
+                Constants.EN_BATALLA = false;
                 Constants.ACTUAL_ENEMY_ZONE = i;
             }
             if("spriteSheetE2.png".equals(map.getNameSheetEnemy())){

@@ -23,13 +23,13 @@ public class Main {
     public static void main(String[] args) {
 
         
-        System.setProperty("sun.java2d.opengl", "true");
+        //System.setProperty("sun.java2d.opengl", "true");
         
         
         PrincipalManager pm = new PrincipalManager("jueguito", Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
         pm.startGame();
         pm.startPrincipalLoop();
-         
+        /*
         Game game = new Game();
         Vector<Enemy> enemigos = new Vector();
         Elf elf = new Elf();
@@ -39,15 +39,17 @@ public class Main {
         Enemy e = new Enemy();
         e.enemigoGnomo();
         enemigos.add(e);
+        
         e = new Enemy();
         e.enemigoEnano();
         enemigos.add(e);
+        
         e = new Enemy();
         e.enemigoHumano();
         enemigos.add(e);
         //hp,mana,dmg/max,acc,dodge,crit,def
         //Hay un constructor con solo estadisticas y otro con items y vectores
-        //Inventario, skills, arma, armadura,    nombre , Id
+        //Inventario, skills, arma, armadura, nombre , Id
         elf.setName("Mi Personaje");
         
         do {
@@ -55,7 +57,7 @@ public class Main {
             e=new Enemy (enemigos.elementAt(ran)); // eligue el enemigo basado en el num ran
             game.battle(elf, e); //pelea entre el elfo y el enemigo
         } while (elf.getHp() > 0);
-         
+        */ 
     }
 
 }

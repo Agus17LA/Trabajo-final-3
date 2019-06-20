@@ -5,16 +5,26 @@
  */
 package main.manager.statesmachine.state.game;
 
+import base.Enemy;
+import base.Game;
+import base.Messages;
+import base.Playable;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.util.Scanner;
+import java.util.Vector;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import main.manager.Constants;
 import main.manager.statesmachine.GameState;
 import main.manager.tools.ResourceLoader;
 import main.manager.user_interface.Hud;
+import races.Dwarf;
+import races.Elf;
+import races.Gnome;
+import races.Human;
 
 /**
  *
@@ -24,78 +34,76 @@ public class BattleManager implements GameState{
     
     private Hud hud;
     private BufferedImage batalla;
-    private BufferedImage gnomo;
-    private BufferedImage elfo;
-    private BufferedImage humano;
-    private BufferedImage enano;
-    private BufferedImage gnomoE;
-    private BufferedImage elfoE;
-    private BufferedImage humanoE;
-    private BufferedImage enanoE;
-        
+    private BufferedImage gnomoBI;
+    private BufferedImage elfoBI;
+    private BufferedImage humanoBI;
+    private BufferedImage enanoBI;
+    private BufferedImage gnomoEBI;
+    private BufferedImage elfoEBI;
+    private BufferedImage humanoEBI;
+    private BufferedImage enanoEBI;
+    
+    // He aqui la union
+    
+    Game game;
+    
     
     public BattleManager(){
         batalla = ResourceLoader.loadCompatibleImageTranslucent(Constants.RUTA_BATALLA);
-        gnomo = ResourceLoader.loadCompatibleImageTranslucent(Constants.RUTA_GNOMO);
-        elfo = ResourceLoader.loadCompatibleImageTranslucent(Constants.RUTA_ELFO);
-        humano = ResourceLoader.loadCompatibleImageTranslucent(Constants.RUTA_HUMANO);
-        enano = ResourceLoader.loadCompatibleImageTranslucent(Constants.RUTA_ENANO);
-        gnomoE = ResourceLoader.loadCompatibleImageTranslucent(Constants.RUTA_GNOMOE);
-        elfoE = ResourceLoader.loadCompatibleImageTranslucent(Constants.RUTA_ELFOE);
-        humanoE = ResourceLoader.loadCompatibleImageTranslucent(Constants.RUTA_HUMANOE);
-        enanoE = ResourceLoader.loadCompatibleImageTranslucent(Constants.RUTA_ENANOE);
+        gnomoBI = ResourceLoader.loadCompatibleImageTranslucent(Constants.RUTA_GNOMO);
+        elfoBI = ResourceLoader.loadCompatibleImageTranslucent(Constants.RUTA_ELFO);
+        humanoBI = ResourceLoader.loadCompatibleImageTranslucent(Constants.RUTA_HUMANO);
+        enanoBI = ResourceLoader.loadCompatibleImageTranslucent(Constants.RUTA_ENANO);
+        gnomoEBI = ResourceLoader.loadCompatibleImageTranslucent(Constants.RUTA_GNOMOE);
+        elfoEBI = ResourceLoader.loadCompatibleImageTranslucent(Constants.RUTA_ELFOE);
+        humanoEBI = ResourceLoader.loadCompatibleImageTranslucent(Constants.RUTA_HUMANOE);
+        enanoEBI = ResourceLoader.loadCompatibleImageTranslucent(Constants.RUTA_ENANOE);
+        game = new Game();
     }
 
     @Override
     public void refresh() {
-        
+
     }
 
     @Override
     public void draw(Graphics g) {
         g.drawImage(batalla,0,0,null);
-        drawCharacter(g);
-        g.setColor(Color.RED);
-        
-        
-        
-        g.drawString("PANTALLA DE COMBATE - PROXIMAMENTE",340,480); //Hay que ver como generar una consola scroll
-        
-        
-        
-        
+         //Hay que ver como generar una consola scroll
+        drawCharacter(g);    
     }
     
-    public void drawCharacter(Graphics g){
+    public synchronized void drawCharacter(Graphics g){
+        Constants.g = g;
         switch(Constants.SELECTED_CHARACTER){
             case 1:
-                g.drawImage(elfo, 50, 30, null);
+                g.drawImage(gnomoBI, 50, 30, null);
                 if(Constants.ACTUAL_MAP != 2){
-                    drawEnemy(g);                
+                    drawEnemy(g);
                 }else{
                     drawEnemy2(g);
                 }
                 break;
             case 2:
-                g.drawImage(gnomo, 0, 90, null);
+                g.drawImage(humanoBI, 0, 90, null);
                 if(Constants.ACTUAL_MAP != 2){
-                    drawEnemy(g);                
+                    drawEnemy(g);
                 }else{
                     drawEnemy2(g);
                 }
                 break;
             case 3:
-                g.drawImage(humano, 0, 40, null);
+                g.drawImage(elfoBI, 0, 40, null);
                 if(Constants.ACTUAL_MAP != 2){
-                    drawEnemy(g);                
+                    drawEnemy(g);    
                 }else{
                     drawEnemy2(g);
                 }
                 break;
             case 4:
-                g.drawImage(enano, 10, 160, null);
+                g.drawImage(enanoBI, 10, 160, null);
                 if(Constants.ACTUAL_MAP != 2){
-                    drawEnemy(g);                
+                    drawEnemy(g);  
                 }else{
                     drawEnemy2(g);
                 }
@@ -108,13 +116,25 @@ public class BattleManager implements GameState{
     private void drawEnemy(Graphics g){
         switch (Constants.ACTUAL_ENEMY_ZONE) {
             case 0:
-                g.drawImage(humanoE, 600, 40, null);
+                g.drawImage(humanoEBI, 600, 40, null);
+                if(!Constants.EN_BATALLA){
+                    game.startt(g);
+                    Constants.EN_BATALLA = true;
+                }
                 break;
             case 1:
-                g.drawImage(enanoE, 500, 150, null);
+                g.drawImage(enanoEBI, 500, 150, null);
+                if(!Constants.EN_BATALLA){
+                    game.startt(g);
+                    Constants.EN_BATALLA = true;
+                }
                 break;
             case 2:
-                g.drawImage(elfoE, 550, 40, null);
+                g.drawImage(elfoEBI, 550, 40, null);
+                if(!Constants.EN_BATALLA){
+                    game.startt(g);
+                    Constants.EN_BATALLA = true;
+                }
                 break;
             default:
                 break;
@@ -124,19 +144,22 @@ public class BattleManager implements GameState{
     private void drawEnemy2(Graphics g){
         switch (Constants.ACTUAL_ENEMY_ZONE) {
             case 0:
-                g.drawImage(elfoE, 550, 40, null);
+                g.drawImage(elfoEBI, 550, 40, null);
+                if(!Constants.EN_BATALLA){
+                    game.startt(g);
+                    Constants.EN_BATALLA = true;
+                }
                 break;
             case 1:
-                g.drawImage(gnomoE, 510, 90, null);
+                g.drawImage(gnomoEBI, 510, 90, null);
+                if(!Constants.EN_BATALLA){
+                    game.startt(g);
+                    Constants.EN_BATALLA = true;
+                }
                 break;
             default:
                 break;
         }
     }
 
-    public BufferedImage actualPlayer(){
-        
-        return null;
-    }
-    
 }

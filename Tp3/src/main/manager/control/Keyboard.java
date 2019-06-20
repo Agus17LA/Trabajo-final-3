@@ -55,7 +55,8 @@ public class Keyboard implements KeyListener {
                 run = true;
                 break;
             case KeyEvent.VK_ESCAPE:
-                exit = true;
+                if(Constants.ESC)
+                    exit = true;
                 break;
             case KeyEvent.VK_I:
                 menu = !menu;

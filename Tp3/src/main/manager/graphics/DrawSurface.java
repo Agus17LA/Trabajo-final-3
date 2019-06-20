@@ -16,6 +16,7 @@ import main.manager.control.ControlManager;
 import main.manager.control.Keyboard;
 import main.manager.control.Mouse;
 import main.manager.statesmachine.StateManager;
+import main.manager.tools.ResourceLoader;
 
 /**
  *
@@ -25,6 +26,10 @@ public class DrawSurface extends Canvas{ //canvas es un componente que nos sirve
     private int width;
     private int height;
     public static Mouse mouse;
+    private BufferedImage fondo;
+    public static Graphics g;
+    
+    
     public DrawSurface(final int width,final int height){
         this.width = width;
         this.height = height;
@@ -35,26 +40,31 @@ public class DrawSurface extends Canvas{ //canvas es un componente que nos sirve
         addMouseListener(mouse);
         setFocusable(true);
         requestFocus();
+        fondo = ResourceLoader.loadCompatibleImageTranslucent("textures/fondo.png");
     }
     
     public void refresh(){
         mouse.refresh(this);
     }
     
-    public void draw(final StateManager gm){
+    public void draw(final StateManager sm){
         BufferStrategy buffer = getBufferStrategy();
         if(buffer == null){
             createBufferStrategy(3);
             return;
         }
-        Graphics g = buffer.getDrawGraphics();
-        g.setColor(Color.black);
-        g.fillRect(0, 0, width, height);
-        gm.draw(g);
+        g = buffer.getDrawGraphics();
+        //g.setColor(Color.black);
+        g.drawImage(fondo, 0, 0, null);
+        
+        //g.fillRect(0, 0, width, height);
+        sm.draw(g);
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
         buffer.show();
     }
+    
+    
 
 
 

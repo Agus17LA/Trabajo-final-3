@@ -124,6 +124,37 @@ public class Enemy extends Character {
         s.skillGolpeBasico();
         this.addSkill(s);
         s = new Skill();
+        s.skillGolpeVil();
+        this.addSkill(s);
+
+        Weapon w = new Weapon();
+        w.weaponPaloDeEnfoque();
+
+        Armor a = new Armor();
+        a.armorPiedraMagica();
+
+    }
+    
+    public void enemigoElfo() {
+
+        setName("Anastasio");
+        setMaxHp(30);
+        setHp(getMaxHp());
+        setMaxMana(20);
+        setMana(getMaxMana());
+        setDmg(9);
+        setMaxDmg(11);
+        setAcc(20);
+        setDodge(3);
+        setExpDrop(100);
+        setCrit(5);
+        setDef(0);
+
+        iniCharacterObjects();
+        Skill s = new Skill();
+        s.skillGolpeBasico();
+        this.addSkill(s);
+        s = new Skill();
         s.skillTormentaElectrica();
         this.addSkill(s);
 

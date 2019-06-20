@@ -29,22 +29,27 @@ public class InitialMenu implements GameState{
     
     private Rectangle startNewGame;
     private Rectangle loadGame;
+    private Rectangle exitGame;
     
     private Rectangle[] characters;
     
     private Point pMouse;
     private boolean screenSelection;
-    private BufferedImage layout;
+    private BufferedImage displayCharacter;
+    private BufferedImage indexDisplay;
+    
     
     
     public InitialMenu(){
-        startNewGame = new Rectangle(Constants.WINDOW_CENTER_X-75,Constants.WINDOW_CENTER_Y + 150,150,20);
-        loadGame = new Rectangle(Constants.WINDOW_CENTER_X-75,Constants.WINDOW_CENTER_Y+ 200,150,20);
+        startNewGame = new Rectangle(Constants.WINDOW_CENTER_X-145,Constants.WINDOW_CENTER_Y-12 ,290,65);
+        loadGame = new Rectangle(Constants.WINDOW_CENTER_X-145,Constants.WINDOW_CENTER_Y+80 ,290,65);
+        exitGame = new Rectangle(Constants.WINDOW_CENTER_X-145,Constants.WINDOW_CENTER_Y+172 ,290,65);
         screenSelection = false;
-        layout = ResourceLoader.loadCompatibleImageTranslucent("textures/borde.png");
+        displayCharacter = ResourceLoader.loadCompatibleImageTranslucent("textures/personajesDisplay.png");
+        indexDisplay = ResourceLoader.loadCompatibleImageTranslucent("textures/indexDisplay.png");
         characters = new Rectangle[4];
         for(int i =0;i<characters.length;i++){
-            characters[i] = new Rectangle((150*i)+155,200,40,200); //Sucesion
+            characters[i] = new Rectangle((190*i)+40,360,150,30); //Sucesion
         }
     }
     
@@ -79,33 +84,13 @@ public class InitialMenu implements GameState{
     public void draw(Graphics g) {
         if(screenSelection){
             g.setColor(Color.red);
-            for(int i=0;i<characters.length;i++){
-                g.fillRect(characters[i].x,characters[i].y,characters[i].width,characters[i].height);
-                switch(i){
-                    case 0:
-                        g.drawString("Elfo", characters[i].x, characters[i].height+215);
-                        break;
-                    case 1:
-                        g.drawString("Gnomo", characters[i].x, characters[i].height+215);
-                        break;
-                    case 2:
-                        g.drawString("Humano", characters[i].x, characters[i].height+215);
-                        break;
-                    case 3:
-                        g.drawString("Enano", characters[i].x, characters[i].height+215);
-                        break;
-                }
-            }
-            
-            g.drawImage(layout,0,0,null);
-            
+            g.drawImage(displayCharacter,0,0,null);
         }else{
+            g.drawImage(indexDisplay,0,0,null);
             g.setColor(Color.RED);
-            g.drawString("Acá iniciaria una nueva partida o se cargará una", 400, 300);
-            g.drawString("Ingrese un numero del 1 al 4 para elegir a su personaje",400,350);
-            g.drawString("y pulse N para comenzar", 400, 370);
-            g.fillRect(startNewGame.x, startNewGame.y, startNewGame.width, startNewGame.height);
-            g.fillRect(loadGame.x, loadGame.y, loadGame.width, loadGame.height);            
+            g.drawRect(startNewGame.x, startNewGame.y, startNewGame.width, startNewGame.height);
+            g.drawRect(loadGame.x, loadGame.y, loadGame.width, loadGame.height);      
+            g.drawRect(exitGame.x, exitGame.y, exitGame.width, exitGame.height);   
         }
         
     }
