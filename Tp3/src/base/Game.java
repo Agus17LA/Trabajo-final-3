@@ -159,7 +159,8 @@ public class Game extends Thread implements Runnable,GameState{
     }
     
     
-    public  void startt(Graphics g){
+    public void startt(Graphics g){
+        //Constants.BATTLESTATE = true;
         this.g = g;
         this.g.setColor(Color.RED);
         this.g.fillRect(0, 0, 800, 600);
@@ -168,8 +169,16 @@ public class Game extends Thread implements Runnable,GameState{
     }
     
     
-    public synchronized void battle(Playable player, Enemy enemy) {
-        
+ /*   public String messages(){
+        System.out.println(showHpsMana(player, enemy));
+        System.out.println(player.statusEffect());
+        System.out.println("Elija habilidad:");
+        System.out.println(player.showSkills());
+        playerSkill = scan.nextByte();
+        return null;
+    }*/
+    
+    public void battle(Playable player, Enemy enemy) {
         Constants.ESC = false;
         Scanner scan = new Scanner(System.in);
         boolean playerTurn = true;
@@ -178,9 +187,7 @@ public class Game extends Thread implements Runnable,GameState{
         Messages m=new Messages();
         //si algun personaje muere ya termina la pelea
         while (player.isAlive() && enemy.isAlive()) {
-            Constants.g.setColor(Color.BLUE);
-            Constants.g.fillRect(0, 0, 800, 600);
-            Constants.g.drawString(showHpsMana(player, enemy),400,700);//System.out.println(showHpsMana(player, enemy));
+            System.out.println(showHpsMana(player, enemy));
             if (playerTurn) {
                 if (player.isStunned()) {
                     /*si esta stunneado no podra jugar su turno, 

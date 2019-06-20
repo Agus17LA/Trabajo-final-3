@@ -89,6 +89,10 @@ public class PrincipalManager {
             sm.changeCurrentState(1);
             Constants.NEWGAME = false;
         }
+        if(Constants.BATTLESTATE){
+            sm.changeCurrentState(4);
+        }
+        
         sm.refresh();
         ds.refresh();
     }

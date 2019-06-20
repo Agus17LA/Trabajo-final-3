@@ -5,6 +5,7 @@
  */
 package main.manager.statesmachine;
 
+import base.Game;
 import java.awt.Graphics;
 import main.manager.statesmachine.state.game.BattleManager;
 import main.manager.statesmachine.state.game.GameManager;
@@ -25,11 +26,12 @@ public class StateManager {
     }
     
     private void startState(){
-        state = new GameState[4];
+        state = new GameState[5];
         state[0] = new InitialMenu();
         state[1] = new GameManager();
         state[2] = new MenuManager();
         state[3] = new BattleManager();
+        state[4] = new Game();
         
     }
 

@@ -73,8 +73,7 @@ public class BattleManager implements GameState{
         drawCharacter(g);    
     }
     
-    public synchronized void drawCharacter(Graphics g){
-        Constants.g = g;
+    public void drawCharacter(Graphics g){
         switch(Constants.SELECTED_CHARACTER){
             case 1:
                 g.drawImage(gnomoBI, 50, 30, null);

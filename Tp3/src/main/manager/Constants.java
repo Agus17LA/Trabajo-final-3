@@ -50,8 +50,7 @@ public class Constants {
     public static boolean EN_BATALLA = false;
     public static boolean ESC = true;
     
-    
-    public static volatile Graphics g;
+    public static boolean BATTLESTATE = false;
     
     
     public static String RUTA_LAYOUT = "textures/filtro.png";
