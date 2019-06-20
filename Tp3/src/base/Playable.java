@@ -155,7 +155,7 @@ public class Playable extends Character {
         return builder.toString();
     }
 
-    public String loot(Enemy e) {
+    public void loot(Enemy e) {
         Scanner scan =new Scanner(System.in);
 
         int key = 0;
