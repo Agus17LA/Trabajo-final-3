@@ -62,11 +62,9 @@ public class Gnome extends Playable implements Image {
         s.skillApocalipsis();
         this.addSkill(s);
                         
-        Weapon w = new Weapon();
-        w.weaponBolsasDePiedras();
+        this.getWeapon().weaponBolsasDePiedras();
         
-         Armor a=new Armor();
-          a.armorRopaSucia();
+         this.getArmor().armorRopaSucia();
 
     }
 

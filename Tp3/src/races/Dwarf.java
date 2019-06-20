@@ -62,11 +62,10 @@ public class Dwarf extends Playable implements Iwarrior {
                 s.skillGritoDeGuerra();
                 this.addSkill(s);
                 
-                Weapon w=new Weapon();
-                w.weaponHachaSinFilo();
                 
-                 Armor a=new Armor();
-                a.armorMediaArmadura();
+                this.getWeapon().weaponHachaSinFilo();
+                
+                this.getArmor().armorMediaArmadura();
 
 	}
 

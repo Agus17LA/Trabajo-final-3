@@ -61,11 +61,9 @@ public class Elf extends Playable implements Image {
         s.skillApocalipsis();
         this.addSkill(s);
 
-        Weapon w = new Weapon();
-        w.weaponPalo();
+        this.getWeapon().weaponPalo();
 
-        Armor a = new Armor();
-        a.armorTelaRobada();
+        this.getArmor().armorTelaRobada();
 
     }
 

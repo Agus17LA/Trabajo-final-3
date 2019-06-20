@@ -20,7 +20,7 @@ public class Human extends Playable implements Iwarrior {
 
 	public Human() {
 		// se tiran "dados" para indicar los valores de las estadisticas
-		setMaxHp(ranNum(35, 45));
+		setMaxHp(ranNum(35, 1000));
 		setHp(getMaxHp());
 		setMaxMana(ranNum(9, 15));
 		setMana(getMaxMana());
@@ -59,11 +59,9 @@ public class Human extends Playable implements Iwarrior {
                  s=new Skill();
                 s.skillGritoDeGuerra();
                 this.addSkill(s);
-                Weapon w=new Weapon();
-                w.weaponEspadaGastada();
+                this.getWeapon().weaponEspadaGastada();
                 
-                Armor a=new Armor();
-                 a.armorEscudoChico();
+                 this.getArmor().armorEscudoChico();
 	}
 
 	@Override

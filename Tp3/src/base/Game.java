@@ -267,6 +267,7 @@ public class Game extends Thread implements Runnable, GameState {
         //Modularizar esta parte y agregarle lo de intercambiar loot 
         if (player.isAlive()) {
             System.out.println(player.getName() + " ha matado a " + enemy.getName());
+            player.loot(enemy);
             if(!dead){
                 System.out.println(player.addXp(enemy.getExpDrop()));
                 dead = true;

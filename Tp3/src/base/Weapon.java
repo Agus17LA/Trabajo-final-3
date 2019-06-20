@@ -23,8 +23,8 @@ public class Weapon extends Item {
         critMod = 0;
     }
 
-    public Weapon(int dmgMod, int accMod, int critMod, double weight, int sellPrice, int buyPrice, int total, int stackSize, String name, int id) {
-        super(weight, sellPrice, buyPrice, total, stackSize, name, id);
+    public Weapon(int dmgMod, int accMod, int critMod, String name, int id) {
+        super(name, id);
         this.dmgMod = dmgMod;
         this.accMod = accMod;
         this.critMod = critMod;
@@ -61,7 +61,21 @@ public class Weapon extends Item {
     public void setCritMod(int critMod) {
         this.critMod = critMod;
     }
+    
+    public void copyWeapon(Weapon w){
+        
+        this.setName(w.getName());
+        this.setId(w.getId());
+        this.dmgMod = w.dmgMod;
+        this.accMod = w.accMod;
+        this.critMod = w.critMod;
+    }
 
+    @Override
+    public String toString(){
+        return getName()+" Daño: "+dmgMod+" Precision: "+ accMod+" Critico: "+critMod;
+    }
+    
     public void weaponEspadaGastada() {
         setName("Espada Gastada");
         setId(0);
