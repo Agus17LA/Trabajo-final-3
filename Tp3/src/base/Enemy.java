@@ -72,6 +72,15 @@ public class Enemy extends Character {
         //falta el metodo en si
     }
 
+    public String showLoot() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("El enemigo tiene los siguientes items: ");
+        builder.append("Arma: " + this.getWeapon().toString());
+        builder.append("Armadura: " + this.getArmor().toString());
+
+        return builder.toString();
+    }
+
     //construsctores de enemigos (Sigo pensando que esta mal pero nose como hacerlo sino)
     public void enemigoEnano() {
 
@@ -96,11 +105,9 @@ public class Enemy extends Character {
         s.skillAtaque2Manos();
         this.addSkill(s);
 
-        Weapon w = new Weapon();
-        w.weaponHachaOxidada();
+        this.getWeapon().weaponHachaOxidada();
 
-        Armor a = new Armor();
-        a.armorPantalosHeroicosDeHeroe();
+        this.getArmor().armorPantalosHeroicosDeHeroe();
 
     }
 
@@ -127,14 +134,12 @@ public class Enemy extends Character {
         s.skillGolpeVil();
         this.addSkill(s);
 
-        Weapon w = new Weapon();
-        w.weaponPaloDeEnfoque();
+        this.getWeapon().weaponPaloDeEnfoque();
 
-        Armor a = new Armor();
-        a.armorPiedraMagica();
+        this.getArmor().armorPiedraMagica();
 
     }
-    
+
     public void enemigoElfo() {
 
         setName("Anastasio");
@@ -158,11 +163,9 @@ public class Enemy extends Character {
         s.skillTormentaElectrica();
         this.addSkill(s);
 
-        Weapon w = new Weapon();
-        w.weaponRamaDeAbedul();
+        this.getWeapon().weaponRamaDeAbedul();
 
-        Armor a = new Armor();
-        a.armorPonchoSucio();
+       this.getArmor().armorPonchoSucio();
 
     }
 
@@ -171,7 +174,7 @@ public class Enemy extends Character {
         setName("Javier");
         setMaxHp(50);
         setHp(getMaxHp());
-        setMaxMana(10);
+        setMaxMana(0);
         setMana(getMaxMana());
         setDmg(10);
         setMaxDmg(11);
@@ -192,14 +195,12 @@ public class Enemy extends Character {
         s.skillDesgarrar();
         this.addSkill(s);
 
-        Weapon w = new Weapon();
-        w.weaponCimitarraMercurial();
+        this.getWeapon().weaponCimitarraMercurial();
 
-        Armor a = new Armor();
-        a.armorCinturonDelCampeon();
+        this.getArmor().armorCinturonDelCampeon();
 
     }
-    
+
     public String turn(Character c) {
         StringBuilder builder = new StringBuilder();
         if (this.isStunned()) {
@@ -223,7 +224,5 @@ public class Enemy extends Character {
         return builder.toString();
 
     }
-    
-    
 
 }

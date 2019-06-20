@@ -1,50 +1,42 @@
-
 package base;
 
 //clase item, la implementacion poliforma y la del inventario todavia no esta hecha
-public class Item extends GameObject{
-    /*todavia no sabemos bien cual de todos estos atributos vamos a usar*/
-     private double weight;
-     private int sellPrice;
-     private int buyPrice;
-     private int total;
-     private int stackSize;
+public class Item extends GameObject {
 
-     public Item(){
-         super();
-         weight=0;
-         sellPrice=0;
-         buyPrice=0;
-         total=0;
-         stackSize=0;
-     }
-     public Item(String name){
-         super(name);
-         weight=0;
-         sellPrice=0;
-         buyPrice=0;
-         total=0;
-         stackSize=0;
-     }
-     
-    public Item(double weight, int sellPrice, int buyPrice, int total, int stackSize, String name, int id) {
+    /*todavia no sabemos bien cual de todos estos atributos vamos a usar*/
+    private double weight;
+    private int total;
+
+    public Item() {
+        super();
+        weight = 0;
+        total = 0;
+    }
+
+    public Item(String name) {
+        super(name);
+        weight = 0;
+        total = 0;
+    }
+
+    public Item(String name, int id) {
+        super(name);
+        weight = 0;
+        total = 0;
+
+    }
+
+    public Item(double weight, int total, String name, int id) {
         super(name, id);
         this.weight = weight;
-        this.sellPrice = sellPrice;
-        this.buyPrice = buyPrice;
         this.total = total;
-        this.stackSize = stackSize;
-        
-        
+
     }
-    
-    public Item(Item i){
-        super(i.getName(),i.getId());
+
+    public Item(Item i) {
+        super(i.getName(), i.getId());
         this.weight = i.weight;
-        this.sellPrice = i.sellPrice;
-        this.buyPrice = i.buyPrice;
         this.total = i.total;
-        this.stackSize = i.stackSize;
     }
 
     public double getWeight() {
@@ -55,21 +47,6 @@ public class Item extends GameObject{
         this.weight = weight;
     }
 
-    public int getSellPrice() {
-        return sellPrice;
-    }
-
-    public void setSellPrice(int sellPrice) {
-        this.sellPrice = sellPrice;
-    }
-
-    public int getBuyPrice() {
-        return buyPrice;
-    }
-
-    public void setBuyPrice(int buyPrice) {
-        this.buyPrice = buyPrice;
-    }
 
     public int getTotal() {
         return total;
@@ -79,14 +56,4 @@ public class Item extends GameObject{
         this.total = total;
     }
 
-    public int getStackSize() {
-        return stackSize;
-    }
-
-    public void setStackSize(int stackSize) {
-        this.stackSize = stackSize;
-    }
-     
-    
-    
 }
