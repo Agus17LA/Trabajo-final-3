@@ -45,6 +45,8 @@ public class Constants {
     public static int ACTUAL_ENEMY_ZONE = 0;
     public static int ACTUAL_MAP = 0;
     
+    public static boolean dead = false;
+    
     public static int PRUEBA = 0;
     
     public static boolean EN_BATALLA = false;

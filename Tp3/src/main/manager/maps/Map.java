@@ -33,10 +33,13 @@ public class Map {
     
     
     private final Rectangle[] enemiesZone;
-    private ArrayList<Rectangle> enemiesZone1;
     
     private final int enemyAmount;
     private final String nameSheetEnemy;
+    
+    
+    private final Point priest;
+    private Rectangle priestZone;
     
     
     private final Sprite[] palette;
@@ -94,6 +97,22 @@ public class Map {
         String enemies = parts[10];
         String[] allEnemies = enemies.split("#");
         enemyAssign(allEnemies);
+        
+        
+        String priestAll = parts[11];
+        String[] priestPart = priestAll.split(":");
+        priest = new Point();
+        priest.x = Integer.parseInt(priestPart[0]);
+        priest.y = Integer.parseInt(priestPart[1]);
+        priestZone = new Rectangle();
+        
+        
+    }
+    
+    private void refreshPriestZone(final int positionX,final int positionY){
+        int pointX = ((int)priest.getX())*32 - positionX + EDGE_X;
+        int pointY = ((int)priest.getY())*32 - positionY + EDGE_Y;
+        priestZone = new Rectangle(pointX-45,pointY-80,160,160);
     }
     
     private void enemyAssign(final String[] allEnemies){
@@ -116,7 +135,13 @@ public class Map {
             enemiesZone[i] = new Rectangle(pointX-32,pointY-32,96,96);
         }
     }
+
+    public Rectangle getPriestZone() {
+        return priestZone;
+    }
   
+    
+    
     
     public Rectangle[] getEnemyZone() {
         return enemiesZone;
@@ -126,9 +151,6 @@ public class Map {
         return enemiesZone[0];
     }
 
-    public ArrayList<Rectangle> getEnemiesZone1() {
-        return enemiesZone1;
-    }
 
     public int getEnemyAmount() {
         return enemyAmount;
@@ -201,6 +223,7 @@ public class Map {
         refreshCollisionAreas(positionX,positionY);
         refreshExitZone(positionX,positionY);
         refreshEnemiesZone(positionX,positionY);
+        refreshPriestZone(positionX,positionY);
     }
     
     private void refreshCollisionAreas(final int positionX,final int positionY){

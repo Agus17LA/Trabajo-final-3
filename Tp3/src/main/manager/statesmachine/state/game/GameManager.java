@@ -14,6 +14,7 @@ import main.manager.control.ControlManager;
 import main.manager.control.Keyboard;
 import main.manager.entities.Enemy;
 import main.manager.entities.Player;
+import main.manager.entities.Priest;
 import main.manager.graphics.DrawSurface;
 import main.manager.maps.Map;
 import main.manager.statesmachine.GameState;
@@ -32,6 +33,7 @@ public class GameManager implements GameState{
     String typeOfPlayer;
     Hud hud;
     Enemy enemy;
+    Priest priest;
     private boolean refresh = false;
     
     
@@ -41,6 +43,7 @@ public class GameManager implements GameState{
         loadRuteCharacter();
         startMap(Constants.RUTA_MAP);
         enemy = new Enemy(map);
+        priest = new Priest(map);
         hud = new Hud(player);
         layout = ResourceLoader.loadCompatibleImageTranslucent(Constants.RUTA_LAYOUT);
         
@@ -72,6 +75,7 @@ public class GameManager implements GameState{
         player.setPositionX(map.getInitialPosition().getX());
         player.setPositionY(map.getInitialPosition().getY());
         enemy = new Enemy(map);
+        priest = new Priest(map);
     }
     
     private void startMap(final String rute){
@@ -96,6 +100,7 @@ public class GameManager implements GameState{
         player.refresh();
         map.refresh((int)player.getPositionX(),(int)player.getPositionY());
         Constants.BATTLE = battleZone();
+        priestZone();
     }
     @Override
     public void draw(Graphics g){
@@ -104,11 +109,13 @@ public class GameManager implements GameState{
         player.draw(g);
         g.setColor(Color.red);
         enemy.draw(g);
+        priest.draw(g);
         //hud.drawFilter(g,layout);
         if(Keyboard.hud){
             hud.drawTP(g, map);
             hud.drawCollisions(g, map);
             hud.drawBattleArea(g, map);
+            hud.drawPriestArea(g, map);
         }
         hud.drawBar(g, player);
         hud.drawMousePosition(g, p);
@@ -136,6 +143,15 @@ public class GameManager implements GameState{
             }
         }
        return flag;
+    }
+    
+    public boolean priestZone(){
+        boolean flag = false;
+        if(player.getDOWN_COLLISION().intersects(map.getPriestZone())){
+            flag = true;
+            Constants.dead = false;
+        }
+        return flag;
     }
     
     

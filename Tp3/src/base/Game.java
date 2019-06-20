@@ -221,7 +221,10 @@ public class Game extends Thread implements Runnable,GameState{
         partsSkills=totalSkills.split("\\*");
         mana = false;
         pulso = false;
-        
+        if(!Constants.dead){
+            player.setHp(player.getMaxHp());
+            player.setMana(player.getMaxMana());
+        }
         //si algun personaje muere ya termina la pelea
         while (player.isAlive() && enemy.isAlive()) {
             draw(g);//System.out.println(showHpsMana(player, enemy));
@@ -271,6 +274,7 @@ public class Game extends Thread implements Runnable,GameState{
             Constants.ESC = true;
             Constants.BATTLESTATE = false;
         } else {
+            Constants.dead = true;
             System.out.println(enemy.getName() + " te ha matado!!");
             Constants.ESC = true;
             Constants.BATTLESTATE = false;
@@ -355,7 +359,7 @@ public class Game extends Thread implements Runnable,GameState{
         }
     }
         
-    public void guardarPartida(Playable player, Enemy enemy){ //idea que se me ocurrio para implementar json con la cargada de partida
+ /*   public void guardarPartida(Playable player, Enemy enemy){ //idea que se me ocurrio para implementar json con la cargada de partida
     try  {
             JSONObject gameStates = new JSONObject();
             JSONArray arrayGameStates = new JSONArray();
@@ -455,5 +459,5 @@ public class Game extends Thread implements Runnable,GameState{
 
             e.printStackTrace();
         }
-    }
+    }*/
 }

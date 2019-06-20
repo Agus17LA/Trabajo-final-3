@@ -21,6 +21,9 @@ public class Player {
     private double positionY;
     private final SpritesSheet ss;
     private BufferedImage actualImage;
+    private final SpritesSheet dd;
+    private BufferedImage deadImage;
+    
     private int direction;
     private boolean moving;
     private int animation;
@@ -46,6 +49,7 @@ public class Player {
         positionY = map.getInitialPosition().getY();
         ss = new SpritesSheet(rute,64,false); //Para agregar más jugadores deberemos mandar por parametro por acá nuestro personaje
         actualImage = ss.getSprite(0).getImage();
+        dd = new SpritesSheet("textures/dead.png",64,false);
         moving = false;
         animation = 0;
         state = 0;
@@ -266,14 +270,22 @@ public class Player {
             state = 0;
             animation = 0;
         }
-        actualImage = ss.getSprite(direction, state).getImage();
+        if(!Constants.dead){
+            actualImage = ss.getSprite(direction, state).getImage();
+        }else{
+            deadImage = dd.getSprite(direction,state).getImage();
+        }
     }
     
     public void draw(Graphics g){
         final int centerX = Constants.WINDOW_CENTER_X - Constants.SIDE_SPRITE;
         final int centerY = Constants.WINDOW_CENTER_Y - Constants.SIDE_SPRITE;
         g.setColor(Color.green);
-        g.drawImage(actualImage,centerX,centerY,null);
+        
+        if(!Constants.dead)
+            g.drawImage(actualImage,centerX,centerY,null);
+        else
+            g.drawImage(deadImage, centerX, centerY, null);
         
         g.drawRect(ABOVE_COLLISION.x, ABOVE_COLLISION.y, ABOVE_COLLISION.width , ABOVE_COLLISION.height);
         g.drawRect(DOWN_COLLISION.x, DOWN_COLLISION.y, DOWN_COLLISION.width, DOWN_COLLISION.height);

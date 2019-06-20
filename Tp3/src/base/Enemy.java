@@ -173,9 +173,9 @@ public class Enemy extends Character {
         setHp(getMaxHp());
         setMaxMana(10);
         setMana(getMaxMana());
-        setDmg(2);
-        setMaxDmg(4);
-        setAcc(10);
+        setDmg(10);
+        setMaxDmg(11);
+        setAcc(20);
         setDodge(5);
         setExpDrop(150);
         setCrit(5);

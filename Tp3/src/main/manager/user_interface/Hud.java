@@ -53,7 +53,12 @@ public class Hud {
         for(int i=0;i<map.getEnemyAmount();i++){
             g.drawRect((int)map.getEnemyZone()[i].getX(), (int)map.getEnemyZone()[i].getY(), (int)map.getEnemyZone()[i].getWidth(), (int)map.getEnemyZone()[i].getHeight());
         }
-}
+    }
+    
+    public void drawPriestArea(Graphics g,Map map){
+        g.setColor(Color.MAGENTA);
+        g.drawRect((int)map.getPriestZone().getX(),(int)map.getPriestZone().getY(),(int)map.getPriestZone().getWidth(),(int)map.getPriestZone().getHeight());
+    }
     
     public void drawCollisions(Graphics g, Map map){
             g.setColor(Color.red);   //hago visibles las colisiones
