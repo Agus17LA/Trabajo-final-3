@@ -71,7 +71,8 @@ public class Dwarf extends Playable implements Iwarrior {
 	}
 
 	@Override
-	public void gainPower() {
+	public String gainPower() {
+            StringBuilder builder = new StringBuilder();
 		if (getMana() - 7 >= 0) {
 			if (getHp() - 20 > 0) {
 				setMana(getMana() - 7);
@@ -81,32 +82,28 @@ public class Dwarf extends Playable implements Iwarrior {
 			} else {
 				Messages m = new Messages();// pongo la creacion del objeto aca para que se cree solo si es necesario y
 											// no quede creado sin usarse
-				StringBuilder builder = new StringBuilder();
 				builder.append(m.hpError());
-				builder.toString();
 			}
 		} else {
 			Messages m = new Messages();
-			StringBuilder builder = new StringBuilder();
 			builder.append(m.manaError());
-			builder.toString();
 
 		}
-
+               			return builder.toString();
 	}
 
-	public void heavyTraining() {
+	public String heavyTraining() {
+            StringBuilder builder = new StringBuilder();
 		if (getDodge() - 2 >= 0) {
 			setDodge(getDodge() - 2);
 			setMaxHp(getMaxHp() + 15);
 			setHp(getHp() + 10);
 		} else {
 			Messages m = new Messages();
-			StringBuilder builder = new StringBuilder();
 			builder.append(m.dodgeError());
-			builder.toString();
 
 		}
+			return builder.toString();
 	}
-
+            
 }

@@ -71,30 +71,31 @@ public class Gnome extends Playable implements Image {
     }
 
     @Override
-    public void manaTransmutation() {
+    public String manaTransmutation() {
+        StringBuilder builder = new StringBuilder();
         if (getMana() - 10 >= 0) {
             setMana(getMana() - 10);
             setHp(getHp() + 15);
         } else {
             Messages m = new Messages();
-            StringBuilder builder = new StringBuilder();
             builder.append(m.manaError());
-            builder.toString();
+           
         }
+        return builder.toString();
     }
 
     @Override
-    public void magicGain() {
+    public String magicGain() {
+        StringBuilder builder = new StringBuilder();
         if (getMana() - 30 >= 0) {
             setMana(getMana() - 30);
             setMaxDmg(getMaxDmg() + 1);
             setDmg(getDmg() + 1);
         } else {
-            Messages m = new Messages();
-            StringBuilder builder = new StringBuilder();
+            Messages m = new Messages();          
             builder.append(m.manaError());
-            builder.toString();
         }
+        return builder.toString();
     }
 
 }

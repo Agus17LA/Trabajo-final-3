@@ -127,7 +127,6 @@ public class Playable extends Character {
             // mensaje de la funcion showXpState para que el jugador tenga una referencia
 
             builder.append(m.lvlError());
-            builder.toString();
             showXpState();
         }
         return builder.toString();
