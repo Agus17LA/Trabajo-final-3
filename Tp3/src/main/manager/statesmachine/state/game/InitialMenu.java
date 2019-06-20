@@ -60,7 +60,7 @@ public class InitialMenu implements GameState{
         for(int i=0;i<characters.length;i++){
             if(rectangleClic(pMouse,characters[i])){
                 Constants.SELECTED_CHARACTER = i+1;
-                ControlManager.keyboard.prsnj1 = false;
+                //ControlManager.keyboard.prsnj1 = false;
                 Constants.NEWGAME = true;
              }
         }

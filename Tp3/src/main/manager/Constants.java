@@ -55,5 +55,11 @@ public class Constants {
     public static boolean BATTLESTATE = false;
     
     
+    public static boolean h1 = false;
+    public static boolean h2 = false;
+    public static boolean h3 = false;
+    public static boolean h4 = false;
+    
+    
     public static String RUTA_LAYOUT = "textures/filtro.png";
 }

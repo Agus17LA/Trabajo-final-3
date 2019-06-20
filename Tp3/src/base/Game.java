@@ -7,6 +7,7 @@ import java.awt.Rectangle;
 import java.util.Scanner;
 import java.util.Vector;
 import main.manager.Constants;
+import main.manager.control.ControlManager;
 import main.manager.graphics.DrawSurface;
 import main.manager.statesmachine.GameState;
 import main.manager.statesmachine.state.game.BattleManager;
@@ -52,6 +53,14 @@ public class Game extends Thread implements Runnable, GameState {
     private String[] partesAtaqueE;
     private Point pMouse;
     private Rectangle[] skillBoxes;
+    private int option;
+    boolean playerTurn;
+    
+    boolean h1;
+    boolean h2;
+    boolean h3;
+    boolean h4;
+    
     
     
     
@@ -61,6 +70,7 @@ public class Game extends Thread implements Runnable, GameState {
         gnome = new Gnome();
         human = new Human();
         enemigos = new Vector();
+        
         e = new Enemy();
         e.enemigoHumano();
         enemigos.add(e);
@@ -76,6 +86,8 @@ public class Game extends Thread implements Runnable, GameState {
         e = new Enemy();
         e.enemigoGnomo();
         enemigos.add(e);
+        
+        
         elf.setName("ELFO");
         dwarf.setName("ENANO");
         gnome.setName("GNOMO");
@@ -86,6 +98,7 @@ public class Game extends Thread implements Runnable, GameState {
         for(int i = 0;i<skillBoxes.length;i++){
             skillBoxes[i] = new Rectangle((120*i)+26,422,100,20);
         }
+        option = 0;
     }
 
     @Override
@@ -212,8 +225,8 @@ public class Game extends Thread implements Runnable, GameState {
         this.player = player;
         this.enemy = enemy;
         Constants.ESC = false;
-        Scanner scan = new Scanner(System.in);
-        boolean playerTurn = true;
+        //Scanner scan = new Scanner(System.in);
+        playerTurn = true;
         playerSkill = 0; //usamos byte no va a haber mas de 16 habilidades
         enemySkill = 0;
         Messages m = new Messages();
@@ -221,6 +234,9 @@ public class Game extends Thread implements Runnable, GameState {
         partsSkills=totalSkills.split("\\*");
         mana = false;
         pulso = false;
+        
+        boolean flagAtaque;
+        
         if(!Constants.dead && !player.isAlive()){
             player.setHp(player.getMaxHp());
             player.setMana(player.getMaxMana());
@@ -228,7 +244,9 @@ public class Game extends Thread implements Runnable, GameState {
         //si algun personaje muere ya termina la pelea
         while (player.isAlive() && enemy.isAlive()) {
             //draw(g);//System.out.println(showHpsMana(player, enemy));
+            flagAtaque = false;
             dead = false;
+            double i =0;
             if (playerTurn) {
                 if (player.isStunned()) {
                     /*si esta stunneado no podra jugar su turno, 
@@ -239,10 +257,23 @@ public class Game extends Thread implements Runnable, GameState {
 
                     System.out.println(player.statusEffect());
                     do {
+                        h1 = false;
+                        h2 = false;
+                        h3 = false;
+                        h4 = false;
+                        playerSkill = 0;
                         do {
-                            System.out.println(player.showSkills()); //crear excepciones 
-                            playerSkill = scan.nextByte();
-                        } while (playerSkill > player.vSkills.size() || playerSkill <= 0);
+                            System.out.println("");
+                            if(h1){
+                                playerSkill = 1;
+                            }else if(h2){
+                                playerSkill = 2;
+                            }else if(h3){
+                                playerSkill = 3;
+                            }else if(h4){
+                                playerSkill = 4;
+                            }
+                        } while(playerSkill==0); //Este while espera a que en el otro thread se aprete una tecla
                             pulso = true;
                         if (player.getMana() < player.vSkills.elementAt(playerSkill - 1).getManaCost()) {
                             //System.out.println("No tiene mana para usar la habilidad " + player.vSkills.elementAt(playerSkill - 1).getName());
@@ -263,7 +294,6 @@ public class Game extends Thread implements Runnable, GameState {
                 playerTurn = true;
             }
         }
-
         //Modularizar esta parte y agregarle lo de intercambiar loot 
         if (player.isAlive()) {
             System.out.println(player.getName() + " ha matado a " + enemy.getName());
@@ -290,8 +320,19 @@ public class Game extends Thread implements Runnable, GameState {
 
     @Override
     public void refresh() {
-        
+        if(!pulso){
+            if(ControlManager.keyboard.h1.isPressed()&&!h1){
+                h1 = true;
+            }else if(ControlManager.keyboard.h2.isPressed()&&!h2){
+                h2 = true;
+            }else if(ControlManager.keyboard.h3.isPressed()&&!h3){
+                h3 = true;
+            }else if(ControlManager.keyboard.h4.isPressed()&&!h4){
+                h4 = true;
+            }
+        }
     }
+    
 
     @Override
     public void draw(Graphics g) {
@@ -336,14 +377,14 @@ public class Game extends Thread implements Runnable, GameState {
             }else if(!ataque){
                 if(partesAtaque!=null){
                     for(int i = 0;i<partesAtaque.length;i++){
-                        g.drawString(partesAtaque[i],30,(10*i)+480);
+                        g.drawString(partesAtaque[i],30,(20*i)+480);
                     }
                     if(partesAtaqueE!=null){
                         if(partesAtaqueE.length>4){
                             System.out.println("que pesado");
                         }else{
                             for(int i =0; i<partesAtaqueE.length;i++){
-                                g.drawString(partesAtaqueE[i],30,(5*i)+500);
+                                g.drawString(partesAtaqueE[i],30,(20*i)+500);
                             }
                         }
                     }

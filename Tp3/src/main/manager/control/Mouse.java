@@ -42,6 +42,7 @@ public class Mouse extends MouseAdapter {
     }
     
     
+    @Override
     public void mouseClicked(MouseEvent e){
         if(!click)
             click = true;

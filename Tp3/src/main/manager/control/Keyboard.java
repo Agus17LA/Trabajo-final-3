@@ -26,10 +26,10 @@ public class Keyboard implements KeyListener {
     public static boolean hud = false;
     public boolean exit= false;
     public boolean newGame = false;
-    public boolean prsnj1 = false;
-    public boolean prsnj2 = false;
-    public boolean prsnj3 = false;
-    public boolean prsnj4 = false;
+    public Key h1 = new Key();
+    public Key h2 = new Key();
+    public Key h3 = new Key();
+    public Key h4 = new Key();
     
     @Override
     public void keyTyped(KeyEvent e) {
@@ -73,16 +73,16 @@ public class Keyboard implements KeyListener {
                 newGame = !newGame;
                 break;
             case KeyEvent.VK_1:
-                prsnj1 = !prsnj1;
+                h1.keyPressed();
                 break;
             case KeyEvent.VK_2:
-                prsnj2 = !prsnj2;
+                h2.keyPressed();
                 break;
             case KeyEvent.VK_3:
-                prsnj3 = !prsnj3;
+                h3.keyPressed();
                 break;
             case KeyEvent.VK_4:
-                prsnj4 = !prsnj4;
+                h4.keyPressed();
                 break;
             default:
                 break;
@@ -110,6 +110,20 @@ public class Keyboard implements KeyListener {
             case KeyEvent.VK_ESCAPE:
                 exit = false;
                 break;
+            case KeyEvent.VK_1:
+                h1.keyFree();
+                break;
+            case KeyEvent.VK_2:
+                h2.keyFree();
+                break;
+            case KeyEvent.VK_3:
+                h3.keyFree();
+                break;
+            case KeyEvent.VK_4:
+                h4.keyFree();
+                break;
+                
+                
         }
     }
     
