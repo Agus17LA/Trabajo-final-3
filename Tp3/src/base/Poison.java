@@ -51,7 +51,7 @@ public class Poison extends Status{
             super.statusTurn(c);
             c.setHp(c.getHp()-dmg);
             /*el veneno es conocido como algo dañino por eso hace daño*/
-                 res= c.getName() + " sufre "+dmg+ " de daño por veneno!";          
+                 res= c.getName() + " sufre "+dmg+ " de daño por veneno! *";          
         return res;
         
     }

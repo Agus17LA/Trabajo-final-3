@@ -238,7 +238,7 @@ public class Character extends GameObject {
         if (hit(hitChance)) {//se usa ese % en una funcion que devuelve un boolean para saber si se pudo hacer el golpe
             builder.append(s.useSkill(c, this)); //funcion en la que la habilidad es usada
         } else {
-            builder.append(c.getName() + " ha errado el golpe!! \n"); //en caso de errar se notifica
+            builder.append(c.getName() + " ha errado el golpe!! *"); //en caso de errar se notifica
         }
         return builder.toString(); //se devuelve lo que sea que haya pasado
 
@@ -293,7 +293,7 @@ public class Character extends GameObject {
         int i;
 
         for (i = 0; i < vSkills.size(); i++) {
-            builder.append(vSkills.elementAt(i).toString()).append("\n");
+            builder.append(vSkills.elementAt(i).toString()).append("*");
         }
         return builder.toString();
     }

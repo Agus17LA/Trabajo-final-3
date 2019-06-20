@@ -79,7 +79,7 @@ public class PrincipalManager {
         if(ControlManager.keyboard.exit){
             sm.changeCurrentState(1);
         }else if(ControlManager.keyboard.combate){
-            sm.changeCurrentState(3);
+            sm.changeCurrentState(4);
             ControlManager.keyboard.combate = false;
         }else if(ControlManager.keyboard.menu){
             sm.changeCurrentState(2);
@@ -90,7 +90,7 @@ public class PrincipalManager {
             Constants.NEWGAME = false;
         }
         if(Constants.BATTLESTATE){
-            sm.changeCurrentState(4);
+            sm.changeCurrentState(3);
         }
         
         sm.refresh();

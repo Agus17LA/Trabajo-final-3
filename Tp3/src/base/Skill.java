@@ -166,11 +166,11 @@ public class Skill extends GameObject {
         int critTotal = c1.getCrit() + c1.getWeapon().getCritMod() + critMod;
         if (isCrit(critTotal)) {
             dmgTotal = dmgTotal * 2;
-            builder.append("GOLPE CRITICO!\n");
+            builder.append("GOLPE CRITICO! *");
         }
         c2.setHp(c2.getHp() - dmgTotal);
         builder.append(c1.getName() + "  ha usado " + getName() + " en " + c2.getName() + " por "
-                + dmgTotal + " de daño!! \n");
+                + dmgTotal + " de daño!! *");
         if (statusHit()) { //Los metodos "isStatus" sirven para chekear si este skill aplica esos status
             if (stun.isStunned()) {
                 builder.append(c2.addStatus(stun));

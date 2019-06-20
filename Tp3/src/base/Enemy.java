@@ -171,12 +171,12 @@ public class Enemy extends Character {
         setName("Javier");
         setMaxHp(50);
         setHp(getMaxHp());
-        setMaxMana(20);
+        setMaxMana(10);
         setMana(getMaxMana());
-        setDmg(10);
-        setMaxDmg(15);
-        setAcc(25);
-        setDodge(15);
+        setDmg(2);
+        setMaxDmg(4);
+        setAcc(10);
+        setDodge(5);
         setExpDrop(150);
         setCrit(5);
         setDef(0);
@@ -199,5 +199,31 @@ public class Enemy extends Character {
         a.armorCinturonDelCampeon();
 
     }
+    
+    public String turn(Character c) {
+        StringBuilder builder = new StringBuilder();
+        if (this.isStunned()) {
+            builder.append(statusEffect());
+        } else {
+            /* Logica atras de la IA, los enemigos solo tienen 2 habilidades por disenio, 
+            el golpe basico y otra mas que cuesta mana, si tienen mana tiran la habilidad 
+            y si no el golpe basico
+             */
+            builder.append(statusEffect());
+
+            if (getMana() >= vSkills.elementAt(1).getManaCost()) {
+                //La habilidad 2, 1 en el arreglo, siempre es la habilidad que cuesta mana, si el mana le alcanza la tira
+                builder.append(c.attack(this, this.vSkills.elementAt(1)));
+            } else //La habilidad 1 siempre es el basico que no cuensta mana
+            {
+                builder.append(c.attack(this, this.vSkills.elementAt(0)));
+            }
+
+        }
+        return builder.toString();
+
+    }
+    
+    
 
 }

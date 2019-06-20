@@ -17,7 +17,7 @@ import main.manager.statesmachine.state.game.MenuManager;
  * @author Agus_
  */
 public class StateManager {
-    private GameState[] state;
+    public static GameState[] state;
     private GameState currentState;
 
     public StateManager() {
@@ -30,8 +30,8 @@ public class StateManager {
         state[0] = new InitialMenu();
         state[1] = new GameManager();
         state[2] = new MenuManager();
-        state[3] = new BattleManager();
-        state[4] = new Game();
+        state[3] = new Game();
+        state[4] = new BattleManager();
         
     }
 

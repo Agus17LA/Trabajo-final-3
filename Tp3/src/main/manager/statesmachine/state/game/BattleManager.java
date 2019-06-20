@@ -19,6 +19,7 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 import main.manager.Constants;
 import main.manager.statesmachine.GameState;
+import main.manager.statesmachine.StateManager;
 import main.manager.tools.ResourceLoader;
 import main.manager.user_interface.Hud;
 import races.Dwarf;
@@ -58,7 +59,7 @@ public class BattleManager implements GameState{
         elfoEBI = ResourceLoader.loadCompatibleImageTranslucent(Constants.RUTA_ELFOE);
         humanoEBI = ResourceLoader.loadCompatibleImageTranslucent(Constants.RUTA_HUMANOE);
         enanoEBI = ResourceLoader.loadCompatibleImageTranslucent(Constants.RUTA_ENANOE);
-        game = new Game();
+        game = (Game) StateManager.state[3];
     }
 
     @Override

@@ -47,7 +47,7 @@ public class Stun extends Status {
         String res=" ";
         if (stunned == true) {
             super.statusTurn(c);
-            res= c.getName()+ "esta aturdido! ";
+            res= c.getName()+ "esta aturdido! *";
             //el aturdimiento se chequea en la clase game, por eso esta funcion no hace nada especial
         }
                 

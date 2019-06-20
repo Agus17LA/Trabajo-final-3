@@ -107,7 +107,7 @@ public class Buff extends Status {
         super.statusTurn(c); //este metodo lo que hace simplemente es restarle 1 a duracion.
 
         if (getDuration() > 0) { //si todavia tiene duracion disponible surge el efecto del status
-            res = "La modificacion esta activa.";
+            res = "La modificacion esta activa. *";
             if (!active) {
                 System.out.println("JOJOOOOO");
                 /*aca es donde entra en juego el boolean de la clase, si es false quiere decir que 
@@ -129,7 +129,7 @@ public class Buff extends Status {
             c.setCrit(c.getCrit() - critB);
             c.setDef(c.getDef() - defB);
 
-            res = c.getName() + " ya no sufre una modificacion en sus estadisticas";
+            res = c.getName() + " ya no sufre una modificacion en sus estadisticas *";
         }
         return res;
         //tener en cuenta que si no tuvieramos el control de "active", el debuff simplemente se iria acumulando, lo cual no es la idea
