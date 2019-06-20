@@ -8,6 +8,9 @@ import main.manager.Constants;
 import main.manager.graphics.DrawSurface;
 import main.manager.statesmachine.GameState;
 import main.manager.statesmachine.state.game.BattleManager;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import races.Dwarf;
 import races.Elf;
 import races.Gnome;
@@ -349,6 +352,108 @@ public class Game extends Thread implements Runnable,GameState{
         }else{
             g.setColor(Color.MAGENTA);
             g.drawString("Estas muerto, presione escape para salir",30,460);
+        }
+    }
+        
+    public void guardarPartida(Playable player, Enemy enemy){ //idea que se me ocurrio para implementar json con la cargada de partida
+    try  {
+            JSONObject gameStates = new JSONObject();
+            JSONArray arrayGameStates = new JSONArray();
+            gameStates.put("Estados", arrayGameStates);
+            JSONObject playableStates = new JSONObject();
+            playableStates.put("id", player.getId());
+            playableStates.put("name", player.getName());
+            playableStates.put("hp", player.getHp());
+            playableStates.put("hp max", player.getMaxHp());
+            playableStates.put("mana", player.getMana());
+            playableStates.put("mana max",player.getMaxMana());
+            playableStates.put("dmg", player.getDmg());
+            playableStates.put("dmg max", player.getMaxDmg());
+            playableStates.put("acc",player.getAcc());
+            playableStates.put("dodge", player.getDodge());
+            playableStates.put("crit", player.getCrit());
+            playableStates.put("def",player.getDef());
+            playableStates.put("xp", player.getXp());
+            playableStates.put("lvl", player.getLvl());
+            playableStates.put("xp max", player.getXpMax());
+            
+            JSONArray playableStatus=new JSONArray();
+            playableStates.put("status",playableStatus);//ver como agregar status actuales
+            JSONArray playableSkills=new JSONArray();
+            playableStates.put("skills",playableSkills);
+            JSONObject skill1=new JSONObject();
+            JSONObject skill2=new JSONObject ();
+            JSONObject skill3=new JSONObject();
+            JSONObject skill4=new JSONObject();
+            skill1.put("id",player.vSkills.get(0).getId());
+            skill1.put("name",player.vSkills.get(0).getName());
+            skill1.put("dmg mod",player.vSkills.get(0).getDmgMod());
+            skill1.put("acc mod",player.vSkills.get(0).getAccMod());
+            skill1.put("crit mod",player.vSkills.get(0).getCritMod());
+            skill1.put("mana cost",player.vSkills.get(0).getManaCost());
+            skill1.put("status chance",player.vSkills.get(0).getStatusChance());
+            skill1.put("stun",player.vSkills.get(0).stun.isStunned());
+            skill1.put("stun",player.vSkills.get(0).poison.isPoisoned());
+            skill1.put("stun",player.vSkills.get(0).buff.isBuffed());
+            
+            skill2.put("id",player.vSkills.get(1).getId());
+            skill2.put("name",player.vSkills.get(1).getName());
+            skill2.put("dmg mod",player.vSkills.get(1).getDmgMod());
+            skill2.put("acc mod",player.vSkills.get(1).getAccMod());
+            skill2.put("crit mod",player.vSkills.get(1).getCritMod());
+            skill2.put("mana cost",player.vSkills.get(1).getManaCost());
+            skill2.put("status chance",player.vSkills.get(1).getStatusChance());
+            skill2.put("stun",player.vSkills.get(1).stun.isStunned());
+            skill2.put("stun",player.vSkills.get(1).poison.isPoisoned());
+            skill2.put("stun",player.vSkills.get(1).buff.isBuffed());
+            
+            skill3.put("id",player.vSkills.get(2).getId());
+            skill3.put("name",player.vSkills.get(2).getName());
+            skill3.put("dmg mod",player.vSkills.get(2).getDmgMod());
+            skill3.put("acc mod",player.vSkills.get(2).getAccMod());
+            skill3.put("crit mod",player.vSkills.get(2).getCritMod());
+            skill3.put("mana cost",player.vSkills.get(2).getManaCost());
+            skill3.put("status chance",player.vSkills.get(2).getStatusChance());
+            skill3.put("stun",player.vSkills.get(2).stun.isStunned());
+            skill3.put("stun",player.vSkills.get(2).poison.isPoisoned());
+            skill3.put("stun",player.vSkills.get(2).buff.isBuffed());
+            
+            skill4.put("id",player.vSkills.get(3).getId());
+            skill4.put("name",player.vSkills.get(3).getName());
+            skill4.put("dmg mod",player.vSkills.get(3).getDmgMod());
+            skill4.put("acc mod",player.vSkills.get(3).getAccMod());
+            skill4.put("crit mod",player.vSkills.get(3).getCritMod());
+            skill4.put("mana cost",player.vSkills.get(3).getManaCost());
+            skill4.put("status chance",player.vSkills.get(3).getStatusChance());
+            skill4.put("stun",player.vSkills.get(3).stun.isStunned());
+            skill4.put("stun",player.vSkills.get(3).poison.isPoisoned());
+            skill4.put("stun",player.vSkills.get(3).buff.isBuffed());
+            
+            playableSkills.put(0,skill1);   
+            playableSkills.put(1,skill2); 
+            playableSkills.put(2,skill3); 
+            playableSkills.put(3,skill4); 
+            
+            JSONObject playableWeapon=new JSONObject();
+            JSONObject playableArmor=new JSONObject();
+            
+            playableWeapon.put("id",player.weapon.getId());
+            playableWeapon.put("name",player.weapon.getName());
+            playableWeapon.put("weight",player.weapon.getWeight());
+            playableWeapon.put("dmg mod",player.weapon.getDmgMod());
+            playableWeapon.put("acc mod",player.weapon.getAccMod());
+            playableWeapon.put("crit mod",player.weapon.getCritMod());
+            
+            playableArmor.put("id",player.armor.getId());
+            playableArmor.put("name",player.armor.getName());
+            playableArmor.put("weight",player.armor.getWeight());
+            playableArmor.put("hp mod",player.armor.getHpMod());
+            playableArmor.put("dodge mod",player.armor.getDodgeMod());
+            playableArmor.put("def mod",player.armor.getDefMod());
+            
+        } catch (JSONException e) {
+
+            e.printStackTrace();
         }
     }
 }
