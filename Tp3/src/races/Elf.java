@@ -42,7 +42,7 @@ public class Elf extends Playable implements Image {
         // otras cosas de un personaje jugable
         setXp(0);
         setXpMax(100);
-        Inventory inventory = new Inventory(80);// ver si empiezan con algun item,carga maxima
+        Inventory inventory = new Inventory();// ver si empiezan con algun item,carga maxima
         setCrit(5);
         setDef(0);
 

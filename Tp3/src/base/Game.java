@@ -39,8 +39,8 @@ public class Game extends Thread implements Runnable, GameState {
     private Graphics g;
     private Playable player;
     private Enemy enemy;
-    private byte playerSkill;
-    private byte enemySkill;
+    private int playerSkill;
+    private int enemySkill;
     private String totalSkills;
     private String[] partsSkills;
     private boolean mana;
@@ -92,7 +92,7 @@ public class Game extends Thread implements Runnable, GameState {
         dwarf.setName("ENANO");
         gnome.setName("GNOMO");
         human.setName("HUMANO");
-        
+    
         pMouse = new Point();
         skillBoxes = new Rectangle[4];
         for(int i = 0;i<skillBoxes.length;i++){

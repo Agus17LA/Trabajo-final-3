@@ -12,51 +12,14 @@ public class Inventory {
 
 	private double weight;// peso actual del inventario
 	private double maxWeight;// peso maximo del inventario, recibido dependiendo el personaje creado
-	HashMap<Integer, String> inventory;// usamos hash map para poder tener una forma de identificar los items mas alla
+	HashMap<String, Integer> inventory;// usamos hash map para poder tener una forma de identificar los items mas alla
 										// de los nombres
 
 	public Inventory() {
-		weight = 0;
-		maxWeight = 0;
-		inventory = new HashMap<Integer, String>();
-	}
-
-	public Inventory(double maxWeight) {
-		weight = 0;
-		this.maxWeight = maxWeight;
-		inventory = new HashMap<Integer, String>();
-	}
-
-	public double getWeight() {
-		return weight;
-	}
-
-	public void setWeight(double weight) {
-		this.weight = weight;
-	}
-
-	public double getMaxWeight() {
-		return maxWeight;
-	}
-
-	public void setMaxWeight(double maxWeight) {
-		this.maxWeight = maxWeight;
+		inventory = new HashMap<String, Integer>();
 	}
 
 
-	public boolean inventorySize(double weight, double maxWeight) { // esta funcion comprueba que haya espacio libre en
-																	// el inventario basandose en el peso maximo y el
-															// actual
-		boolean flag = false;
-		if (weight < maxWeight) {
-			flag = true;
-		}
-		else {
-			Messages m = new Messages();
-			m.inventorySpaceError();
-		}
-		return flag;
-	}
 
 	public boolean addItem(Item i) {
 		boolean flag = false;

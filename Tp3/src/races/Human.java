@@ -25,7 +25,7 @@ public class Human extends Playable implements Iwarrior {
 		setMaxMana(ranNum(9, 15));
 		setMana(getMaxMana());
 		setDmg(ranNum(6, 9));
-		setMaxDmg(ranNum(11, 16));
+		setMaxDmg(ranNum(11, 10000));
 		setAcc(ranNum(11, 16));
 		setDodge(ranNum(4, 7));
                 setLvl(0);
@@ -42,7 +42,7 @@ public class Human extends Playable implements Iwarrior {
 		// otras cosas de un personaje jugable
 		setXp(0);
 		setXpMax(100);
-		Inventory inventory = new Inventory(100);// ver si empiezan con algun item,carga maxima
+		Inventory inventory = new Inventory();// ver si empiezan con algun item,carga maxima
 		setCrit(5);
 		setDef(0);
 

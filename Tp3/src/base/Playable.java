@@ -166,10 +166,11 @@ public class Playable extends Character {
             key = scan.nextInt();
             switch (key) {
                 case 1:
-                    if (this.getArmor().equals(e.getArmor())) {
+                    if (this.getWeapon().equals(e.getWeapon())) {
                         System.out.println("Ya tienes esa arma");
                     } else {
                         this.getWeapon().copyWeapon(e.getWeapon());
+                        System.out.println("Tu nueva arma es: "+this.getWeapon().getName());
                     }
                     break;
 
@@ -177,7 +178,9 @@ public class Playable extends Character {
                     if (this.getArmor().equals(e.getArmor())) {
                         System.out.println("Ya tienes esa armadura!");
                     } else {
+                       
                         this.getArmor().copyArmor(e.getArmor());
+                        System.out.println("Tu nueva armadura es: "+this.getArmor().getName());
                     }
                     break;
                 case 0:
@@ -186,6 +189,6 @@ public class Playable extends Character {
                     System.out.println("Opcion invalida");
                     break;
             }
-        } while (key != 3);
+        } while (key != 0);
     }
 }
