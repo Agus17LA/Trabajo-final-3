@@ -42,7 +42,7 @@ public class Human extends Playable implements Iwarrior {
 		// otras cosas de un personaje jugable
 		setXp(0);
 		setXpMax(100);
-		Inventory inventory = new Inventory(100);// ver si empiezan con algun item,carga maxima
+		Inventory inventory = new Inventory();// ver si empiezan con algun item,carga maxima
 		setCrit(5);
 		setDef(0);
 
