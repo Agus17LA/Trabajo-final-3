@@ -169,10 +169,11 @@ public class JsonUtiles {
     }
 
     public Playable readPlayer() {
+        Playable p = new Playable();
         try {
             String c = new String(Files.readAllBytes(Paths.get("partida.json")));
             JSONObject player = new JSONObject(c);
-            Playable p = new Playable(player.getInt("hp"), player.getInt("mana"),player.getInt("dmg"), player.getInt("dmg max"), player.getInt("acc"),player.getInt("dodge"),player.getInt("crit"),player.getInt("def"),
+            p = new Playable(player.getInt("hp"), player.getInt("mana"),player.getInt("dmg"), player.getInt("dmg max"), player.getInt("acc"),player.getInt("dodge"),player.getInt("crit"),player.getInt("def"),
             player.getInt("xp"),player.getInt("lvl"),player.getInt("xp max"),player.getString("name"), player.getInt("id"));
             p.setMaxHp(player.getInt("hp max"));
             p.setMaxMana(player.getInt("mana max"));

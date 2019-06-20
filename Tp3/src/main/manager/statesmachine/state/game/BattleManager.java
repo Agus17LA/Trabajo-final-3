@@ -118,21 +118,21 @@ public class BattleManager implements GameState{
             case 0:
                 g.drawImage(humanoEBI, 600, 40, null);
                 if(!Constants.EN_BATALLA){
-                    game.startt(g);
+                    game.startt();
                     Constants.EN_BATALLA = true;
                 }
                 break;
             case 1:
                 g.drawImage(enanoEBI, 500, 150, null);
                 if(!Constants.EN_BATALLA){
-                    game.startt(g);
+                    game.startt();
                     Constants.EN_BATALLA = true;
                 }
                 break;
             case 2:
                 g.drawImage(elfoEBI, 550, 40, null);
                 if(!Constants.EN_BATALLA){
-                    game.startt(g);
+                    game.startt();
                     Constants.EN_BATALLA = true;
                 }
                 break;
@@ -146,14 +146,14 @@ public class BattleManager implements GameState{
             case 0:
                 g.drawImage(elfoEBI, 550, 40, null);
                 if(!Constants.EN_BATALLA){
-                    game.startt(g);
+                    game.startt();
                     Constants.EN_BATALLA = true;
                 }
                 break;
             case 1:
                 g.drawImage(gnomoEBI, 510, 90, null);
                 if(!Constants.EN_BATALLA){
-                    game.startt(g);
+                    game.startt();
                     Constants.EN_BATALLA = true;
                 }
                 break;

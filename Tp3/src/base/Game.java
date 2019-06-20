@@ -2,6 +2,8 @@ package base;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.util.Scanner;
 import java.util.Vector;
 import main.manager.Constants;
@@ -48,6 +50,9 @@ public class Game extends Thread implements Runnable, GameState {
     private String nuestroAtaque;
     private String[] partesAtaque;
     private String[] partesAtaqueE;
+    private Point pMouse;
+    private Rectangle[] skillBoxes;
+    
     
     
     public Game(){
@@ -75,6 +80,12 @@ public class Game extends Thread implements Runnable, GameState {
         dwarf.setName("ENANO");
         gnome.setName("GNOMO");
         human.setName("HUMANO");
+        
+        pMouse = new Point();
+        skillBoxes = new Rectangle[4];
+        for(int i = 0;i<skillBoxes.length;i++){
+            skillBoxes[i] = new Rectangle((120*i)+26,422,100,20);
+        }
     }
 
     @Override
@@ -188,7 +199,7 @@ public class Game extends Thread implements Runnable, GameState {
     }
     
     
-    public void startt(Graphics g){
+    public void startt(){
         thread = new Thread(this,"battle");
         thread.start();
         Constants.BATTLESTATE = true;
@@ -210,13 +221,13 @@ public class Game extends Thread implements Runnable, GameState {
         partsSkills=totalSkills.split("\\*");
         mana = false;
         pulso = false;
-        if(!Constants.dead){
+        if(!Constants.dead && !player.isAlive()){
             player.setHp(player.getMaxHp());
             player.setMana(player.getMaxMana());
         }
         //si algun personaje muere ya termina la pelea
         while (player.isAlive() && enemy.isAlive()) {
-            draw(g);//System.out.println(showHpsMana(player, enemy));
+            //draw(g);//System.out.println(showHpsMana(player, enemy));
             dead = false;
             if (playerTurn) {
                 if (player.isStunned()) {
@@ -283,9 +294,14 @@ public class Game extends Thread implements Runnable, GameState {
 
     @Override
     public void draw(Graphics g) {
-        this.g = g;
+        
+        for(int i=0;i<skillBoxes.length;i++){
+            g.setColor(Color.PINK);
+            g.fillRect((int)skillBoxes[i].x,(int)skillBoxes[i].y,(int)skillBoxes[i].width,(int)skillBoxes[i].height);
+        }
         g.setColor(Color.BLACK);
         g.fillRect(25,445,750,130);
+        
         if(player.isAlive() && enemy.isAlive() && !pulso){
             g.setColor(Color.YELLOW);
             g.drawString(showHpsMana(player, enemy),30,460);
