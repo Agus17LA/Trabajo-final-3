@@ -13,8 +13,8 @@ public interface Image {
     
     
     
-   public void manaTransmutation();
-   public void magicGain();
+   public String manaTransmutation();
+   public String magicGain();
            
     
     

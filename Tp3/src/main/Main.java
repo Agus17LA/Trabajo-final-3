@@ -22,10 +22,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        
         //System.setProperty("sun.java2d.opengl", "true");
-        
-        
         PrincipalManager pm = new PrincipalManager("jueguito", Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
         pm.startGame();
         pm.startPrincipalLoop();
@@ -57,7 +54,9 @@ public class Main {
             e=new Enemy (enemigos.elementAt(ran)); // eligue el enemigo basado en el num ran
             game.battle(elf, e); //pelea entre el elfo y el enemigo
         } while (elf.getHp() > 0);
-        */ 
+         */
+
+       
     }
 
 }

@@ -67,7 +67,8 @@ public class Human extends Playable implements Iwarrior {
 	}
 
 	@Override
-	public void gainPower() {
+	public String gainPower() {
+            StringBuilder builder = new StringBuilder();
 		if (getMana() - 5 >= 0) {
 			if (getHp() - 15 >= 0) {
 				setMana(getMana() - 5);
@@ -76,31 +77,29 @@ public class Human extends Playable implements Iwarrior {
 				setDmg(getDmg() + 2);
 			} else {
 				Messages m = new Messages();
-				StringBuilder builder = new StringBuilder();
 				builder.append(m.hpError());
-				builder.toString();
+				
 			}
 		} else {
-			Messages m = new Messages();
-			StringBuilder builder = new StringBuilder();
+			Messages m = new Messages();			
 			builder.append(m.manaError());
-			builder.toString();
+			
 		}
-
+               return builder.toString();
 	}
 
 	@Override
-	public void heavyTraining() {
+	public String heavyTraining() {
+            StringBuilder builder = new StringBuilder();
 		if (getDodge() - 1 >= 0) {
 			setDodge(getDodge() - 1);
 			setMaxHp(getMaxHp() + 10);
 			setHp(getHp() + 5);
 		} else {
 			Messages m = new Messages();
-			StringBuilder builder = new StringBuilder();
 			builder.append(m.dodgeError());
-			builder.toString();
 		}
+                return builder.toString();
 	}
 
 }

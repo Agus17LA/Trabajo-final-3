@@ -11,7 +11,7 @@ package races;
  */
 public interface Iwarrior {
     
-    public void gainPower();
-    public void heavyTraining();
+    public String gainPower();
+    public String heavyTraining();
     
 }
