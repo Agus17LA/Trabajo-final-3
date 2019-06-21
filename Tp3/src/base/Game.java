@@ -142,8 +142,8 @@ public class Game extends Thread implements Runnable, GameState {
     }
 
     public void battle(Playable player, Enemy enemy) {
-        this.player = player;
-        this.enemy = enemy;
+        //this.player = player;
+        //this.enemy = enemy;
         Constants.ESC = false;
         playerTurn = true;
         playerSkill = 0; //usamos byte no va a haber mas de 16 habilidades
@@ -377,14 +377,10 @@ public class Game extends Thread implements Runnable, GameState {
                     }
                 }
                 if(drw){
-                    //g.setColor(Color.BLACK);
-                    //g.fillRect(25,445,750,180);
                     g.setColor(Color.BLUE);
                     g.drawString("Tu arma es: "+player.getWeapon().getName(),30,550);
                 }
                 if(drw2){
-                    //g.setColor(Color.BLACK);
-                    //g.fillRect(25,445,750,180);
                     g.setColor(Color.BLUE);
                     g.drawString("Tu armadura es: "+player.getArmor().getName(),30,550);
                 }
