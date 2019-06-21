@@ -1,45 +1,56 @@
 package base;
 
 import java.util.Vector;
-
+/**
+ * Los enemigos del juego, 
+ * @author Juan
+ */
 public class Enemy extends Character {
 
-    //funcion medio vacia pero que se le van a ir agregando cosas
-    /*Idea general para esto, los enemigos al morir sueltan experiencia, la cual el personaje
-    jugable agarra para ir subiendo de nivel y asi mejorar. Tambien tendran una chance de tirar algun item
-    especial o algo asi
-     */
+   
     private int expDrop;
-    Vector<Item> dropItems;
-    private int dropItemChance;
 
     public Enemy() {
         super();
         expDrop = 0;
-        dropItems = new Vector<>();
-        dropItemChance = 0;
     }
 
-    //este constructor esta mal, supongo que estabas viendo una version vieja del trabajo cuando lo hiciste, mañana lo arreglo
+    /**
+     * 
+     * @param hp
+     * @param mana
+     * @param dmg
+     * @param maxDmg
+     * @param acc
+     * @param dodge
+     * @param crit
+     * @param def
+     * @param dropItemChance
+     * @param name
+     * @param id 
+     */
     public Enemy(int hp, int mana, int dmg, int maxDmg, int acc, int dodge, int crit, int def, int dropItemChance, String name, int id) {
         super(hp, mana, dmg, maxDmg, acc, dodge, crit, def, name, id);
-        this.dropItemChance = dropItemChance;
     }
-
-    public Enemy(Character c, int expDrop, Vector<Item> dropItems, int dropItemChance) {
+    /**
+     * 
+     * @param c
+     * @param expDrop 
+     */
+    public Enemy(Character c, int expDrop) {
         super(c);
         this.expDrop = expDrop;
-        this.dropItems = dropItems;// esto creo que esta mal, hace constructores de copia
-        this.dropItemChance = dropItemChance;
+
 
     }
-
+/**
+ * Constructor de copia
+ * @param e 
+ */
     public Enemy(Enemy e) {
         super((Character) e);
         //arreglar y crear para asignar
         this.expDrop = e.expDrop;
-        this.dropItems = e.dropItems;
-        this.dropItemChance = dropItemChance;
 
     }
 
@@ -51,27 +62,10 @@ public class Enemy extends Character {
         this.expDrop = expDrop;
     }
 
-    public int getDropItemChance() {
-        return dropItemChance;
-    }
-
-    public void setDropItemChance(int dropItemChance) {
-        this.dropItemChance = dropItemChance;
-    }
-
-    public void dropItem(Character c) {
-        //falta el metodo en si
-    }
-
-    public int calculateDropChance() { //funcion para calcular la chance de dropear un item al matar enemigo
-        return 0;
-        //falta el metodo en si
-    }
-
-    public void generateItems() {//funcion para generar items a dropear random
-        //falta el metodo en si
-    }
-
+/**
+ * Metodo que devuelve el loot de este enemigo (por ahora solo su arma y armadura)
+ * @return 
+ */
     public String showLoot() {
         StringBuilder builder = new StringBuilder();
         builder.append("El enemigo tiene los siguientes items: ");
@@ -81,48 +75,22 @@ public class Enemy extends Character {
         return builder.toString();
     }
 
-    //construsctores de enemigos (Sigo pensando que esta mal pero nose como hacerlo sino)
-    public void enemigoEnano() {
+    
+    /**
+     * Primer enemigo
+     */
+    public void enemigoHumano() {
 
-        setName("Ernesto");
+        setName("Javier");
         setMaxHp(40);
         setHp(getMaxHp());
         setMaxMana(5);
         setMana(getMaxMana());
         setDmg(4);
         setMaxDmg(9);
-        setAcc(10);
-        setDodge(5);
-        setExpDrop(100);
-        setCrit(5);
-        setDef(0);
-
-        iniCharacterObjects();
-        Skill s = new Skill();
-        s.skillGolpeBasico();
-        this.addSkill(s);
-        s = new Skill();
-        s.skillAtaque2Manos();
-        this.addSkill(s);
-
-        this.getWeapon().weaponHachaOxidada();
-
-        this.getArmor().armorPantalosHeroicosDeHeroe();
-
-    }
-
-    public void enemigoGnomo() {
-
-        setName("Roberto");
-        setMaxHp(25);
-        setHp(getMaxHp());
-        setMaxMana(25);
-        setMana(getMaxMana());
-        setDmg(8);
-        setMaxDmg(12);
-        setAcc(25);
-        setDodge(5);
-        setExpDrop(110);
+        setAcc(6);
+        setDodge(3);
+        setExpDrop(500);
         setCrit(5);
         setDef(0);
 
@@ -134,44 +102,15 @@ public class Enemy extends Character {
         s.skillGolpeVil();
         this.addSkill(s);
 
-        this.getWeapon().weaponPaloDeEnfoque();
+        this.getWeapon().weaponFaka();
 
-        this.getArmor().armorPiedraMagica();
-
-    }
-
-    public void enemigoElfo() {
-
-        setName("Anastasio");
-        setMaxHp(30);
-        setHp(getMaxHp());
-        setMaxMana(20);
-        setMana(getMaxMana());
-        setDmg(9);
-        setMaxDmg(11);
-        setAcc(20);
-        setDodge(3);
-        setExpDrop(100);
-        setCrit(5);
-        setDef(0);
-
-        iniCharacterObjects();
-        Skill s = new Skill();
-        s.skillGolpeBasico();
-        this.addSkill(s);
-        s = new Skill();
-        s.skillTormentaElectrica();
-        this.addSkill(s);
-
-        this.getWeapon().weaponRamaDeAbedul();
-
-       this.getArmor().armorPonchoSucio();
+        this.getArmor().armorPantalosHeroicosDeHeroe();
 
     }
 
-    public void enemigoHumano() {
+     public void enemigoEnano() {
 
-        setName("Javier");
+        setName("Ernesto");
         setMaxHp(50);
         setHp(getMaxHp());
         setMaxMana(0);
@@ -180,7 +119,7 @@ public class Enemy extends Character {
         setMaxDmg(11);
         setAcc(20);
         setDodge(5);
-        setExpDrop(150);
+        setExpDrop(500);
         setCrit(5);
         setDef(0);
 
@@ -189,15 +128,100 @@ public class Enemy extends Character {
         s.skillGolpeBasico();
         this.addSkill(s);
         s = new Skill();
-        s.skillAtaque2Manos();
+        s.skillFogonazo();
+        this.addSkill(s);
+
+        this.getWeapon().weaponGuadaña();
+
+        this.getArmor().armorPonchoSucio();
+
+    }
+
+    public void enemigoElfo() {
+
+        setName("Anastasio");
+        setMaxHp(60);
+        setHp(getMaxHp());
+        setMaxMana(20);
+        setMana(getMaxMana());
+        setDmg(9);
+        setMaxDmg(11);
+        setAcc(20);
+        setDodge(3);
+        setExpDrop(500);
+        setCrit(5);
+        setDef(0);
+
+        iniCharacterObjects();
+        Skill s = new Skill();
+        s.skillGolpeBasico();
         this.addSkill(s);
         s = new Skill();
-        s.skillDesgarrar();
+        s.skillMiedo();
+        this.addSkill(s);
+
+        this.getWeapon().weaponDecapitadora();
+
+       this.getArmor().armorAmuletoDeEvasion();
+
+    }
+
+  
+    
+        public void enemigoElfo2() {
+
+        setName("Budita");
+        setMaxHp(90);
+        setHp(getMaxHp());
+        setMaxMana(20);
+        setMana(getMaxMana());
+        setDmg(9);
+        setMaxDmg(11);
+        setAcc(20);
+        setDodge(3);
+        setExpDrop(500);
+        setCrit(5);
+        setDef(0);
+
+        iniCharacterObjects();
+        Skill s = new Skill();
+        s.skillGolpeBasico();
+        this.addSkill(s);
+        s = new Skill();
+        s.skillParasitarAlma();
         this.addSkill(s);
 
         this.getWeapon().weaponCimitarraMercurial();
 
-        this.getArmor().armorCinturonDelCampeon();
+       this.getArmor().armorEscudoDelCapi();
+
+    }
+        public void enemigoGnomo() {
+
+        setName("Roberto el genocida");
+        setMaxHp(250);
+        setHp(getMaxHp());
+        setMaxMana(300);
+        setMana(getMaxMana());
+        setDmg(40);
+        setMaxDmg(175);
+        setAcc(50);
+        setDodge(20);
+        setExpDrop(500);
+        setCrit(15);
+        setDef(5);
+
+        iniCharacterObjects();
+        Skill s = new Skill();
+        s.skillGolpeBasico();
+        this.addSkill(s);
+        s = new Skill();
+        s.skillDesterrar();
+        this.addSkill(s);
+
+        this.getWeapon().weaponFrostmourne();
+
+        this.getArmor().armorLaArmaduraOscura();
 
     }
 

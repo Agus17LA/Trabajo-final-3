@@ -23,7 +23,7 @@ public class Gnome extends Playable implements Image {
         // se tiran "dados" para indicar los valores de las estadisticas
         setMaxHp(ranNum(27, 34));
         setHp(getMaxHp());
-        setMaxMana(ranNum(20, 30));
+        setMaxMana(ranNum(100, 150));
         setMana(getMaxMana());
         setDmg(ranNum(6, 8));
         setMaxDmg(ranNum(12, 13));
@@ -53,13 +53,13 @@ public class Gnome extends Playable implements Image {
         s.skillGolpeBasico();
         this.addSkill(s);
         s = new Skill();
-        s.skillAguijon();
+        s.skillBolaDeFuego();
         this.addSkill(s);
         s = new Skill();
-        s.skillTormentaElectrica();
+        s.skillDescargaDeEscarcha();
         this.addSkill(s);
         s = new Skill();
-        s.skillApocalipsis();
+        s.skillMaldicionVil();
         this.addSkill(s);
                         
         this.getWeapon().weaponBolsasDePiedras();

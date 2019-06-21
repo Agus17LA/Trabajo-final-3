@@ -238,17 +238,17 @@ public class Skill extends GameObject {
         statusChance = 50;
         stun = new Stun();
         poison = new Poison();
-        buff = new Buff(-5, -5, -5, -5, -5, 2);
+        buff = new Buff(-3, -3, -3, -3, -3, 2);
     }
 
     public void skillGritoDeGuerra() {
         setName("Grito de guerra");
         setId(0);
-        dmgMod = -10;  //on jah que todavia no esta aplicado esto ohhhh 
+        dmgMod = 150;
         accMod = 20;
         critMod = 0;
         manaCost = 10;
-        statusChance = 80;
+        statusChance = 30;
         stun = new Stun();
         poison = new Poison();
         buff = new Buff(10, 10, 10, 10, 10, 3);
@@ -264,7 +264,7 @@ public class Skill extends GameObject {
         statusChance = 50;
         stun = new Stun();
         poison = new Poison(10, 2);
-        buff = new Buff(0, 0, -10, 0, 0, 2);
+        buff = new Buff(0, 0, -2, 0, 0, 2);
     }
 
     public void skillTormentaElectrica() {
@@ -290,7 +290,7 @@ public class Skill extends GameObject {
         statusChance = 100;
         stun = new Stun();
         poison = new Poison();
-        buff = new Buff(-10, -10, 0, 0, -10, 2);
+        buff = new Buff(-5, -5, 0, 0, -5, 2);
     }
 
     public void skillDesterrar() {
@@ -300,10 +300,10 @@ public class Skill extends GameObject {
         accMod = 10;
         critMod = 20;
         manaCost = 10;
-        statusChance = 50;
+        statusChance = 25;
         stun = new Stun();
         poison = new Poison();
-        buff = new Buff(-15, -15, 0, 0, -15, 3);
+        buff = new Buff(-15, -15, 0, 0, -15, 2);
     }
 
     public void skillMiedo() {
@@ -313,7 +313,7 @@ public class Skill extends GameObject {
         accMod = 5;
         critMod = 0;
         manaCost = 5;
-        statusChance = 20;
+        statusChance = 30;
         stun = new Stun(1);
         poison = new Poison();
         buff = new Buff();
@@ -322,11 +322,11 @@ public class Skill extends GameObject {
     public void skillGolpeVil() {
         setName("Golpe vil");
         setId(0);
-        dmgMod = 120;
+        dmgMod = 80;
         accMod = 10;
         critMod = 5;
-        manaCost = 15;
-        statusChance = 0;
+        manaCost = 5;
+        statusChance = 50;
         stun = new Stun();
         poison = new Poison(5, 1);
         buff = new Buff(0, 0, -5, 0, 0, 1);
@@ -335,11 +335,11 @@ public class Skill extends GameObject {
     public void skillParasitarAlma() {
         setName("Parasitar Alma");
         setId(0);
-        dmgMod = 100;
+        dmgMod = 75 ;
         accMod = 0;
         critMod = 0;
         manaCost = 20;
-        statusChance = 50;
+        statusChance = 70;
         stun = new Stun();
         poison = new Poison(20, 2);
         buff = new Buff(0, 0, -5, 0, 0, 1);
@@ -352,10 +352,10 @@ public class Skill extends GameObject {
         accMod = 10;
         critMod = 15;
         manaCost = 60;
-        statusChance = 80;
+        statusChance = 50;
         stun = new Stun();
         poison = new Poison();
-        buff = new Buff(-15, -15, 0, 0, -15, 2);
+        buff = new Buff(0, -15, 0, 0, -15, 2);
     }
 
     public void skillDescargaDeEscarcha() {
@@ -395,6 +395,44 @@ public class Skill extends GameObject {
         stun = new Stun();
         poison = new Poison(50, 2);
         buff = new Buff(-2, -2, -2, -2, -2, 2);
+    }
+    
+    public void skillCargaHeroica()
+    {
+        setName("Carga Heroica");
+        setId(0);
+        dmgMod = 50;
+        accMod = 15;
+        critMod = 10;
+        manaCost = 5;
+        statusChance = 60;
+        stun = new Stun(2);
+        poison = new Poison(5, 2);
+        buff = new Buff();
+    }
+    public void skillGolpeSorprendente(){
+       setName("Golpe Sorprendente");
+        setId(0);
+        dmgMod = 130;
+        accMod = 5;
+        critMod = 10;
+        manaCost = 3;
+        statusChance = 0;
+        stun = new Stun();
+        poison = new Poison();
+        buff = new Buff(); 
+    }
+    public void skillMorderElPolvo(){
+        setName("Morder el polvo");
+        setId(0);
+        dmgMod = 70;
+        accMod = 20;
+        critMod = 0;
+        manaCost = 40;
+        statusChance = 75;
+        stun = new Stun();
+        poison = new Poison(25, 5);
+        buff = new Buff();
     }
 
 }

@@ -1,14 +1,21 @@
 package base;
 
-/*Clase armadura, viene a ser tecnicamente la "ropa" que usa un personaje jugablo o npc, 
-ofrece modicicaciones fijas de distintas estadisticas defensivas, todavia no esta claro si el "tipo"
-de armadura va a ser un atributo o clases nuevas que hereden de esta*/
+/**
+ * Clase armadura, viene a ser tecnicamente la "ropa" que usa un personaje
+ * jugablo o npc, ofrece modicicaciones fijas de distintas estadisticas
+ * defensivas, todavia no esta claro si el "tipo" de armadura va a ser un
+ * atributo o clases nuevas que hereden de esta
+ */
 public class Armor extends Item {
 
 //Son modificadores LINEALES +5,+10,-4 etc 
     private int dodgeMod;
     private int defMod;
 
+    /**
+     * Constructor vacio de la clase Armor Inicializa todo en 0 y el nombre en
+     * desarmado
+     */
     public Armor() {
         super("desarmado");// este constructor es el de la superclase "gameobject" y solo recibe nombre, se supone que tiene que recibir un id pero no esta implementado
         dodgeMod = 0;
@@ -16,7 +23,13 @@ public class Armor extends Item {
     }
 //constructor completo
 
-    public Armor(int dodgeMod, int defMod, double weight, int total, String name, int id) {
+    /**
+     * @param dodgeMod
+     * @param defMod
+     * @param name
+     * @param id
+     */
+    public Armor(int dodgeMod, int defMod, String name, int id) {
         super(name, id);
 
         this.dodgeMod = dodgeMod;
@@ -24,6 +37,11 @@ public class Armor extends Item {
     }
 //constructor de copia
 
+    /**
+     * Constructor de copia, sirve para crear nuevas estancias de objeto y no
+     * sobreescribirla
+     * @param a
+     */
     public Armor(Armor a) {
 
         super((Item) a);
@@ -53,6 +71,12 @@ public class Armor extends Item {
         return getName() + " Evasion: " + dodgeMod + " Defensa: " + defMod;
     }
 
+    /**
+     * Funcion cambia el valor de esta armadura por el que reciba, se usa para
+     * lootear los items despojado
+     *
+     * @param a
+     */
     public void copyArmor(Armor a) {
 
         this.setName(a.getName());
@@ -117,28 +141,36 @@ public class Armor extends Item {
         dodgeMod = -5;
         defMod = 15;
     }
-
+/**
+ * Armadura inicial de los gnomos
+ */
     public void armorRopaSucia() {
         setName("Ropa Sucia");
         setId(0);
         dodgeMod = 5;
         defMod = 0;
     }
-
+/**
+ * Armadura inicial de los elfos
+ */
     public void armorTelaRobada() {
         setName("Tela Robada");
         setId(0);
         dodgeMod = 0;
         defMod = 1;
     }
-
+/**
+ * Armadura inicial de los enanos
+ */
     public void armorMediaArmadura() {
         setName("Media armudura");
         setId(0);
         dodgeMod = -5;
         defMod = 5;
     }
-
+/**
+ * Armadura inicial de los Humanos
+ */
     public void armorEscudoChico() {
         setName("Escudo chico");
         setId(0);
