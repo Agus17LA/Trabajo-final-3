@@ -6,25 +6,27 @@
 package base;
 
 /**
+ * Status aturdido, los controles de stun se hacen por fuera de esta clase, solo
+ * sirve para indicar si esta aturdido
  *
  * @author Juan
  */
-//Stun==aturdimiento
 public class Stun extends Status {
 
     private boolean stunned;
 
     public Stun() {
-        super();
+        duration=0;
         stunned = false;
     }
-    public Stun(Stun stun){
-        super(stun.getDuration());
-        stunned=true;
+
+    public Stun(Stun stun) {
+       this.duration=stun.duration;
+        stunned = true;
     }
 
     public Stun(int duration) {
-        super(duration);
+       this.duration=duration;
         stunned = true;
     }
 
@@ -35,24 +37,23 @@ public class Stun extends Status {
     public void setStunned(boolean stunned) {
         this.stunned = stunned;
     }
-    
-    @Override
-     public boolean isStun(){//se usa para controlar no aplicar el mismo tipo de status 2 veces
-         return true;
-     }
-    
 
     @Override
     public String statusTurn(Character c) {
-        String res=" ";
+
+        String res = " ";
         if (stunned == true) {
-            super.statusTurn(c);
-            res= c.getName()+ "esta aturdido! *";
+            if (duration > 0) {
+                duration--;
+            } else {
+                duration = 0;
+            }
+            res = c.getName() + "esta aturdido! *";
             //el aturdimiento se chequea en la clase game, por eso esta funcion no hace nada especial
         }
-                
+
         return res;
 
     }
-   
+
 }
