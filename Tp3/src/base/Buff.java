@@ -45,7 +45,7 @@ public class Buff extends Status {
      * @param duration
      */
     public Buff(int dmgB, int accB, int dodgeB, int critB, int defB, int duration) {
-        super(duration + 1);
+       this.duration=duration+1;
         this.dmgB = dmgB;
         this.accB = accB;
         this.dodgeB = dodgeB;
@@ -64,7 +64,7 @@ public class Buff extends Status {
      * referencia
      */
     public Buff(Buff b) {
-        super(b.getDuration());
+       this.duration=b.duration;
         this.dmgB = b.getDmgB();
         this.accB = b.getAccB();
         this.dodgeB = b.getDodgeB();
@@ -127,9 +127,13 @@ public class Buff extends Status {
     public String statusTurn(Character c) {
         String res = " ";
 
-        super.statusTurn(c); //este metodo lo que hace simplemente es restarle 1 a duracion.
+        if (duration > 0) {
+            duration--;
+        } else {
+            duration = 0;
+        }
 
-        if (getDuration() > 0) { //si todavia tiene duracion disponible surge el efecto del status
+        if (duration > 0) { //si todavia tiene duracion disponible surge el efecto del status
             res = "La modificacion esta activa. *";
             if (!active) {
                 /*aca es donde entra en juego el boolean de la clase, si es false quiere decir que 

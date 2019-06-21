@@ -1,13 +1,14 @@
 package base;
 
 import java.util.Vector;
+
 /**
- * Los enemigos del juego, 
+ * Los enemigos del juego,
+ *
  * @author Juan
  */
 public class Enemy extends Character {
 
-   
     private int expDrop;
 
     public Enemy() {
@@ -16,7 +17,7 @@ public class Enemy extends Character {
     }
 
     /**
-     * 
+     *
      * @param hp
      * @param mana
      * @param dmg
@@ -27,26 +28,28 @@ public class Enemy extends Character {
      * @param def
      * @param dropItemChance
      * @param name
-     * @param id 
+     * @param id
      */
     public Enemy(int hp, int mana, int dmg, int maxDmg, int acc, int dodge, int crit, int def, int dropItemChance, String name, int id) {
         super(hp, mana, dmg, maxDmg, acc, dodge, crit, def, name, id);
     }
+
     /**
-     * 
+     *
      * @param c
-     * @param expDrop 
+     * @param expDrop
      */
     public Enemy(Character c, int expDrop) {
         super(c);
         this.expDrop = expDrop;
 
-
     }
-/**
- * Constructor de copia
- * @param e 
- */
+
+    /**
+     * Constructor de copia
+     *
+     * @param e
+     */
     public Enemy(Enemy e) {
         super((Character) e);
         //arreglar y crear para asignar
@@ -62,10 +65,12 @@ public class Enemy extends Character {
         this.expDrop = expDrop;
     }
 
-/**
- * Metodo que devuelve el loot de este enemigo (por ahora solo su arma y armadura)
- * @return 
- */
+    /**
+     * Metodo que devuelve el loot de este enemigo (por ahora solo su arma y
+     * armadura)
+     *
+     * @return
+     */
     public String showLoot() {
         StringBuilder builder = new StringBuilder();
         builder.append("El enemigo tiene los siguientes items: *");
@@ -75,7 +80,6 @@ public class Enemy extends Character {
         return builder.toString();
     }
 
-    
     /**
      * Primer enemigo
      */
@@ -108,7 +112,10 @@ public class Enemy extends Character {
 
     }
 
-     public void enemigoEnano() {
+    /**
+     * Segundo enemigo
+     */
+    public void enemigoEnano() {
 
         setName("Ernesto");
         setMaxHp(50);
@@ -137,6 +144,9 @@ public class Enemy extends Character {
 
     }
 
+    /**
+     * Tercer enemigo
+     */
     public void enemigoElfo() {
 
         setName("Anastasio");
@@ -162,13 +172,14 @@ public class Enemy extends Character {
 
         this.getWeapon().weaponDecapitadora();
 
-       this.getArmor().armorAmuletoDeEvasion();
+        this.getArmor().armorAmuletoDeEvasion();
 
     }
 
-  
-    
-        public void enemigoElfo2() {
+    /**
+     * Cuarto enemigo
+     */
+    public void enemigoElfo2() {
 
         setName("Budita");
         setMaxHp(90);
@@ -193,10 +204,14 @@ public class Enemy extends Character {
 
         this.getWeapon().weaponCimitarraMercurial();
 
-       this.getArmor().armorEscudoDelCapi();
+        this.getArmor().armorEscudoDelCapi();
 
     }
-        public void enemigoGnomo() {
+
+    /**
+     * Quinto enemigo y jefe final del juego
+     */
+    public void enemigoGnomo() {
 
         setName("Roberto el genocida");
         setMaxHp(250);
@@ -225,15 +240,23 @@ public class Enemy extends Character {
 
     }
 
+    /**
+     * 
+     * Funcion que ejecuta el turno del enemigo.
+     * 
+     * Logica detras de la IA, los enemigos solo tienen 2 habilidades por diseño,
+     * el golpe basico y otra mas que cuesta mana, si tienen mana tiran la
+     * habilidad y si no el golpe basico
+     *
+     * @param c
+     * @return
+     */
     public String turn(Character c) {
         StringBuilder builder = new StringBuilder();
         if (this.isStunned()) {
             builder.append(statusEffect());
         } else {
-            /* Logica atras de la IA, los enemigos solo tienen 2 habilidades por disenio, 
-            el golpe basico y otra mas que cuesta mana, si tienen mana tiran la habilidad 
-            y si no el golpe basico
-             */
+
             builder.append(statusEffect());
 
             if (getMana() >= vSkills.elementAt(1).getManaCost()) {

@@ -3,8 +3,7 @@ package base;
 /**
  * Clase armadura, viene a ser tecnicamente la "ropa" que usa un personaje
  * jugablo o npc, ofrece modicicaciones fijas de distintas estadisticas
- * defensivas, todavia no esta claro si el "tipo" de armadura va a ser un
- * atributo o clases nuevas que hereden de esta
+ * defensivas.
  */
 public class Armor extends Item {
 

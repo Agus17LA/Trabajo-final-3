@@ -1,31 +1,52 @@
 package base;
-
+/**
+ * Clase que contiene distintos mensajes de erro
+ * @author Juan
+ */
 public class Messages {
 	
 	public Messages() {
 		
 	}
-	//Error vida insuficiente
+	/**
+         * 
+         * @return 
+         */
 	public String hpError() {
 		return "Error, vida insuficiente."+"\n";
 	}
-	//Error mana insuficiente
+	/**
+         * 
+         * @return 
+         */
 	public String manaError() {
 		return "Error, mana insuficiente."+"\n";
 	}
-	//Error inventario, espacio insuficiente
+	/**
+         * 
+         * @return 
+         */
 	public String inventorySpaceError() {
 		return "Error, no hay suficiente espacio en el inventario."+"\n";
 	}
-	//Error dodge insuficiente
+	/**
+         * 
+         * @return 
+         */
 	public String dodgeError() {
 		return "Error, no hay suficientes puntos de dodge para realizar esa accion."+"\n";//dodge/esquive
 	}
-	//El personaje no puede subir mas de lvl porque ya esta en el lvl maximo
+	/**
+         * 
+         * @return 
+         */
 	public String lvlError() {
 		return "No puede subir de nivel, ya se encuentra en el nivel maximo de personaje."+"\n";
 	}
-	//No puede subir de lvl, le falta ganar experiencia
+	/**
+         * 
+         * @return 
+         */
 	public String xpError() {
 		return "No puede subir aun de nivel, experiencia: "+"\n";
 	}

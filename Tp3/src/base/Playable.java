@@ -3,7 +3,13 @@ package base;
 import inventory.Inventory;
 import java.util.Scanner;
 
-//implementar la subida de nivel por clase
+/**
+ * La clase playable es la que se puede usar para jugar y cuenta con atributos
+ * unicos de su clase como la experiencia y las stas de base, las cuales se usan
+ * para que suba de nivel
+ *
+ * @author Juan
+ */
 public class Playable extends Character {
 
     private int xp;
@@ -108,18 +114,28 @@ public class Playable extends Character {
         this.dodgeBase = dodgeBase;
     }
 
-    public String showXpState() { // creo esta funcion para mostrar en cuanto xp esta el personaje y cual es la
-        // meta para subir de lvl
+    /**
+     * Muestra la barra de experiencia, se usa en el tostring de playable
+     *
+     * @return
+     */
+    public String showXpState() {
         return getXp() + "/" + getXpMax() + "\n";
     }
 
-    public String lvlUp() {// subir de lvl
+    /**
+     * Funcion que se encarga de subir el nivel del personaje, controlando si ya
+     * no se encuentra en el nivel maximo
+     *
+     * @return
+     */
+    public String lvlUp() {
         StringBuilder builder = new StringBuilder();
         System.out.println(this.lvl);
         if (this.lvl < MAX_LVL) {
 
             double nextXp = (double) xpMax * XP_MOD;
-            xp = xpMax;
+            // xp = xpMax;
             xpMax = (int) nextXp;
             this.statsUp();
         } else {
@@ -134,7 +150,11 @@ public class Playable extends Character {
 
     }
 
-    public void statsUp() { // sube las estadisticas(para cuando sube de nivel)
+    /**
+     * Sube las estadisticas del personaje en base a sus estadisticas base(usado
+     * en la subida de nivel) y ademas sube su nivel en 1
+     */
+    public void statsUp() {
         setMaxHp(getMaxHp() + hpBase);
         setHp(getMaxHp());
         setMaxMana(getMaxMana() + manaBase);
@@ -146,6 +166,13 @@ public class Playable extends Character {
         setLvl(getLvl() + 1);
     }
 
+    /**
+     * Funcion que recibe un int de experiencia y la suma al total, haciendo los
+     * controles de si el personaje sube o no de nivel
+     *
+     * @param xpDrop
+     * @return
+     */
     public String addXp(int xpDrop) {
         StringBuilder builder = new StringBuilder();
         xp += xpDrop;

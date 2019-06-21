@@ -1,9 +1,11 @@
 package base;
 
-//clase item, la implementacion poliforma y la del inventario todavia no esta hecha
+/**
+ * Los items son las armas/armaduras y los consumibles
+ * @author Juan
+ */
 public class Item extends GameObject {
 
-    /*todavia no sabemos bien cual de todos estos atributos vamos a usar*/
 
     public Item() {
         super();

@@ -430,7 +430,7 @@ public class Character extends GameObject {
             int i = 0;
             for (i = 0; i < vStatus.size(); i++) {
                 builder.append(vStatus.elementAt(i).statusTurn(this));//statusTurn es la funcion que ejecuta el turno dle status
-                if (vStatus.elementAt(i).getDuration() == 0) {//si la duracion es 0 o sea termino se lo saca del vector
+                if (vStatus.elementAt(i).duration == 0) {//si la duracion es 0 o sea termino se lo saca del vector
                     vStatus.remove(i);
                     i--;//se resta el contador porque java borra y acomoda todo automaticamente
                 }
@@ -449,7 +449,7 @@ public class Character extends GameObject {
         boolean flag = false;
         int i = 0;
         for (i = 0; i < vStatus.size() && flag == false; i++) {
-            if (vStatus.elementAt(i).isStun()) {
+            if (vStatus.elementAt(i) instanceof Stun) {          
                 flag = true;
             }
         }
@@ -465,7 +465,7 @@ public class Character extends GameObject {
         boolean flag = false;
         int i = 0;
         for (i = 0; i < vStatus.size() && flag == false; i++) {
-            if (vStatus.elementAt(i).isPoison()) {
+            if (vStatus.elementAt(i) instanceof Poison) {          
                 flag = true;
             }
         }
@@ -481,7 +481,7 @@ public class Character extends GameObject {
         boolean flag = false;
         int i = 0;
         for (i = 0; i < vStatus.size() && flag == false; i++) {
-            if (vStatus.elementAt(i).isBuff()) {
+            if (vStatus.elementAt(i) instanceof Buff) {          
                 flag = true;
             }
         }

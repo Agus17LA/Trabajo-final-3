@@ -6,10 +6,11 @@
 package base;
 
 /**
+ * * Clase arma, viene a ser el arma que usa un personaje jugablo o npc, ofrece
+ * modicicaciones fijas de distintas estadisticas ofensivas.
  *
  * @author Juan
  */
-//lo mismo que armor
 public class Weapon extends Item {
 
     private int dmgMod;
@@ -61,9 +62,9 @@ public class Weapon extends Item {
     public void setCritMod(int critMod) {
         this.critMod = critMod;
     }
-    
-    public void copyWeapon(Weapon w){
-        
+
+    public void copyWeapon(Weapon w) {
+
         this.setName(w.getName());
         this.setId(w.getId());
         this.dmgMod = w.dmgMod;
@@ -72,14 +73,16 @@ public class Weapon extends Item {
     }
 
     @Override
-    public String toString(){
-        return getName()+" Daño: "+dmgMod+" Precision: "+ accMod+" Critico: "+critMod;
+    public String toString() {
+        return getName() + " Daño: " + dmgMod + " Precision: " + accMod + " Critico: " + critMod;
     }
+
+    //Distintas armas (no todas se usan)
     
     public void weaponEspadaGastada() {
         setName("Espada Gastada");
         setId(0);
-        dmgMod = 250;
+        dmgMod = 5;
         accMod = 15;
         critMod = 15;
     }
@@ -175,63 +178,65 @@ public class Weapon extends Item {
     public void weaponLanzaMistica() {
         setName("Lanza Mistica");
         setId(0);
-        dmgMod =15;
-        accMod =15;
-        critMod =15;
+        dmgMod = 15;
+        accMod = 15;
+        critMod = 15;
     }
 
     public void weaponHojaDePlata() {
         setName("Hoja de Plata");
         setId(0);
-        dmgMod =25;
-        accMod =5;
-        critMod =5;
+        dmgMod = 25;
+        accMod = 5;
+        critMod = 5;
     }
 
     public void weaponElMachacador() {
         setName("El Machador");
         setId(0);
-        dmgMod =40;
-        accMod =-5;
-        critMod =5;
+        dmgMod = 40;
+        accMod = -5;
+        critMod = 5;
     }
 
     public void weaponDecapitadora() {
         setName("Decapitadora");
         setId(0);
-        dmgMod =10;
-        accMod =5;
-        critMod =25;
+        dmgMod = 10;
+        accMod = 5;
+        critMod = 25;
     }
-    
-        public void weaponCuchillaDeHielo() {
+
+    public void weaponCuchillaDeHielo() {
         setName("Cuchilla de Hielo");
         setId(0);
         dmgMod = 10;
         accMod = 20;
         critMod = 5;
     }
-       
-        public void weaponCimitarraMercurial() {
+
+    public void weaponCimitarraMercurial() {
         setName("Cimitarra mercurial");
         setId(0);
         dmgMod = 15;
         accMod = 15;
         critMod = 15;
     }
-        public void weaponRamaDeAbedul() {
+
+    public void weaponRamaDeAbedul() {
         setName("Rama de Abedul");
         setId(0);
         dmgMod = 3;
         accMod = 10;
         critMod = 5;
     }
-        public void weaponHachaOxidada() {
+
+    public void weaponHachaOxidada() {
         setName("Hacha Oxidada");
         setId(0);
         dmgMod = 1;
         accMod = 5;
         critMod = 1;
     }
-            
+
 }
