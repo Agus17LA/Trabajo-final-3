@@ -6,6 +6,9 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.Scanner;
 import java.util.Vector;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import main.manager.Constants;
 import main.manager.control.ControlManager;
 import main.manager.graphics.DrawSurface;
@@ -29,15 +32,15 @@ public class Game extends Thread implements Runnable, GameState {
     el main se le puede considerar el "corazon " del juego*/
     //batalla entre 2 entes
     //funcion extremadamente modularizable
-    private Elf elf;
-    private Dwarf dwarf;
-    private Gnome gnome;
-    private Human human;
+    public static Elf elf;
+    public static Dwarf dwarf;
+    public static Gnome gnome;
+    public static Human human;
     private Vector<Enemy> enemigos;
     private Enemy e;
     private Thread thread;
     private Graphics g;
-    private Playable player;
+    public static Playable player;
     private Enemy enemy;
     private int playerSkill;
     private int enemySkill;
@@ -61,6 +64,10 @@ public class Game extends Thread implements Runnable, GameState {
     private boolean h2;
     private boolean h3;
     private boolean h4;
+    
+    private boolean l1;
+    private boolean l2;
+    private boolean l3;
     
     private boolean lootGral;
     private String loot;
@@ -238,11 +245,11 @@ public class Game extends Thread implements Runnable, GameState {
         mana = false;
         pulso = false;
         enemigoMuerto = false;
-        h1 = false;
+        /*h1 = false;
         h2 = false;
         h3 = false;
         h4 = false;
-        playerSkill = 0;
+        playerSkill = 0;*/
         if(enemy.isAlive()){
             if(!Constants.dead && !player.isAlive()){
                 player.setHp(player.getMaxHp());
@@ -313,8 +320,8 @@ public class Game extends Thread implements Runnable, GameState {
                 Constants.ESC = true;
                 Constants.BATTLESTATE = false;
             }
-            
         }else{
+            player.setHp(0);
             enemigoMuerto = true;
             Constants.ESC = true;
             Constants.BATTLESTATE = false;
@@ -328,25 +335,25 @@ public class Game extends Thread implements Runnable, GameState {
             partLoot = loot.split("\\*");
             case0 = true;
         }
-        h1 = false;
-        h2 = false;
-        h3 = false;
+        l1 = false;
+        l2 = false;
+        l3 = false;
         lootGral = false;
         do {
             System.out.println("a");
-            if(h1){
+            if(l1){
                 System.out.println("changeddd");
                 player.getWeapon().copyWeapon(e.getWeapon());
                 lootGral = true;
-                h1 = false;
+                l1 = false;
                 drw = true;
-            }else if(h2){
+            }else if(l2){
                 System.out.println("ChangeArmor");
                 player.getArmor().copyArmor(e.getArmor());
                 lootGral = true;
-                h2 = false;
+                l2 = false;
                 drw2 = true;
-            }else if(h3){
+            }else if(l3){
                 lootGral = true;
             }
         } while(!lootGral);
@@ -406,7 +413,7 @@ public class Game extends Thread implements Runnable, GameState {
                 g.drawString(showHpsMana(player, enemy),30,460);
                 if(!mana){
                     g.drawString("No tienes mana suficiente",30,480);
-                    if(Constants.PRUEBA == 1500){ //cambiar esto por un contador real
+                    if(Constants.PRUEBA == 240){ //cambiar esto por un contador real
                         mana = true;
                         pulso = false;
                         Constants.PRUEBA = 0;
@@ -423,7 +430,7 @@ public class Game extends Thread implements Runnable, GameState {
                                 g.drawString(partesAtaqueE[i],30,(20*i)+520);
                             }
                         }
-                        if(Constants.PRUEBA == 2000){
+                        if(Constants.PRUEBA==240){
                             ataque = true;
                             pulso = false;
                             Constants.PRUEBA = 0;
@@ -434,35 +441,48 @@ public class Game extends Thread implements Runnable, GameState {
                 }
             }else if(player.isAlive()){
                 g.setColor(Color.MAGENTA);
-                g.drawString("1: Reemplzar arma, 2 reemplazar armadura, 3 continuar",30,460);
+                g.drawString("1: Reemplazar arma, 2 reemplazar armadura, 3 continuar",30,460);
                 if(partLoot != null){
                     for(int i = 0;i<partLoot.length;i++){
                         g.drawString(partLoot[i],30,(20*i)+480);
                     }
                 }
-                if(ControlManager.keyboard.h1.isPressed() && !h1){
+                if(ControlManager.keyboard.l1.isPressed() && !l1){
                     //ControlManager.keyboard.h1.keyFree();
                     if (player.getWeapon().equals(e.getWeapon())) {
                         g.drawString("Ya tienes esa arma",30,500);
-                        lootGral = false;
+                        lootGral = true;
                     } else {
-                        h1 = true;
+                        while(contador<240){
+                            contador++;
+                        }
+                        l1 = true;
                         contador = 0;
                     }
-                }else if(ControlManager.keyboard.h2.isPressed() && !h2){
+                }else if(ControlManager.keyboard.l2.isPressed() && !l2){
                     //ControlManager.keyboard.h1.keyFree();
-                    h2 = true;
+                    //l2 = true;
                     if(player.getArmor().equals(e.getArmor())){
                         g.drawString("Ya tienes esa armadura", 30, 500);
-                        lootGral = false;
+                        lootGral = true;
                     }else{
-                        h2 = true;
+                        while(contador<240){
+                            contador++;
+                        }
+                        l2 = true;
+                        contador = 0;
                     }
                 }
                 if(drw){
+                    g.setColor(Color.BLACK);
+                    g.fillRect(25,445,750,180);
+                    g.setColor(Color.BLUE);
                     g.drawString("Tu nueva arma es: "+player.getWeapon().getName(),30,550);
                 }
                 if(drw2){
+                    g.setColor(Color.BLACK);
+                    g.fillRect(25,445,750,180);
+                    g.setColor(Color.BLUE);
                     g.drawString("Tu nueva armadura es: "+player.getArmor().getName(),30,550);
                 }
                 if(xp!=null){
@@ -479,4 +499,6 @@ public class Game extends Thread implements Runnable, GameState {
             g.drawString("Ya has matado a este enemigo. Presione escape para salir", 30, 460);
         }
     }
+    
+    
 }
