@@ -57,16 +57,21 @@ public class Game extends Thread implements Runnable, GameState {
     boolean playerTurn;
     
     
-    boolean h1;
-    boolean h2;
-    boolean h3;
-    boolean h4;
+    private boolean h1;
+    private boolean h2;
+    private boolean h3;
+    private boolean h4;
     
-    boolean lootGral;
-    boolean case1;
-    private boolean case2;
-    
+    private boolean lootGral;
+    private String loot;
+    private String[] partLoot;
+    private boolean drw;
+    private boolean case0;
     private int contador;
+    private boolean drw2;
+    private String xp;
+    private boolean enemigoMuerto;
+    private boolean paraDibujado;
     
     public Game(){
         elf = new Elf();
@@ -97,12 +102,11 @@ public class Game extends Thread implements Runnable, GameState {
         gnome.setName("GNOMO");
         human.setName("HUMANO");
     
-        pMouse = new Point();
-        skillBoxes = new Rectangle[4];
-        for(int i = 0;i<skillBoxes.length;i++){
-            skillBoxes[i] = new Rectangle((120*i)+26,422,100,20);
-        }
         option = 0;
+        drw = false;
+        drw2 = false;
+        enemigoMuerto = false;
+        paraDibujado = false;
     }
 
     @Override
@@ -214,22 +218,17 @@ public class Game extends Thread implements Runnable, GameState {
         }
 
     }
-    
-    
+
     public void startt(){
         thread = new Thread(this,"battle");
         thread.start();
         Constants.BATTLESTATE = true;
     }
-    
-   
-    
-    
+
     public void battle(Playable player, Enemy enemy) {
         this.player = player;
         this.enemy = enemy;
         Constants.ESC = false;
-        //Scanner scan = new Scanner(System.in);
         playerTurn = true;
         playerSkill = 0; //usamos byte no va a haber mas de 16 habilidades
         enemySkill = 0;
@@ -238,140 +237,119 @@ public class Game extends Thread implements Runnable, GameState {
         partsSkills=totalSkills.split("\\*");
         mana = false;
         pulso = false;
-        
-        boolean flagAtaque;
-        
-        if(!Constants.dead && !player.isAlive()){
-            player.setHp(player.getMaxHp());
-            player.setMana(player.getMaxMana());
-        }
-        //si algun personaje muere ya termina la pelea
-        while (player.isAlive() && enemy.isAlive()) {
-            //draw(g);//System.out.println(showHpsMana(player, enemy));
-            flagAtaque = false;
-            dead = false;
-            double i =0;
-            if (playerTurn) {
-                if (player.isStunned()) {
-                    /*si esta stunneado no podra jugar su turno, 
-                    pero los status si tendran lugar
-                     */
-                    System.out.println(player.statusEffect());
-                } else {
-
-                    System.out.println(player.statusEffect());
-                    do {
-                        h1 = false;
-                        h2 = false;
-                        h3 = false;
-                        h4 = false;
-                        playerSkill = 0;
+        enemigoMuerto = false;
+        h1 = false;
+        h2 = false;
+        h3 = false;
+        h4 = false;
+        playerSkill = 0;
+        if(enemy.isAlive()){
+            if(!Constants.dead && !player.isAlive()){
+                player.setHp(player.getMaxHp());
+                player.setMana(player.getMaxMana());
+            }
+            //si algun personaje muere ya termina la pelea
+            while (player.isAlive() && enemy.isAlive()) {
+                dead = false;
+                double i =0;
+                if (playerTurn) {
+                    if (player.isStunned()) {
+                        /*si esta stunneado no podra jugar su turno, 
+                        pero los status si tendran lugar
+                         */
+                        //System.out.println(player.statusEffect());
+                    } else {
+                        //System.out.println(player.statusEffect());
                         do {
-                            System.out.println("");
-                            if(h1){
-                                playerSkill = 1;
-                            }else if(h2){
-                                playerSkill = 2;
-                            }else if(h3){
-                                playerSkill = 3;
-                            }else if(h4){
-                                playerSkill = 4;
+                            h1 = false;
+                            h2 = false;
+                            h3 = false;
+                            h4 = false;
+                            playerSkill = 0;
+                            do {
+                                System.out.println("");
+                                if(h1){
+                                    playerSkill = 1;
+                                }else if(h2){
+                                    playerSkill = 2;
+                                }else if(h3){
+                                    playerSkill = 3;
+                                }else if(h4){
+                                    playerSkill = 4;
+                                }
+                            } while(playerSkill==0); //Este while espera a que en el otro thread se aprete una tecla
+                                pulso = true;
+                            if (player.getMana() < player.vSkills.elementAt(playerSkill - 1).getManaCost()) {
+                                mana = false;
+                            }else{
+                                mana = true;
                             }
-                        } while(playerSkill==0); //Este while espera a que en el otro thread se aprete una tecla
-                            pulso = true;
-                        if (player.getMana() < player.vSkills.elementAt(playerSkill - 1).getManaCost()) {
-                            //System.out.println("No tiene mana para usar la habilidad " + player.vSkills.elementAt(playerSkill - 1).getName());
-                            mana = false;
-                        }else{
-                            mana = true;
-                        }
-                    } while (player.getMana() < player.vSkills.elementAt(playerSkill - 1).getManaCost());
-                    nuestroAtaque = enemy.attack(player, player.vSkills.elementAt(playerSkill - 1)); 
-                    partesAtaque = nuestroAtaque.split("\\*");
-                    ataque = false;
+                        } while (player.getMana() < player.vSkills.elementAt(playerSkill - 1).getManaCost());
+                        nuestroAtaque = enemy.attack(player, player.vSkills.elementAt(playerSkill - 1)); 
+                        partesAtaque = nuestroAtaque.split("\\*");
+                        ataque = false;
+                    }
+                    playerTurn = false;
+                }else{
+                    //Ejecuta el turno del enemigo
+                    ataqueEnemigo = enemy.turn(player);
+                    partesAtaqueE = ataqueEnemigo.split("\\*");
+                    playerTurn = true;
                 }
-                playerTurn = false;
-            }else{
-                //Ejecuta el turno del enemigo
-                ataqueEnemigo = enemy.turn(player);
-                partesAtaqueE = ataqueEnemigo.split("\\*");
-                playerTurn = true;
             }
-        }
-        //Modularizar esta parte y agregarle lo de intercambiar loot 
-        if (player.isAlive()) {
-            System.out.println(player.getName() + " ha matado a " + enemy.getName());
-            //lootGral = true;
-            //do{
-            //    loot(enemy,player);
-            //}while(lootGral);
-            if(!dead){
-                System.out.println(player.addXp(enemy.getExpDrop()));
-                dead = true;
+            //Modularizar esta parte y agregarle lo de intercambiar loot 
+            if (player.isAlive()) {
+                //lootGral = true;
+                //pulso = true;
+                loot(enemy,player);
+                if(!dead){
+                    xp = player.addXp(enemy.getExpDrop());
+                    dead = true;
+                }
+                Constants.ESC = true;
+                Constants.BATTLESTATE = false;
+            } else {
+                Constants.dead = true;
+                Constants.ESC = true;
+                Constants.BATTLESTATE = false;
             }
-            Constants.ESC = true;
-            Constants.BATTLESTATE = false;
-        } else {
-            Constants.dead = true;
-            System.out.println(enemy.getName() + " te ha matado!!");
+            
+        }else{
+            enemigoMuerto = true;
             Constants.ESC = true;
             Constants.BATTLESTATE = false;
         }
-
     }
     
     public void loot(Enemy e,Playable player) {
-        Scanner scan =new Scanner(System.in);
-        boolean case0 = false;
-        String loot;
-        case1 = false;
-        case2 = false;
-        
-        int key = 0;
-        //do {
-        
+        case0 = false;
         if(!case0){
             loot = e.showLoot();
+            partLoot = loot.split("\\*");
             case0 = true;
         }
-        
-        //System.out.println("1: reemplzar arma, 2 reemplazar armadura, 0 continuar.");
-            //si aca tenemos botones podemos usar esos
-            //key = scan.nextInt();
-            //switch (key) {
-            //    case 1:
-            //        if (player.getWeapon().equals(e.getWeapon())) {
-            //            System.out.println("Ya tienes esa arma");
-            //        } else {
-            
-        if(case1){
-            System.out.println("changeddd");
-            player.getWeapon().copyWeapon(e.getWeapon());
-            case1 = false;
-        }    
-            //            System.out.println("Tu nueva arma es: "+player.getWeapon().getName());
-            //        }
-            //        break;
-
-            //    case 2:
-            //        if (player.getArmor().equals(e.getArmor())) {
-            //            System.out.println("Ya tienes esa armadura!");
-            //        } else {
-        if(case2){
-            System.out.println("samearmor");
-            player.getArmor().copyArmor(e.getArmor());
-            case2 = false;
-        }               
-            //            System.out.println("Tu nueva armadura es: "+player.getArmor().getName());
-            //        }
-            //        break;
-            //    case 0:
-            //        break;
-            //    default:
-            //        System.out.println("Opcion invalida");
-            //        break;
-            //}
-        //} while (key != 0);
+        h1 = false;
+        h2 = false;
+        h3 = false;
+        lootGral = false;
+        do {
+            System.out.println("a");
+            if(h1){
+                System.out.println("changeddd");
+                player.getWeapon().copyWeapon(e.getWeapon());
+                lootGral = true;
+                h1 = false;
+                drw = true;
+            }else if(h2){
+                System.out.println("ChangeArmor");
+                player.getArmor().copyArmor(e.getArmor());
+                lootGral = true;
+                h2 = false;
+                drw2 = true;
+            }else if(h3){
+                lootGral = true;
+            }
+        } while(!lootGral);
     }
     
 
@@ -381,7 +359,7 @@ public class Game extends Thread implements Runnable, GameState {
     }
 
     @Override
-    public void refresh() {
+    public void refresh() {        
         if(!pulso){
             if(ControlManager.keyboard.h1.isPressed()&&!h1){
                 h1 = true;
@@ -398,202 +376,107 @@ public class Game extends Thread implements Runnable, GameState {
 
     @Override
     public void draw(Graphics g) {
-        
-        for(int i=0;i<skillBoxes.length;i++){
-            g.setColor(Color.PINK);
-            g.fillRect((int)skillBoxes[i].x,(int)skillBoxes[i].y,(int)skillBoxes[i].width,(int)skillBoxes[i].height);
-        }
+        //for(int i=0;i<skillBoxes.length;i++){
+        //    g.setColor(Color.DARK_GRAY);
+        //    g.fillRect((int)skillBoxes[i].x,(int)skillBoxes[i].y,(int)skillBoxes[i].width,(int)skillBoxes[i].height);
+        //}
         g.setColor(Color.BLACK);
         g.fillRect(25,445,750,130);
-        
-        if(player.isAlive() && enemy.isAlive() && !pulso){
-            g.setColor(Color.YELLOW);
-            g.drawString(showHpsMana(player, enemy),30,460);
-            if(player.isStunned()){
-                g.drawString("Te encuentras aturdido", 30, 480);
-            }else{
-                g.drawString("No te encuentras aturdido", 30, 480);
-                g.drawString("Seleccione habilidad: ",30,500);
-                if(partsSkills!=null){
-                    for(int i=0;i<partsSkills.length;i++){
-                        if(partsSkills[i]!=null){
-                            g.drawString(partsSkills[i],30,(15*i)+517);
-                        }
-                    }
-                }
-            }
-        }else if(pulso){
-            g.setColor(Color.BLACK);
-            g.fillRect(25,445,750,200);
-            g.setColor(Color.YELLOW);
-            g.drawString(showHpsMana(player, enemy),30,460);
-            if(!mana){
-                g.drawString("No tienes mana suficiente",30,480);
-                if(Constants.PRUEBA == 1500){ //cambiar esto por un contador real
-                    mana = true;
-                    pulso = false;
-                    Constants.PRUEBA = 0;
+        if(!enemigoMuerto){
+            if(player.isAlive() && enemy.isAlive() && !pulso){
+                g.setColor(Color.YELLOW);
+                g.drawString(showHpsMana(player, enemy),30,460);
+                if(player.isStunned()){
+                    g.drawString("Te encuentras aturdido", 30, 480);
                 }else{
-                    Constants.PRUEBA++;
-                }
-            }else if(!ataque){
-                if(partesAtaque!=null){
-                    for(int i = 0;i<partesAtaque.length;i++){
-                        g.drawString(partesAtaque[i],30,(20*i)+480);
-                    }
-                    if(partesAtaqueE!=null){
-                        //if(partesAtaqueE.length>4){
-                        //    System.out.println("que pesado");
-                        //}else{
-                            for(int i =0; i<partesAtaqueE.length;i++){
-                                g.drawString(partesAtaqueE[i],30,(20*i)+520);
+                    g.drawString("No te encuentras aturdido", 30, 480);
+                    g.drawString("Seleccione habilidad: ",30,500);
+                    if(partsSkills!=null){
+                        for(int i=0;i<partsSkills.length;i++){
+                            if(partsSkills[i]!=null){
+                                g.drawString(partsSkills[i],30,(15*i)+517);
                             }
                         }
-                    if(Constants.PRUEBA == 2000){
-                        ataque = true;
+                    }
+                }
+            }else if(pulso){
+                g.setColor(Color.BLACK);
+                g.fillRect(25,445,750,180);
+                g.setColor(Color.YELLOW);
+                g.drawString(showHpsMana(player, enemy),30,460);
+                if(!mana){
+                    g.drawString("No tienes mana suficiente",30,480);
+                    if(Constants.PRUEBA == 1500){ //cambiar esto por un contador real
+                        mana = true;
                         pulso = false;
                         Constants.PRUEBA = 0;
                     }else{
                         Constants.PRUEBA++;
                     }
-                }
-            }
-        }else if(player.isAlive()){
-            g.setColor(Color.MAGENTA);
-           /* g.drawString("1: reemplzar arma, 2 reemplazar armadura, 0 continuar",30,460);
-            g.drawString(loot,30,480);
-            if(ControlManager.keyboard.h1.isPressed() && !h1){
-                h1 = true;
-                if (player.getWeapon().equals(e.getWeapon())) {
-                    g.drawString("Ya tienes esa arma",30,480);
-                    lootGral = false;
-                } else {
-                    System.out.println("ALAAA");
-                    //player.getWeapon().copyWeapon(e.getWeapon());
-                    case1 = true;
-                    
-                    while(contador<1000){
-                        contador++;
-                    }
-                    contador = 0;
-                    if(!case1){
-                        g.drawString("Tu nueva arma es: "+player.getWeapon().getName(),30,480);
-                        while(contador<1000){
-                            contador++;
+                }else if(!ataque){
+                    if(partesAtaque!=null){
+                        for(int i = 0;i<partesAtaque.length;i++){
+                            g.drawString(partesAtaque[i],30,(20*i)+480);
                         }
-                        lootGral = false;
+                        if(partesAtaqueE!=null){
+                            for(int i =0; i<partesAtaqueE.length;i++){
+                                g.drawString(partesAtaqueE[i],30,(20*i)+520);
+                            }
+                        }
+                        if(Constants.PRUEBA == 2000){
+                            ataque = true;
+                            pulso = false;
+                            Constants.PRUEBA = 0;
+                        }else{
+                            Constants.PRUEBA++;
+                        }
                     }
                 }
-            }else if(ControlManager.keyboard.h2.isPressed() && !h2){
-                h2 = true;
-                if(player.getArmor().equals(e.getArmor())){
-                    g.drawString("Ya tienes esa armadura", 30, 480);
-                    lootGral = false;
-                }else{
-                    case2 = true;
-                    if(!case2){
-                        g.drawString("Tu nueva armadura es: "+player.getArmor().getName(),30,480);
-                        lootGral = false;
+            }else if(player.isAlive()){
+                g.setColor(Color.MAGENTA);
+                g.drawString("1: Reemplzar arma, 2 reemplazar armadura, 3 continuar",30,460);
+                if(partLoot != null){
+                    for(int i = 0;i<partLoot.length;i++){
+                        g.drawString(partLoot[i],30,(20*i)+480);
                     }
                 }
-            }*/
-            g.drawString("Has ganado la batalla, presione escape para salir",30,570);
+                if(ControlManager.keyboard.h1.isPressed() && !h1){
+                    //ControlManager.keyboard.h1.keyFree();
+                    if (player.getWeapon().equals(e.getWeapon())) {
+                        g.drawString("Ya tienes esa arma",30,500);
+                        lootGral = false;
+                    } else {
+                        h1 = true;
+                        contador = 0;
+                    }
+                }else if(ControlManager.keyboard.h2.isPressed() && !h2){
+                    //ControlManager.keyboard.h1.keyFree();
+                    h2 = true;
+                    if(player.getArmor().equals(e.getArmor())){
+                        g.drawString("Ya tienes esa armadura", 30, 500);
+                        lootGral = false;
+                    }else{
+                        h2 = true;
+                    }
+                }
+                if(drw){
+                    g.drawString("Tu nueva arma es: "+player.getWeapon().getName(),30,550);
+                }
+                if(drw2){
+                    g.drawString("Tu nueva armadura es: "+player.getArmor().getName(),30,550);
+                }
+                if(xp!=null){
+                    g.setColor(Color.CYAN);
+                    g.drawString(xp, 500,570);
+                    g.drawString("Has ganado la batalla, presione escape para salir",30,580);
+                }
+            }else{
+                g.setColor(Color.RED);
+                g.drawString("Estas muerto, presione escape para salir",30,460);
+            }
         }else{
-            g.setColor(Color.MAGENTA);
-            g.drawString("Estas muerto, presione escape para salir",30,460);
+            g.setColor(Color.RED);
+            g.drawString("Ya has matado a este enemigo. Presione escape para salir", 30, 460);
         }
     }
-        /*
-    public void guardarPartida(Playable player, Enemy enemy) { //idea que se me ocurrio para implementar json con la cargada de partida
-        try {
-            JSONObject gameStates = new JSONObject();
-            JSONArray arrayGameStates = new JSONArray();
-            gameStates.put("Estados", arrayGameStates);
-            JSONObject playableStates = new JSONObject();
-            playableStates.put("id", player.getId());
-            playableStates.put("name", player.getName());
-            playableStates.put("hp", player.getHp());
-            playableStates.put("hp max", player.getMaxHp());
-            playableStates.put("mana", player.getMana());
-            playableStates.put("mana max", player.getMaxMana());
-            playableStates.put("dmg", player.getDmg());
-            playableStates.put("dmg max", player.getMaxDmg());
-            playableStates.put("acc", player.getAcc());
-            playableStates.put("dodge", player.getDodge());
-            playableStates.put("crit", player.getCrit());
-            playableStates.put("def", player.getDef());
-            playableStates.put("xp", player.getXp());
-            playableStates.put("lvl", player.getLvl());
-            playableStates.put("xp max", player.getXpMax());
-            playableStates.put("stun", player.isStunned());
-            playableStates.put("poison", player.isPoisonned());
-            playableStates.put("buff", player.isBuffed());
-
-            JSONArray playableStatus = new JSONArray();
-            playableStates.put("status", playableStatus);//ver como agregar status actuales
-            JSONArray playableSkills = new JSONArray();
-            playableStates.put("skills", playableSkills);
-            JSONObject skill1 = new JSONObject();
-            JSONObject skill2 = new JSONObject();
-            JSONObject skill3 = new JSONObject();
-            JSONObject skill4 = new JSONObject();
-            skill1.put("id", player.vSkills.get(0).getId());
-            skill1.put("name", player.vSkills.get(0).getName());
-            skill1.put("dmg mod", player.vSkills.get(0).getDmgMod());
-            skill1.put("acc mod", player.vSkills.get(0).getAccMod());
-            skill1.put("crit mod", player.vSkills.get(0).getCritMod());
-            skill1.put("mana cost", player.vSkills.get(0).getManaCost());
-            skill1.put("status chance", player.vSkills.get(0).getStatusChance());
-
-            skill2.put("id", player.vSkills.get(1).getId());
-            skill2.put("name", player.vSkills.get(1).getName());
-            skill2.put("dmg mod", player.vSkills.get(1).getDmgMod());
-            skill2.put("acc mod", player.vSkills.get(1).getAccMod());
-            skill2.put("crit mod", player.vSkills.get(1).getCritMod());
-            skill2.put("mana cost", player.vSkills.get(1).getManaCost());
-            skill2.put("status chance", player.vSkills.get(1).getStatusChance());
-
-            skill3.put("id", player.vSkills.get(2).getId());
-            skill3.put("name", player.vSkills.get(2).getName());
-            skill3.put("dmg mod", player.vSkills.get(2).getDmgMod());
-            skill3.put("acc mod", player.vSkills.get(2).getAccMod());
-            skill3.put("crit mod", player.vSkills.get(2).getCritMod());
-            skill3.put("mana cost", player.vSkills.get(2).getManaCost());
-            skill3.put("status chance", player.vSkills.get(2).getStatusChance());
-
-            skill4.put("id", player.vSkills.get(3).getId());
-            skill4.put("name", player.vSkills.get(3).getName());
-            skill4.put("dmg mod", player.vSkills.get(3).getDmgMod());
-            skill4.put("acc mod", player.vSkills.get(3).getAccMod());
-            skill4.put("crit mod", player.vSkills.get(3).getCritMod());
-            skill4.put("mana cost", player.vSkills.get(3).getManaCost());
-            skill4.put("status chance", player.vSkills.get(3).getStatusChance());
-
-            playableSkills.put(0, skill1);
-            playableSkills.put(1, skill2);
-            playableSkills.put(2, skill3);
-            playableSkills.put(3, skill4);
-
-            JSONObject playableWeapon = new JSONObject();
-            JSONObject playableArmor = new JSONObject();
-
-            playableWeapon.put("id", player.getWeapon().getId());
-            playableWeapon.put("name", player.getWeapon().getName());
-            playableWeapon.put("weight", player.getWeapon().getWeight());
-            playableWeapon.put("dmg mod", player.getWeapon().getDmgMod());
-            playableWeapon.put("acc mod", player.getWeapon().getAccMod());
-            playableWeapon.put("crit mod", player.getWeapon().getCritMod());
-
-            playableArmor.put("id", player.getArmor().getId());
-            playableArmor.put("name", player.getArmor().getName());
-            playableArmor.put("weight", player.getArmor().getWeight());
-            playableArmor.put("hp mod", player.getArmor().getHpMod());
-            playableArmor.put("dodge mod", player.getArmor().getDodgeMod());
-            playableArmor.put("def mod", player.getArmor().getDefMod());
-
-        } catch (JSONException e) {
-
-            e.printStackTrace();
-        }
-    }*/
 }
