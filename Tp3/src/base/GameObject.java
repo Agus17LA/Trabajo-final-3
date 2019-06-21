@@ -48,6 +48,9 @@ public class GameObject {
 
 
     @Override
+    /**
+     * El metodo equals de gameObject compara en base al nombre del objeto
+     */
     public boolean equals(Object obj) {
         if (this == obj) {
   

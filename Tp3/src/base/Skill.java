@@ -2,6 +2,11 @@ package base;
 
 import java.util.Random;
 
+/**
+ * La clase habilidad
+ *
+ * @author Juan
+ */
 public class Skill extends GameObject {
 
     private int dmgMod;
@@ -11,8 +16,7 @@ public class Skill extends GameObject {
     private int accMod;//estos ya son lineales
     private int critMod;
     private int manaCost;
-    private int statusChance;//la posiblidad de aplicar el status en el objetivo
-    //los distintos status, aca es donde podria hacer un vector de status, pero por ahora esto es suficiente
+    private int statusChance;//probabilidad de aplicar TODOS los status
     private Stun stun;
     private Poison poison;
     private Buff buff;
@@ -29,7 +33,15 @@ public class Skill extends GameObject {
         buff = new Buff();
     }
 
-    //MUCHOS constructores
+    /**
+     *
+     * @param name
+     * @param id
+     * @param dmgMod
+     * @param accMod
+     * @param critMod
+     * @param manaCost
+     */
     public Skill(String name, int id, int dmgMod, int accMod, int critMod, int manaCost) {
         super(name, id);
         this.dmgMod = dmgMod;
@@ -42,6 +54,17 @@ public class Skill extends GameObject {
         buff = new Buff();
     }
 
+    /**
+     *
+     * @param name
+     * @param id
+     * @param dmgMod
+     * @param accMod
+     * @param critMod
+     * @param manaCost
+     * @param statusChance
+     * @param buff
+     */
     public Skill(String name, int id, int dmgMod, int accMod, int critMod, int manaCost, int statusChance, Buff buff) {
         super(name, id);
         this.dmgMod = dmgMod;
@@ -54,6 +77,17 @@ public class Skill extends GameObject {
         this.buff = buff;
     }
 
+    /**
+     *
+     * @param name
+     * @param id
+     * @param dmgMod
+     * @param accMod
+     * @param critMod
+     * @param manaCost
+     * @param statusChance
+     * @param stun
+     */
     public Skill(String name, int id, int dmgMod, int accMod, int critMod, int manaCost, int statusChance, Stun stun) {
         super(name, id);
         this.dmgMod = dmgMod;
@@ -66,6 +100,17 @@ public class Skill extends GameObject {
         buff = new Buff();
     }
 
+    /**
+     *
+     * @param name
+     * @param id
+     * @param dmgMod
+     * @param accMod
+     * @param critMod
+     * @param manaCost
+     * @param statusChance
+     * @param poison
+     */
     public Skill(String name, int id, int dmgMod, int accMod, int critMod, int manaCost, int statusChance, Poison poison) {
         super(name, id);
         this.dmgMod = dmgMod;
@@ -77,6 +122,18 @@ public class Skill extends GameObject {
         this.poison = poison;
     }
 
+    /**
+     *
+     * @param name
+     * @param id
+     * @param dmgMod
+     * @param accMod
+     * @param critMod
+     * @param manaCost
+     * @param statusChance
+     * @param stun
+     * @param poison
+     */
     public Skill(String name, int id, int dmgMod, int accMod, int critMod, int manaCost, int statusChance, Stun stun, Poison poison) {
         super(name, id);
         this.dmgMod = dmgMod;
@@ -88,6 +145,19 @@ public class Skill extends GameObject {
         this.poison = poison;
     }
 
+    /**
+     *
+     * @param name
+     * @param id
+     * @param dmgMod
+     * @param accMod
+     * @param critMod
+     * @param manaCost
+     * @param statusChance
+     * @param stun
+     * @param poison
+     * @param buff
+     */
     public Skill(String name, int id, int dmgMod, int accMod, int critMod, int manaCost, int statusChance, Stun stun, Poison poison, Buff buff) {
         super(name, id);
         this.dmgMod = dmgMod;
@@ -100,6 +170,10 @@ public class Skill extends GameObject {
         this.buff = buff;
     }
 
+    /**
+     *
+     * @param s
+     */
     public Skill(Skill s) {
         super(s.getName(), s.getId());
         this.dmgMod = s.getDmgMod();
@@ -152,13 +226,24 @@ public class Skill extends GameObject {
         this.statusChance = statusChance;
     }
 
+    /**
+     * Devuelve el nombre de la habilid y el coste de mana, las demas
+     * estadisticas las pueden ver en el manual del juego
+     *
+     * @return
+     */
     public String toString() {
-        return getName() + ": \n Mod daño: " + dmgMod + "% || Mod precision: " + accMod + "+|| Mod crit: " + critMod + "%+" +" || Coste mana: "+manaCost;
+        return getName() + " || Coste mana: " + manaCost;
     }
 
-    /*en esta funcion usamos el skill, es muy basica en el sentido de que solo pega
-    y aplica el debuff, si queremos que por ejemplo cure, 
-            podes hacer que el daño sea negativo*/
+    /**
+     * En esta funcion usamos el skill, usa funciones de Character para calcuar
+     * el daño y si es critico, aplica todo el daño y el status
+     *
+     * @param c1
+     * @param c2
+     * @return
+     */
     public String useSkill(Character c1, Character c2) { // c1 usa el skill en c2
         StringBuilder builder = new StringBuilder();
         int dmgTotal = 0;
@@ -179,22 +264,38 @@ public class Skill extends GameObject {
                 builder.append(c2.addStatus(poison));
             }
             if (buff.isBuffed()) {
-                
+
                 builder.append(c2.addStatus(buff));
-                
+
             }
         } else {
         }
+        long meta=System.currentTimeMillis()+3000;
+        do{
+            
+        }while(System.currentTimeMillis()<meta); 
+           
         return builder.toString();
 
     }
 
-//funciones ya explicadas que no se porque tambien aparecen aca
+/**
+ *  * Compara el int recibido con un numero aleatorio entre 0 y 100 y devuelve
+     * true si critChance es mayor (el golpe critico) o false en caso contrario
+     * (golpe normal)
+ * @param critChance
+ * @return 
+ */
     public boolean isCrit(int critChance) {
         Random r = new Random(System.currentTimeMillis());
         return r.nextInt(100) < critChance - 1;
     }
-
+/**
+ *  * Compara el statusChance con un numero aleatorio entre 0 y 100 y devuelve
+     * true si statusChance es mayor (El status se aplica) o false en caso contrario
+     * (el status no se aplica)
+ * @return 
+ */
     public boolean statusHit() {
         Random r = new Random(System.currentTimeMillis());
         return (r.nextInt(100) < statusChance);
@@ -202,6 +303,13 @@ public class Skill extends GameObject {
 
     //aca van "constructores" de habilidades para los pjs(supongo que despues lo metemos a un json
     //No se si esto esta bien pero bueno
+    /**
+     * 
+     */
+    
+    /**
+     * Habilidad basica
+     */
     public void skillGolpeBasico() {
         setName("Golpe Basico");
         setId(0);
@@ -335,7 +443,7 @@ public class Skill extends GameObject {
     public void skillParasitarAlma() {
         setName("Parasitar Alma");
         setId(0);
-        dmgMod = 75 ;
+        dmgMod = 75;
         accMod = 0;
         critMod = 0;
         manaCost = 20;
@@ -396,9 +504,8 @@ public class Skill extends GameObject {
         poison = new Poison(50, 2);
         buff = new Buff(-2, -2, -2, -2, -2, 2);
     }
-    
-    public void skillCargaHeroica()
-    {
+
+    public void skillCargaHeroica() {
         setName("Carga Heroica");
         setId(0);
         dmgMod = 50;
@@ -410,8 +517,9 @@ public class Skill extends GameObject {
         poison = new Poison(5, 2);
         buff = new Buff();
     }
-    public void skillGolpeSorprendente(){
-       setName("Golpe Sorprendente");
+
+    public void skillGolpeSorprendente() {
+        setName("Golpe Sorprendente");
         setId(0);
         dmgMod = 130;
         accMod = 5;
@@ -420,9 +528,10 @@ public class Skill extends GameObject {
         statusChance = 0;
         stun = new Stun();
         poison = new Poison();
-        buff = new Buff(); 
+        buff = new Buff();
     }
-    public void skillMorderElPolvo(){
+
+    public void skillMorderElPolvo() {
         setName("Morder el polvo");
         setId(0);
         dmgMod = 70;

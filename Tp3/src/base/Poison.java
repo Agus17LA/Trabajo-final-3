@@ -1,7 +1,10 @@
 
 package base;
 
-//otro status mas, ya esta explicado en buff y status
+/**
+ * El status veneno
+ * @author Juan
+ */
 public class Poison extends Status{
     private int dmg;
     private boolean poisoned;
@@ -10,8 +13,13 @@ public class Poison extends Status{
     public Poison(){
         super();
         dmg=0;
-        poisoned=false; //esta funcion sirve para identificar si la habilidad aplica este estatus o no 
+        poisoned=false;
     }
+    /**
+     * Recibe el daño por turno y la duracion en turnos
+     * @param dmg
+     * @param duration 
+     */
     public Poison(int dmg,int duration){
         super(duration);
         this.dmg=dmg;
@@ -46,6 +54,9 @@ public class Poison extends Status{
     }
     
     @Override
+    /**
+     * Funcion que ejecuta el turno del status
+     */
     public String statusTurn(Character c){
         String res=" "; 
             super.statusTurn(c);

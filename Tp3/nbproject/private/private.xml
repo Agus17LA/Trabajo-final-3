@@ -3,15 +3,28 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Agus_/Desktop/Facultad/Trabajo-final-3/Tp3/src/main/manager/control/Keyboard.java</file>
-            <file>file:/C:/Users/Agus_/Desktop/Facultad/Trabajo-final-3/Tp3/src/base/Playable.java</file>
-            <file>file:/C:/Users/Agus_/Desktop/Facultad/Trabajo-final-3/Tp3/src/main/manager/statesmachine/state/game/BattleManager.java</file>
-            <file>file:/C:/Users/Agus_/Desktop/Facultad/Trabajo-final-3/Tp3/src/main/manager/control/Key.java</file>
-            <file>file:/C:/Users/Agus_/Desktop/Facultad/Trabajo-final-3/Tp3/src/main/manager/control/Mouse.java</file>
-            <file>file:/C:/Users/Agus_/Desktop/Facultad/Trabajo-final-3/Tp3/src/main/manager/statesmachine/state/game/InitialMenu.java</file>
-            <file>file:/C:/Users/Agus_/Desktop/Facultad/Trabajo-final-3/Tp3/src/base/Game.java</file>
-            <file>file:/C:/Users/Agus_/Desktop/Facultad/Trabajo-final-3/Tp3/src/main/manager/control/ControlManager.java</file>
-            <file>file:/C:/Users/Agus_/Desktop/Facultad/Trabajo-final-3/Tp3/src/main/manager/entities/Player.java</file>
+            <file>file:/C:/Users/Juan/Documents/GitHub/Trabajo-final-3/Tp3/src/base/Weapon.java</file>
+            <file>file:/C:/Users/Juan/Documents/GitHub/Trabajo-final-3/Tp3/src/base/Buff.java</file>
+            <file>file:/C:/Users/Juan/Documents/GitHub/Trabajo-final-3/Tp3/src/races/Elf.java</file>
+            <file>file:/C:/Users/Juan/Documents/GitHub/Trabajo-final-3/Tp3/src/base/Status.java</file>
+            <file>file:/C:/Users/Juan/Documents/GitHub/Trabajo-final-3/Tp3/src/base/Skill.java</file>
+            <file>file:/C:/Users/Juan/Documents/GitHub/Trabajo-final-3/Tp3/src/base/Item.java</file>
+            <file>file:/C:/Users/Juan/Documents/GitHub/Trabajo-final-3/Tp3/src/base/Messages.java</file>
+            <file>file:/C:/Users/Juan/Documents/GitHub/Trabajo-final-3/Tp3/src/json/JsonUtiles.java</file>
+            <file>file:/C:/Users/Juan/Documents/GitHub/Trabajo-final-3/Tp3/src/races/Gnome.java</file>
+            <file>file:/C:/Users/Juan/Documents/GitHub/Trabajo-final-3/Tp3/src/base/GameObject.java</file>
+            <file>file:/C:/Users/Juan/Documents/GitHub/Trabajo-final-3/Tp3/src/base/Poison.java</file>
+            <file>file:/C:/Users/Juan/Documents/GitHub/Trabajo-final-3/Tp3/src/main/Main.java</file>
+            <file>file:/C:/Users/Juan/Documents/GitHub/Trabajo-final-3/Tp3/src/base/Game.java</file>
+            <file>file:/C:/Users/Juan/Documents/GitHub/Trabajo-final-3/Tp3/src/base/Enemy.java</file>
+            <file>file:/C:/Users/Juan/Documents/GitHub/Trabajo-final-3/Tp3/src/base/Stun.java</file>
+            <file>file:/C:/Users/Juan/Documents/GitHub/Trabajo-final-3/Tp3/src/base/Character.java</file>
+            <file>file:/C:/Users/Juan/Documents/GitHub/Trabajo-final-3/Tp3/src/races/Human.java</file>
+            <file>file:/C:/Users/Juan/Documents/GitHub/Trabajo-final-3/Tp3/src/inventory/Inventory.java</file>
+            <file>file:/C:/Users/Juan/Documents/GitHub/Trabajo-final-3/Tp3/src/base/Armor.java</file>
+            <file>file:/C:/Users/Juan/Documents/GitHub/Trabajo-final-3/Tp3/src/races/Dwarf.java</file>
+            <file>file:/C:/Users/Juan/Documents/GitHub/Trabajo-final-3/Tp3/src/base/Consumible.java</file>
+            <file>file:/C:/Users/Juan/Documents/GitHub/Trabajo-final-3/Tp3/src/base/Playable.java</file>
         </group>
     </open-files>
 </project-private>
