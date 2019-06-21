@@ -99,11 +99,11 @@ public class Hud {
         int width = (100* resistance/600);
         Color darkYellow = new Color(255,255,0);
         g.setColor(Color.WHITE);
-        g.drawRect(540,580,101,10);
+        g.drawRect(30,550,101,10);
         g.setColor(darkYellow);
-        g.fillRect(541, 581, width, 9);
+        g.fillRect(30, 551, width, 9);
         g.setColor(Color.BLACK);
-        g.drawString("Stamina", 490, 589);
+        g.drawString("Stamina", 30, 548);
     }
     
     public void drawMessage(Graphics g){

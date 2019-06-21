@@ -73,9 +73,9 @@ public class Enemy extends Character {
      */
     public String showLoot() {
         StringBuilder builder = new StringBuilder();
-        builder.append("El enemigo tiene los siguientes items: ");
-        builder.append("Arma: " + this.getWeapon().toString());
-        builder.append("Armadura: " + this.getArmor().toString());
+        builder.append("El enemigo tiene los siguientes items: *");
+        builder.append("Arma: " + this.getWeapon().toString() + " *");
+        builder.append("Armadura: " + this.getArmor().toString() + " *");
 
         return builder.toString();
     }

@@ -47,7 +47,7 @@ public class Constants {
     
     public static boolean dead = false;
     
-    public static int PRUEBA = 0;
+    public static long PRUEBA = 0;
     
     public static boolean EN_BATALLA = false;
     public static boolean ESC = true;

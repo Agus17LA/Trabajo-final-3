@@ -62,9 +62,9 @@ public class PrincipalManager {
                 ufs++;
                 Constants.UFS = ufs;
                 delta--;
+                draw();
+                fps++;
             }
-            draw();
-            fps++;
             if((System.nanoTime() - countReference) >NS_FOR_SECOND){ //Si la diferencia es de mas de 1 segundo se realizará una actualizacion del contador, el objetivo es que nuestro contador se actualice cada segundo
                 win.setTitle(title + "<UFS: " + ufs + "> <FPS: " + fps + ">");
                 ufs = 0;

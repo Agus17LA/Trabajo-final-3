@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package main.manager.statesmachine.state.game;
+import base.Game;
+import base.Playable;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
@@ -21,6 +23,10 @@ import main.manager.statesmachine.GameState;
 import main.manager.statesmachine.StateManager;
 import main.manager.tools.ResourceLoader;
 import main.manager.user_interface.Hud;
+import races.Dwarf;
+import races.Elf;
+import races.Gnome;
+import races.Human;
 /**
  *
  * @author Agus_
@@ -96,12 +102,22 @@ public class GameManager implements GameState{
         if(player.getLEFT_COLLISION().intersects(map.getExitZone())){
             refreshGame();
         }
-        
         player.refresh();
         map.refresh((int)player.getPositionX(),(int)player.getPositionY());
         Constants.BATTLE = battleZone();
         priestZone();
     }
+    
+    public void drawCharacterStats(Graphics g, Playable aux){
+        g.setColor(Color.RED);
+        g.drawString(aux.showHp(), 500, 550);
+        g.setColor(Color.CYAN);
+        g.drawString(aux.showMana(), 500, 570);
+        g.setColor(Color.BLACK);
+        g.drawString(aux.showXpState(), 500, 590);
+    }
+    
+    
     @Override
     public void draw(Graphics g){
         g.fillRect(0,0,800,600);
@@ -118,11 +134,25 @@ public class GameManager implements GameState{
             hud.drawPriestArea(g, map);
         }
         hud.drawBar(g, player);
+        switch(Constants.SELECTED_CHARACTER){
+            case 1:
+                drawCharacterStats(g,Game.gnome);
+                break;
+            case 2:
+                drawCharacterStats(g,Game.human);
+                break;
+            case 3:
+                drawCharacterStats(g,Game.elf);
+                break;
+            case 4:
+                drawCharacterStats(g,Game.dwarf);
+                break;
+            default:
+                break;
+        }
         hud.drawMousePosition(g, p);
         hud.drawXY(g, player);
         hud.drawResistance(g, player.resistance);
-        hud.drawLife(g, 1000);
-        hud.drawMana(g, 1000);
         if(battleZone()){
             hud.drawMessage(g);
         }
@@ -150,6 +180,26 @@ public class GameManager implements GameState{
         if(player.getDOWN_COLLISION().intersects(map.getPriestZone())){
             flag = true;
             Constants.dead = false;
+            switch(Constants.SELECTED_CHARACTER){
+                case 1:
+                    Game.gnome.setHp(Game.gnome.getMaxHp());
+                    Game.gnome.setMana(Game.gnome.getMaxMana());
+                    break;
+                case 2:
+                    Game.human.setHp(Game.human.getMaxHp());
+                    Game.human.setMana(Game.human.getMaxMana());
+                    break;
+                case 3:
+                    Game.elf.setHp(Game.elf.getMaxHp());
+                    Game.elf.setMana(Game.elf.getMaxMana());
+                    break;
+                case 4:
+                    Game.dwarf.setHp(Game.dwarf.getMaxHp());
+                    Game.dwarf.setMana(Game.dwarf.getMaxMana());
+                    break;
+                default:
+                    break;
+        }
         }
         return flag;
     }

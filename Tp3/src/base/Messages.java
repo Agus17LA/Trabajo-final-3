@@ -48,6 +48,10 @@ public class Messages {
          * @return 
          */
 	public String xpError() {
-		return "No puede subir aun de nivel, experiencia: ";
+		return "No puede subir aun de nivel, experiencia: "+"\n";
 	}
+        //Error Json no encontrado para guardar en archivo
+        public String jsonError(){
+            return "No se ha guardado ninguna partida todavía"+"\n";
+        }
 }

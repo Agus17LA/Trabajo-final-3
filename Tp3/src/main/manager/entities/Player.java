@@ -30,7 +30,7 @@ public class Player {
     private int state;
     
     private double velocity = 1;
-    public int resistance = 10000;
+    public int resistance = 600;
     private int recovery = 0;
     private int maxRecovery = 150;
     private boolean recover = false;

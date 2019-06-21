@@ -30,6 +30,9 @@ public class Keyboard implements KeyListener {
     public Key h2 = new Key();
     public Key h3 = new Key();
     public Key h4 = new Key();
+    public Key l1 = new Key();
+    public Key l2 = new Key();
+    public Key l3 = new Key();
     
     @Override
     public void keyTyped(KeyEvent e) {
@@ -74,12 +77,15 @@ public class Keyboard implements KeyListener {
                 break;
             case KeyEvent.VK_1:
                 h1.keyPressed();
+                l1.keyPressed();
                 break;
             case KeyEvent.VK_2:
                 h2.keyPressed();
+                l2.keyPressed();
                 break;
             case KeyEvent.VK_3:
                 h3.keyPressed();
+                l3.keyPressed();
                 break;
             case KeyEvent.VK_4:
                 h4.keyPressed();
@@ -112,12 +118,15 @@ public class Keyboard implements KeyListener {
                 break;
             case KeyEvent.VK_1:
                 h1.keyFree();
+                l1.keyFree();
                 break;
             case KeyEvent.VK_2:
                 h2.keyFree();
+                l2.keyFree();
                 break;
             case KeyEvent.VK_3:
                 h3.keyFree();
+                l3.keyFree();
                 break;
             case KeyEvent.VK_4:
                 h4.keyFree();
