@@ -56,13 +56,17 @@ public class Game extends Thread implements Runnable, GameState {
     private int option;
     boolean playerTurn;
     
+    
     boolean h1;
     boolean h2;
     boolean h3;
     boolean h4;
     
+    boolean lootGral;
+    boolean case1;
+    private boolean case2;
     
-    
+    private int contador;
     
     public Game(){
         elf = new Elf();
@@ -297,7 +301,10 @@ public class Game extends Thread implements Runnable, GameState {
         //Modularizar esta parte y agregarle lo de intercambiar loot 
         if (player.isAlive()) {
             System.out.println(player.getName() + " ha matado a " + enemy.getName());
-            player.loot(enemy);
+            //lootGral = true;
+            //do{
+            //    loot(enemy,player);
+            //}while(lootGral);
             if(!dead){
                 System.out.println(player.addXp(enemy.getExpDrop()));
                 dead = true;
@@ -312,6 +319,61 @@ public class Game extends Thread implements Runnable, GameState {
         }
 
     }
+    
+    public void loot(Enemy e,Playable player) {
+        Scanner scan =new Scanner(System.in);
+        boolean case0 = false;
+        String loot;
+        case1 = false;
+        case2 = false;
+        
+        int key = 0;
+        //do {
+        
+        if(!case0){
+            loot = e.showLoot();
+            case0 = true;
+        }
+        
+        //System.out.println("1: reemplzar arma, 2 reemplazar armadura, 0 continuar.");
+            //si aca tenemos botones podemos usar esos
+            //key = scan.nextInt();
+            //switch (key) {
+            //    case 1:
+            //        if (player.getWeapon().equals(e.getWeapon())) {
+            //            System.out.println("Ya tienes esa arma");
+            //        } else {
+            
+        if(case1){
+            System.out.println("changeddd");
+            player.getWeapon().copyWeapon(e.getWeapon());
+            case1 = false;
+        }    
+            //            System.out.println("Tu nueva arma es: "+player.getWeapon().getName());
+            //        }
+            //        break;
+
+            //    case 2:
+            //        if (player.getArmor().equals(e.getArmor())) {
+            //            System.out.println("Ya tienes esa armadura!");
+            //        } else {
+        if(case2){
+            System.out.println("samearmor");
+            player.getArmor().copyArmor(e.getArmor());
+            case2 = false;
+        }               
+            //            System.out.println("Tu nueva armadura es: "+player.getArmor().getName());
+            //        }
+            //        break;
+            //    case 0:
+            //        break;
+            //    default:
+            //        System.out.println("Opcion invalida");
+            //        break;
+            //}
+        //} while (key != 0);
+    }
+    
 
     public String showHpsMana(base.Character p1, base.Character p2) {
         //para tener el estado de como va la pelea !
@@ -367,7 +429,7 @@ public class Game extends Thread implements Runnable, GameState {
             g.drawString(showHpsMana(player, enemy),30,460);
             if(!mana){
                 g.drawString("No tienes mana suficiente",30,480);
-                if(Constants.PRUEBA == 1500){
+                if(Constants.PRUEBA == 1500){ //cambiar esto por un contador real
                     mana = true;
                     pulso = false;
                     Constants.PRUEBA = 0;
@@ -380,14 +442,13 @@ public class Game extends Thread implements Runnable, GameState {
                         g.drawString(partesAtaque[i],30,(20*i)+480);
                     }
                     if(partesAtaqueE!=null){
-                        if(partesAtaqueE.length>4){
-                            System.out.println("que pesado");
-                        }else{
+                        //if(partesAtaqueE.length>4){
+                        //    System.out.println("que pesado");
+                        //}else{
                             for(int i =0; i<partesAtaqueE.length;i++){
-                                g.drawString(partesAtaqueE[i],30,(20*i)+500);
+                                g.drawString(partesAtaqueE[i],30,(20*i)+520);
                             }
                         }
-                    }
                     if(Constants.PRUEBA == 2000){
                         ataque = true;
                         pulso = false;
@@ -399,7 +460,44 @@ public class Game extends Thread implements Runnable, GameState {
             }
         }else if(player.isAlive()){
             g.setColor(Color.MAGENTA);
-            g.drawString("Has ganado la batalla, presione escape para salir",30,460);
+           /* g.drawString("1: reemplzar arma, 2 reemplazar armadura, 0 continuar",30,460);
+            g.drawString(loot,30,480);
+            if(ControlManager.keyboard.h1.isPressed() && !h1){
+                h1 = true;
+                if (player.getWeapon().equals(e.getWeapon())) {
+                    g.drawString("Ya tienes esa arma",30,480);
+                    lootGral = false;
+                } else {
+                    System.out.println("ALAAA");
+                    //player.getWeapon().copyWeapon(e.getWeapon());
+                    case1 = true;
+                    
+                    while(contador<1000){
+                        contador++;
+                    }
+                    contador = 0;
+                    if(!case1){
+                        g.drawString("Tu nueva arma es: "+player.getWeapon().getName(),30,480);
+                        while(contador<1000){
+                            contador++;
+                        }
+                        lootGral = false;
+                    }
+                }
+            }else if(ControlManager.keyboard.h2.isPressed() && !h2){
+                h2 = true;
+                if(player.getArmor().equals(e.getArmor())){
+                    g.drawString("Ya tienes esa armadura", 30, 480);
+                    lootGral = false;
+                }else{
+                    case2 = true;
+                    if(!case2){
+                        g.drawString("Tu nueva armadura es: "+player.getArmor().getName(),30,480);
+                        lootGral = false;
+                    }
+                }
+            }*/
+            g.drawString("Has ganado la batalla, presione escape para salir",30,570);
         }else{
             g.setColor(Color.MAGENTA);
             g.drawString("Estas muerto, presione escape para salir",30,460);

@@ -154,41 +154,4 @@ public class Playable extends Character {
         }
         return builder.toString();
     }
-
-    public void loot(Enemy e) {
-        Scanner scan =new Scanner(System.in);
-
-        int key = 0;
-        do {
-            System.out.println(e.showLoot());
-            System.out.println("1: reemplzar arma, 2 reemplazar armadura, 0 continuar.");
-            //si aca tenemos botones podemos usar esos
-            key = scan.nextInt();
-            switch (key) {
-                case 1:
-                    if (this.getWeapon().equals(e.getWeapon())) {
-                        System.out.println("Ya tienes esa arma");
-                    } else {
-                        this.getWeapon().copyWeapon(e.getWeapon());
-                        System.out.println("Tu nueva arma es: "+this.getWeapon().getName());
-                    }
-                    break;
-
-                case 2:
-                    if (this.getArmor().equals(e.getArmor())) {
-                        System.out.println("Ya tienes esa armadura!");
-                    } else {
-                       
-                        this.getArmor().copyArmor(e.getArmor());
-                        System.out.println("Tu nueva armadura es: "+this.getArmor().getName());
-                    }
-                    break;
-                case 0:
-                    break;
-                default:
-                    System.out.println("Opcion invalida");
-                    break;
-            }
-        } while (key != 0);
-    }
 }

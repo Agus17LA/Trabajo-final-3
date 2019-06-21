@@ -15,13 +15,21 @@ public class Inventory {
 	HashMap<String, Integer> inventory;// usamos hash map para poder tener una forma de identificar los items mas alla
 										// de los nombres
 
+    public double getWeight() {
+        return weight;
+    }
+
+    public double getMaxWeight() {
+        return maxWeight;
+    }
+
 	public Inventory() {
 		inventory = new HashMap<String, Integer>();
 	}
 
 
 
-	public boolean addItem(Item i) {
+	/*public boolean addItem(Item i) {
 		boolean flag = false;
 		if (inventorySize((getWeight() + i.getWeight()), getMaxWeight())) {// comprueba si hay espacio suficiente para
 																			// el item a agregar
@@ -34,12 +42,12 @@ public class Inventory {
 			m.inventorySpaceError();
 		}
 		return flag;
-	}
+	}*/
 
-	public void removeItem(Item i) {
+	/*public void removeItem(Item i) {
 		inventory.remove(i.getId());
                 setWeight(getWeight()-i.getWeight());
-	}
+	}*/
 
 	public void emptyInventory() {
 		inventory.clear();
@@ -52,7 +60,7 @@ public class Inventory {
 
 	public String showInventory() { //mostrar todos los items del inventario con for each
 		StringBuilder builder = new StringBuilder();
-		for (Integer id : inventory.keySet()) {
+		for (String id : inventory.keySet()) {
 			builder.append(id.toString());
 		}
 		return builder.toString();
@@ -70,7 +78,7 @@ public class Inventory {
 	
 	public String showPerType(String type) { //mostrar por tipo de item con for each (creo habria que eliminarlo)
 		StringBuilder builder = new StringBuilder();
-		for (Integer i : inventory.keySet()) {
+		for (String i : inventory.keySet()) {
 
 			if (type.equals("Armor")) {
 				builder.append(i.toString()+"\n");

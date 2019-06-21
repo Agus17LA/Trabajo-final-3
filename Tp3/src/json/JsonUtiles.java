@@ -129,7 +129,7 @@ public class JsonUtiles {
             playableStates.put("armor", playableArmor);
 
             gameStates.put("playable", playableStates);
-
+            writeStates(gameStates);
         } catch (JSONException e) {
 
             e.printStackTrace();
