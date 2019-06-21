@@ -175,7 +175,7 @@ public class JsonUtiles {
     public Playable readPlayer() { //lee de un json ya guardado anteriormente los datos del personaje guardado y los carga en un nuevo objeto Playable y lo retrona Playable p = new Playable();
         Playable p=new Playable();
         try {
-            String c = new String(Files.readAllBytes(Paths.get("partida.txt")));
+            String c = new String(Files.readAllBytes(Paths.get("partida.json")));
             JSONObject player = new JSONObject(c);
             p.setHp(player.getJSONObject("playable").getInt("hp"));
             p.setMana(player.getJSONObject("playable").getInt("mana"));
@@ -259,7 +259,7 @@ public class JsonUtiles {
 
     public static void readPartida() { //lee de un json ya cargado los datos del personaje guardado y los devuelve en la consola con systems out
         try {
-            String c = new String(Files.readAllBytes(Paths.get("partida.txt")));
+            String c = new String(Files.readAllBytes(Paths.get("partida.json")));
             JSONObject player = new JSONObject(c);
             System.out.println("Personaje" + "\n");
             System.out.println("Id: "+player.getJSONObject("playable").getInt("id"));

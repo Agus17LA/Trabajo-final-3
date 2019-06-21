@@ -5,11 +5,14 @@
  */
 package main.manager.statesmachine.state.game;
 
+import base.Game;
+import base.Playable;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import json.JsonUtiles;
 import main.manager.Constants;
 import main.manager.control.ControlManager;
 import main.manager.control.Keyboard;
@@ -37,7 +40,7 @@ public class InitialMenu implements GameState{
     private boolean screenSelection;
     private BufferedImage displayCharacter;
     private BufferedImage indexDisplay;
-    
+    private JsonUtiles json;
     
     
     public InitialMenu(){
@@ -51,6 +54,7 @@ public class InitialMenu implements GameState{
         for(int i =0;i<characters.length;i++){
             characters[i] = new Rectangle((190*i)+40,360,150,30); //Sucesion
         }
+        json = new JsonUtiles();
     }
     
 
@@ -60,15 +64,36 @@ public class InitialMenu implements GameState{
         for(int i=0;i<characters.length;i++){
             if(rectangleClic(pMouse,characters[i])){
                 Constants.SELECTED_CHARACTER = i+1;
-                //ControlManager.keyboard.prsnj1 = false;
                 Constants.NEWGAME = true;
              }
         }
-        if(rectangleClic(pMouse,loadGame))
-            System.out.println("clicLoad");
+        if(rectangleClic(pMouse,loadGame)){
+            Game.player = json.readPlayer();
+            Constants.LOADGAME = true;
+            switch(Game.player.getName()){
+                case "GNOMO":
+                    Constants.SELECTED_CHARACTER = 1;
+                    break;
+                case "HUMANO":
+                    Constants.SELECTED_CHARACTER = 2;
+                    break;
+                case "ELFO":
+                    Constants.SELECTED_CHARACTER = 3;
+                    break;
+                case "ENANO":
+                    Constants.SELECTED_CHARACTER = 4;
+                    break;
+            }
+            Constants.NEWGAME = true;
+        }
         if(rectangleClic(pMouse,startNewGame)){
             screenSelection = true;
         }
+        
+        if(rectangleClic(pMouse,exitGame)){
+            System.exit(0);
+        }
+        
         DrawSurface.mouse.restartClick();
     }
     

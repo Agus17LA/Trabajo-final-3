@@ -42,6 +42,7 @@ public class Constants {
     public static String RUTA_ENANOE = "textures/EnanoE.png";
     
     public static boolean NEWGAME = false;
+    public static boolean LOADGAME = false;
     public static int ACTUAL_ENEMY_ZONE = 0;
     public static int ACTUAL_MAP = 0;
     

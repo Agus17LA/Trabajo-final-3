@@ -9,8 +9,8 @@ import base.Playable;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
-import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import json.JsonUtiles;
 import main.manager.Constants;
 import main.manager.control.ControlManager;
 import main.manager.control.Keyboard;
@@ -20,13 +20,9 @@ import main.manager.entities.Priest;
 import main.manager.graphics.DrawSurface;
 import main.manager.maps.Map;
 import main.manager.statesmachine.GameState;
-import main.manager.statesmachine.StateManager;
 import main.manager.tools.ResourceLoader;
 import main.manager.user_interface.Hud;
-import races.Dwarf;
-import races.Elf;
-import races.Gnome;
-import races.Human;
+
 /**
  *
  * @author Agus_
@@ -41,7 +37,7 @@ public class GameManager implements GameState{
     Enemy enemy;
     Priest priest;
     private boolean refresh = false;
-    
+    private JsonUtiles json;
     
     
     public GameManager(){
@@ -52,22 +48,30 @@ public class GameManager implements GameState{
         priest = new Priest(map);
         hud = new Hud(player);
         layout = ResourceLoader.loadCompatibleImageTranslucent(Constants.RUTA_LAYOUT);
-        
+        json = new JsonUtiles();
     }
     
     public void loadRuteCharacter(){
         switch(Constants.SELECTED_CHARACTER){
             case 1:
                 typeOfPlayer = Constants.RUTA_MAGOGNOMO;
+                if(!Constants.LOADGAME)
+                    Game.player = Game.gnome;
                 break;
             case 2:
                 typeOfPlayer = Constants.RUTA_GUERREROHUMANO;
+                if(!Constants.LOADGAME)
+                    Game.player = Game.human;
                 break;
             case 3:
                 typeOfPlayer = Constants.RUTA_MAGOELFO;
+                if(!Constants.LOADGAME)
+                    Game.player = Game.elf;
                 break;
             case 4:
                 typeOfPlayer = Constants.RUTA_GUERREROENANO;
+                if(!Constants.LOADGAME)
+                    Game.player = Game.dwarf;
                 break;
             default:
                 break;
@@ -106,6 +110,30 @@ public class GameManager implements GameState{
         map.refresh((int)player.getPositionX(),(int)player.getPositionY());
         Constants.BATTLE = battleZone();
         priestZone();
+        
+        save();
+    }
+    
+    public void save(){
+        if(ControlManager.keyboard.g.isPressed()){
+            /*switch(Constants.SELECTED_CHARACTER){
+                case 1:
+                    json.guardarPartida(Game.gnome);
+                    break;
+                case 2:
+                    json.guardarPartida(Game.human);
+                    break;
+                case 3:
+                    json.guardarPartida(Game.elf);
+                    break;
+                case 4:
+                    json.guardarPartida(Game.dwarf);
+                    break;
+                default:
+                    break;
+            }  */
+            json.guardarPartida(Game.player);
+        }
     }
     
     public void drawCharacterStats(Graphics g, Playable aux){
@@ -134,7 +162,12 @@ public class GameManager implements GameState{
             hud.drawPriestArea(g, map);
         }
         hud.drawBar(g, player);
-        switch(Constants.SELECTED_CHARACTER){
+        
+        if(Game.player!=null){
+            drawCharacterStats(g,Game.player);
+        }
+        
+        /*switch(Constants.SELECTED_CHARACTER){
             case 1:
                 drawCharacterStats(g,Game.gnome);
                 break;
@@ -149,7 +182,7 @@ public class GameManager implements GameState{
                 break;
             default:
                 break;
-        }
+        }*/
         hud.drawMousePosition(g, p);
         hud.drawXY(g, player);
         hud.drawResistance(g, player.resistance);

@@ -39,11 +39,9 @@ public class Game extends Thread implements Runnable, GameState {
     private Vector<Enemy> enemigos;
     private Enemy e;
     private Thread thread;
-    private Graphics g;
     public static Playable player;
     private Enemy enemy;
     private int playerSkill;
-    private int enemySkill;
     private String totalSkills;
     private String[] partsSkills;
     private boolean mana;
@@ -54,8 +52,6 @@ public class Game extends Thread implements Runnable, GameState {
     private String nuestroAtaque;
     private String[] partesAtaque;
     private String[] partesAtaqueE;
-    private Point pMouse;
-    private Rectangle[] skillBoxes;
     private int option;
     boolean playerTurn;
     
@@ -86,7 +82,6 @@ public class Game extends Thread implements Runnable, GameState {
         gnome = new Gnome();
         human = new Human();
         enemigos = new Vector();
-        
         e = new Enemy();
         e.enemigoHumano();
         enemigos.add(e);
@@ -102,13 +97,10 @@ public class Game extends Thread implements Runnable, GameState {
         e = new Enemy();
         e.enemigoGnomo();
         enemigos.add(e);
-        
-        
         elf.setName("ELFO");
         dwarf.setName("ENANO");
         gnome.setName("GNOMO");
         human.setName("HUMANO");
-    
         option = 0;
         drw = false;
         drw2 = false;
@@ -118,112 +110,29 @@ public class Game extends Thread implements Runnable, GameState {
 
     @Override
     public void run() {
-        switch (Constants.SELECTED_CHARACTER) {
-            case 1:
-                if(Constants.ACTUAL_MAP!=2){
-                    switch(Constants.ACTUAL_ENEMY_ZONE){
-                        case 0:
-                            battle(gnome, enemigos.get(0));
-                            break;
-                        case 1:
-                            battle(gnome, enemigos.get(1));
-                            break;
-                        case 2:
-                            battle(gnome, enemigos.get(2));
-                            break;
-                    }
-                }
-                else{
-                    switch(Constants.ACTUAL_ENEMY_ZONE){
-                        case 0:
-                            battle(gnome,enemigos.get(3));
-                            break;
-                        case 1:
-                            battle(gnome,enemigos.get(4));
-                            break;
-                    }
-                }
-                break;
-            case 2:
-                if(Constants.ACTUAL_MAP!=2){
-                    switch(Constants.ACTUAL_ENEMY_ZONE){
-                        case 0:
-                            battle(human, enemigos.get(0));
-                            break;
-                        case 1:
-                            battle(human, enemigos.get(1));
-                            break;
-                        case 2:
-                            battle(human, enemigos.get(2));
-                            break;
-                    }
-                }
-                else{
-                    switch(Constants.ACTUAL_ENEMY_ZONE){
-                        case 0:
-                            battle(human, enemigos.get(3));
-                            break;
-                        case 1:
-                            battle(human, enemigos.get(4));
-                            break;
-                    }
-                }
-                break;
-            case 3:
-                if(Constants.ACTUAL_MAP!=2){
-                    switch(Constants.ACTUAL_ENEMY_ZONE){
-                        case 0:
-                            battle(elf, enemigos.get(0));
-                            break;
-                        case 1:
-                            battle(elf, enemigos.get(1));
-                            break;
-                        case 2:
-                            battle(elf, enemigos.get(2));
-                            break;
-                    }
-                }
-                else{
-                    switch(Constants.ACTUAL_ENEMY_ZONE){
-                        case 0:
-                            battle(elf, enemigos.get(3));
-                            break;
-                        case 1:
-                            battle(elf, enemigos.get(4));
-                            break;
-                    }
-                }
-                break;
-            case 4:
-                if(Constants.ACTUAL_MAP!=2){
-                    switch(Constants.ACTUAL_ENEMY_ZONE){
-                        case 0:
-                            battle(dwarf, enemigos.get(0));
-                            break;
-                        case 1:
-                            battle(dwarf, enemigos.get(1));
-                            break;
-                        case 2:
-                            battle(dwarf, enemigos.get(2));
-                            break;
-                    }
-                }
-                else{
-                    switch(Constants.ACTUAL_ENEMY_ZONE){
-                        case 0:
-                            battle(dwarf, enemigos.get(3));
-                            break;
-                        case 1:
-                            battle(dwarf, enemigos.get(4));
-                            break;
-                    }
-                }
-                break;
-            default:
-                System.out.println("kepaso");
-                break;
+        if(Constants.ACTUAL_MAP!=2){
+            switch(Constants.ACTUAL_ENEMY_ZONE){
+                case 0:
+                    battle(player, enemigos.get(0));
+                    break;
+                case 1:
+                    battle(player, enemigos.get(1));
+                    break;
+                case 2:
+                    battle(player, enemigos.get(2));
+                    break;
+            }
         }
-
+        else{
+            switch(Constants.ACTUAL_ENEMY_ZONE){
+                case 0:
+                    battle(player,enemigos.get(3));
+                    break;
+                case 1:
+                    battle(player,enemigos.get(4));
+                    break;
+            }
+        }
     }
 
     public void startt(){
@@ -238,18 +147,12 @@ public class Game extends Thread implements Runnable, GameState {
         Constants.ESC = false;
         playerTurn = true;
         playerSkill = 0; //usamos byte no va a haber mas de 16 habilidades
-        enemySkill = 0;
         Messages m = new Messages();
         totalSkills=player.showSkills();
         partsSkills=totalSkills.split("\\*");
         mana = false;
         pulso = false;
         enemigoMuerto = false;
-        /*h1 = false;
-        h2 = false;
-        h3 = false;
-        h4 = false;
-        playerSkill = 0;*/
         if(enemy.isAlive()){
             if(!Constants.dead && !player.isAlive()){
                 player.setHp(player.getMaxHp());
@@ -474,16 +377,16 @@ public class Game extends Thread implements Runnable, GameState {
                     }
                 }
                 if(drw){
-                    g.setColor(Color.BLACK);
-                    g.fillRect(25,445,750,180);
+                    //g.setColor(Color.BLACK);
+                    //g.fillRect(25,445,750,180);
                     g.setColor(Color.BLUE);
-                    g.drawString("Tu nueva arma es: "+player.getWeapon().getName(),30,550);
+                    g.drawString("Tu arma es: "+player.getWeapon().getName(),30,550);
                 }
                 if(drw2){
-                    g.setColor(Color.BLACK);
-                    g.fillRect(25,445,750,180);
+                    //g.setColor(Color.BLACK);
+                    //g.fillRect(25,445,750,180);
                     g.setColor(Color.BLUE);
-                    g.drawString("Tu nueva armadura es: "+player.getArmor().getName(),30,550);
+                    g.drawString("Tu armadura es: "+player.getArmor().getName(),30,550);
                 }
                 if(xp!=null){
                     g.setColor(Color.CYAN);
