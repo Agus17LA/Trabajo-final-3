@@ -142,8 +142,6 @@ public class Game extends Thread implements Runnable, GameState {
     }
 
     public void battle(Playable player, Enemy enemy) {
-        //this.player = player;
-        //this.enemy = enemy;
         Constants.ESC = false;
         playerTurn = true;
         playerSkill = 0; //usamos byte no va a haber mas de 16 habilidades

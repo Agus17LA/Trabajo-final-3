@@ -18,7 +18,9 @@ import java.io.ObjectOutputStream;
  * @author Bian
  */
 public class Archive {
-
+/**
+ * Este metodo se encarga de guardar un objeto (el recibido del json) en un archivo dat
+ */
     public void writeFile() {
 
         try {

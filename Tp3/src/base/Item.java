@@ -2,10 +2,10 @@ package base;
 
 /**
  * Los items son las armas/armaduras y los consumibles
+ *
  * @author Juan
  */
 public class Item extends GameObject {
-
 
     public Item() {
         super();
@@ -20,7 +20,6 @@ public class Item extends GameObject {
     public Item(String name, int id) {
         super(name);
 
-
     }
 
     public Item(double weight, int total, String name, int id) {
@@ -32,5 +31,10 @@ public class Item extends GameObject {
         super(i.getName(), i.getId());
 
     }
+
+    public String useItem(Playable p) {
+        return "Este item no puede ser usado";
+    }
+
 
 }

@@ -25,9 +25,12 @@ import org.json.JSONObject;
  * @author Bian
  */
 public class JsonUtiles {
-    //La idea general para implementar Json es, cargar en un Json varios GameObject //(Enemigos, Skills, Weapons, Armors, etc), meter los JsonObects en un JsonArray de //cada tipo; y de ahí pasarlos a un Vector <GameObject> y que levante objetos por id //el juego según vaya necesitando
+    
 
-
+/**
+ * Este metodo se encarga de guardar en un json un JSONObject
+ * @param o 
+ */
     public static void writeStates(JSONObject o) {
         try {
             FileWriter file = new FileWriter("partida.json");
@@ -40,7 +43,10 @@ public class JsonUtiles {
         }
     }
     
-
+/**
+ * Este metodo recibe un jugador y carga todos los datos actuales del mismo para luego guardarlos en el json
+ * @param player 
+ */
     public void guardarPartida(Playable player) {//pide por parametro el personaje que se está utilizando en la partida actualmente para poder guardar los datos que tiene en ese mismo momento en un json
         try {
             JSONObject gameStates = new JSONObject();
@@ -171,8 +177,11 @@ public class JsonUtiles {
             e.printStackTrace();
         }
     }
-
-    public Playable readPlayer() { //lee de un json ya guardado anteriormente los datos del personaje guardado y los carga en un nuevo objeto Playable y lo retrona Playable p = new Playable();
+/**
+ * Este metodo lee de un json ya guardado anteriormente los datos del personaje guardado y los carga en un nuevo objeto Playable y lo retrona 
+ * @return 
+ */
+    public Playable readPlayer() { 
         Playable p=new Playable();
         try {
             String c = new String(Files.readAllBytes(Paths.get("partida.json")));
@@ -256,8 +265,10 @@ public class JsonUtiles {
         }
       return p;      
     }
-
-    public static void readPartida() { //lee de un json ya cargado los datos del personaje guardado y los devuelve en la consola con systems out
+/**
+ * lee de un json ya cargado los datos del personaje guardado y los devuelve en la consola con systems out
+ */
+    public static void readPartida() { 
         try {
             String c = new String(Files.readAllBytes(Paths.get("partida.json")));
             JSONObject player = new JSONObject(c);
