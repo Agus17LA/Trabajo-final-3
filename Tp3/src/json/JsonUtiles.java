@@ -114,22 +114,20 @@ public class JsonUtiles {
 
             playableWeapon.put("id", player.getWeapon().getId());
             playableWeapon.put("name", player.getWeapon().getName());
-            playableWeapon.put("weight", player.getWeapon().getWeight());
             playableWeapon.put("dmg mod", player.getWeapon().getDmgMod());
             playableWeapon.put("acc mod", player.getWeapon().getAccMod());
             playableWeapon.put("crit mod", player.getWeapon().getCritMod());
-            
-            playableStates.put("weapon",playableWeapon);
+
+            playableStates.put("weapon", playableWeapon);
 
             playableArmor.put("id", player.getArmor().getId());
             playableArmor.put("name", player.getArmor().getName());
-            playableArmor.put("weight", player.getArmor().getWeight());
             //playableArmor.put("hp mod", player.getArmor().getHpMod());
             playableArmor.put("dodge mod", player.getArmor().getDodgeMod());
             playableArmor.put("def mod", player.getArmor().getDefMod());
-            
-            playableStates.put("armor",playableArmor);
-            
+
+            playableStates.put("armor", playableArmor);
+
             gameStates.put("playable", playableStates);
 
         } catch (JSONException e) {
@@ -173,33 +171,49 @@ public class JsonUtiles {
         try {
             String c = new String(Files.readAllBytes(Paths.get("partida.json")));
             JSONObject player = new JSONObject(c);
-            p = new Playable(player.getInt("hp"), player.getInt("mana"),player.getInt("dmg"), player.getInt("dmg max"), player.getInt("acc"),player.getInt("dodge"),player.getInt("crit"),player.getInt("def"),
-            player.getInt("xp"),player.getInt("lvl"),player.getInt("xp max"),player.getString("name"), player.getInt("id"));
-            p.setMaxHp(player.getInt("hp max"));
-            p.setMaxMana(player.getInt("mana max"));
-            
-            player.getInt("stun");
-            player.getInt("poison");
-            player.getInt("buff");
-            
+            p = new Playable(player.getJSONObject("playable").getInt("hp"), player.getJSONObject("playable").getInt("mana"), player.getJSONObject("playable").getInt("dmg"), player.getJSONObject("playable").getInt("dmg max"),
+                    player.getJSONObject("playable").getInt("acc"),
+                    player.getJSONObject("playable").getInt("dodge"),
+                    player.getJSONObject("playable").getInt("crit"),
+                    player.getJSONObject("playable").getInt("def"),
+                    player.getJSONObject("playable").getInt("xp"), player.getJSONObject("playable").getInt("lvl"), player.getJSONObject("playable").getInt("xp max"), player.getJSONObject("playable").getString("name"),
+                    player.getJSONObject("playable").getInt("id"));
+            p.setMaxHp(player.getJSONObject("playable").getInt("hp max"));
+            p.setMaxMana(player.getJSONObject("playable").getInt("mana max"));
+
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JSONException e) {
             System.out.println("JSON Error");
             e.printStackTrace();
         }
-        return p;  
+        return p;
     }
 
-   /* public static void readPartida() {
+    public static void readPartida() {
         try {
-            String c = new String(Files.readAllBytes(Paths.get("patida.json")));
-
+            String c = new String(Files.readAllBytes(Paths.get("partida.json")));
+            JSONObject player = new JSONObject(c);
+            System.out.println(player.getJSONObject("playable").getInt("hp"));
+            System.out.println(player.getJSONObject("playable").getInt("mana"));
+            System.out.println(player.getJSONObject("playable").getInt("dmg"));
+            System.out.println(player.getJSONObject("playable").getInt("dmg max"));
+            System.out.println(player.getJSONObject("playable").getInt("acc"));
+            System.out.println(player.getJSONObject("playable").getInt("dodge"));
+            System.out.println(player.getJSONObject("playable").getInt("crit"));
+            System.out.println(player.getJSONObject("playable").getInt("def"));
+            System.out.println(player.getJSONObject("playable").getInt("xp"));
+            System.out.println(player.getJSONObject("playable").getInt("lvl"));
+            System.out.println(player.getJSONObject("playable").getInt("xp max"));
+            System.out.println(player.getJSONObject("playable").getString("name"));
+            System.out.println(player.getJSONObject("playable").getInt("id"));
+            System.out.println(player.getJSONObject("playable").getInt("hp max"));
+            System.out.println(player.getJSONObject("playable").getInt("mana max"));
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JSONException e) {
             System.out.println("JSON Error");
             e.printStackTrace();
         }
-    }*/
+    }
 }

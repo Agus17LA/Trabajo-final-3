@@ -33,7 +33,7 @@ public class Window extends JFrame{
         //setIconImage();
         setLayout(new BorderLayout());
         add(ds,BorderLayout.CENTER);
-        // setUndecorated(true);
+        //setUndecorated(true);
         pack();
         setLocationRelativeTo(null);
         
