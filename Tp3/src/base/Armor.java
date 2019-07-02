@@ -39,7 +39,7 @@ public class Armor extends Item {
     /**
      * Constructor de copia, sirve para crear nuevas estancias de objeto y no
      * sobreescribirla
-     * @param a
+     * @param a el arma referencia
      */
     public Armor(Armor a) {
 

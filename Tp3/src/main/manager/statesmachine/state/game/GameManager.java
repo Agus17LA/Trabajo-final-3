@@ -116,23 +116,8 @@ public class GameManager implements GameState{
     
     public void save(){
         if(ControlManager.keyboard.g.isPressed()){
-            /*switch(Constants.SELECTED_CHARACTER){
-                case 1:
-                    json.guardarPartida(Game.gnome);
-                    break;
-                case 2:
-                    json.guardarPartida(Game.human);
-                    break;
-                case 3:
-                    json.guardarPartida(Game.elf);
-                    break;
-                case 4:
-                    json.guardarPartida(Game.dwarf);
-                    break;
-                default:
-                    break;
-            }  */
             json.guardarPartida(Game.player);
+            Constants.SAVEGAME = true;
         }
     }
     
@@ -162,33 +147,16 @@ public class GameManager implements GameState{
             hud.drawPriestArea(g, map);
         }
         hud.drawBar(g, player);
-        
         if(Game.player!=null){
             drawCharacterStats(g,Game.player);
         }
-        
-        /*switch(Constants.SELECTED_CHARACTER){
-            case 1:
-                drawCharacterStats(g,Game.gnome);
-                break;
-            case 2:
-                drawCharacterStats(g,Game.human);
-                break;
-            case 3:
-                drawCharacterStats(g,Game.elf);
-                break;
-            case 4:
-                drawCharacterStats(g,Game.dwarf);
-                break;
-            default:
-                break;
-        }*/
         hud.drawMousePosition(g, p);
         hud.drawXY(g, player);
         hud.drawResistance(g, player.resistance);
         if(battleZone()){
             hud.drawMessage(g);
         }
+        hud.drawSave(g);
     }
     
     public boolean battleZone(){
@@ -213,26 +181,28 @@ public class GameManager implements GameState{
         if(player.getDOWN_COLLISION().intersects(map.getPriestZone())){
             flag = true;
             Constants.dead = false;
-            switch(Constants.SELECTED_CHARACTER){
-                case 1:
-                    Game.gnome.setHp(Game.gnome.getMaxHp());
-                    Game.gnome.setMana(Game.gnome.getMaxMana());
-                    break;
-                case 2:
-                    Game.human.setHp(Game.human.getMaxHp());
-                    Game.human.setMana(Game.human.getMaxMana());
-                    break;
-                case 3:
-                    Game.elf.setHp(Game.elf.getMaxHp());
-                    Game.elf.setMana(Game.elf.getMaxMana());
-                    break;
-                case 4:
-                    Game.dwarf.setHp(Game.dwarf.getMaxHp());
-                    Game.dwarf.setMana(Game.dwarf.getMaxMana());
-                    break;
-                default:
-                    break;
-        }
+            Game.player.setHp(Game.player.getMaxHp());
+            Game.player.setMana(Game.player.getMaxMana());
+//            switch(Constants.SELECTED_CHARACTER){
+//                case 1:
+//                    Game.gnome.setHp(Game.gnome.getMaxHp());
+//                    Game.gnome.setMana(Game.gnome.getMaxMana());
+//                    break;
+//                case 2:
+//                    Game.human.setHp(Game.human.getMaxHp());
+//                    Game.human.setMana(Game.human.getMaxMana());
+//                    break;
+//                case 3:
+//                    Game.elf.setHp(Game.elf.getMaxHp());
+//                    Game.elf.setMana(Game.elf.getMaxMana());
+//                    break;
+//                case 4:
+//                    Game.dwarf.setHp(Game.dwarf.getMaxHp());
+//                    Game.dwarf.setMana(Game.dwarf.getMaxMana());
+//                    break;
+//                default:
+//                    break;
+//        }
         }
         return flag;
     }

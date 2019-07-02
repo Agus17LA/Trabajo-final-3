@@ -85,7 +85,7 @@ public class Enemy extends Character {
      */
     public void enemigoHumano() {
 
-        setName("Javier");
+        setName("Paul");
         setMaxHp(40);
         setHp(getMaxHp());
         setMaxMana(5);
@@ -94,7 +94,7 @@ public class Enemy extends Character {
         setMaxDmg(9);
         setAcc(6);
         setDodge(3);
-        setExpDrop(500);
+        setExpDrop(200);
         setCrit(5);
         setDef(0);
 
@@ -117,18 +117,18 @@ public class Enemy extends Character {
      */
     public void enemigoEnano() {
 
-        setName("Ernesto");
-        setMaxHp(50);
+        setName("Ringo");
+        setMaxHp(80);
         setHp(getMaxHp());
         setMaxMana(0);
         setMana(getMaxMana());
-        setDmg(10);
-        setMaxDmg(11);
-        setAcc(20);
+        setDmg(17);
+        setMaxDmg(21);
+        setAcc(25);
         setDodge(5);
-        setExpDrop(500);
+        setExpDrop(200);
         setCrit(5);
-        setDef(0);
+        setDef(5);
 
         iniCharacterObjects();
         Skill s = new Skill();
@@ -149,16 +149,16 @@ public class Enemy extends Character {
      */
     public void enemigoElfo() {
 
-        setName("Anastasio");
-        setMaxHp(60);
+        setName("John");
+        setMaxHp(99);
         setHp(getMaxHp());
-        setMaxMana(20);
+        setMaxMana(100);
         setMana(getMaxMana());
-        setDmg(9);
-        setMaxDmg(11);
-        setAcc(20);
-        setDodge(3);
-        setExpDrop(500);
+        setDmg(15);
+        setMaxDmg(21);
+        setAcc(30);
+        setDodge(7);
+        setExpDrop(250);
         setCrit(5);
         setDef(0);
 
@@ -181,18 +181,18 @@ public class Enemy extends Character {
      */
     public void enemigoElfo2() {
 
-        setName("Budita");
-        setMaxHp(90);
+        setName("George");
+        setMaxHp(100);
         setHp(getMaxHp());
-        setMaxMana(20);
+        setMaxMana(200);
         setMana(getMaxMana());
-        setDmg(9);
-        setMaxDmg(11);
-        setAcc(20);
-        setDodge(3);
-        setExpDrop(500);
-        setCrit(5);
-        setDef(0);
+        setDmg(30);
+        setMaxDmg(47);
+        setAcc(40);
+        setDodge(10);
+        setExpDrop(300);
+        setCrit(15);
+        setDef(5);
 
         iniCharacterObjects();
         Skill s = new Skill();
@@ -213,7 +213,7 @@ public class Enemy extends Character {
      */
     public void enemigoGnomo() {
 
-        setName("Roberto el genocida");
+        setName("BENOFFI");
         setMaxHp(250);
         setHp(getMaxHp());
         setMaxMana(300);

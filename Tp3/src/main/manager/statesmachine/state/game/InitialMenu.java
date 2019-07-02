@@ -67,9 +67,10 @@ public class InitialMenu implements GameState{
                 Constants.NEWGAME = true;
              }
         }
-        if(rectangleClic(pMouse,loadGame)){
+        if(rectangleClic(pMouse,loadGame) && !screenSelection){
             Game.player = json.readPlayer();
             Constants.LOADGAME = true;
+            Constants.dead = !Game.player.isAlive();
             switch(Game.player.getName()){
                 case "GNOMO":
                     Constants.SELECTED_CHARACTER = 1;
@@ -96,6 +97,8 @@ public class InitialMenu implements GameState{
         
         DrawSurface.mouse.restartClick();
     }
+    
+    
     
     public boolean rectangleClic(Point pMouse,Rectangle aux){
         boolean clic = false;

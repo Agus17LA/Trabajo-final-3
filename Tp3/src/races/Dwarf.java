@@ -24,7 +24,7 @@ public class Dwarf extends Playable implements Iwarrior {
 		// se tiran "dados" para indicar los valores de las estadisticas
 		setMaxHp(ranNum(40, 50));
 		setHp(getMaxHp());
-		setMaxMana(ranNum(7, 12));
+		setMaxMana(ranNum(10, 15));
 		setMana(getMaxMana());
 		setDmg(ranNum(4, 6));
 		setMaxDmg(ranNum(10, 19));

@@ -11,7 +11,7 @@ public abstract class Status {
 
     /**
      * La forma en la que se implemente este metodo depende del tipo de status
-     * @param c
+     * @param c el personaje que sufre el status
      * @return 
      */
     public abstract String statusTurn(Character c);

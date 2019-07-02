@@ -68,6 +68,16 @@ public class Hud {
             }
     }
     
+    public void drawSave(Graphics g){
+        if(Constants.SAVEGAME){
+            g.setColor(Color.CYAN);
+            g.drawString("Pulse G para guardar",300,550);
+        }else{
+            g.setColor(Color.RED);
+            g.drawString("Pulse G para guardar",300,550);
+        }
+    }
+    
     public void drawTP(Graphics g, Map map){
         g.setColor(Color.green);
         g.drawRect((int)map.getExitZone().getX(), (int)map.getExitZone().getY(), (int)map.getExitZone().getWidth(), (int)map.getExitZone().getHeight());

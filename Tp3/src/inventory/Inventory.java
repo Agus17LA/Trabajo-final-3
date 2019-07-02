@@ -10,18 +10,8 @@ import java.util.Map;
 
 public class Inventory {
 
-    private double weight;// peso actual del inventario
-    private double maxWeight;// peso maximo del inventario, recibido dependiendo el personaje creado
-    HashMap<String, Integer> inventory;// usamos hash map para poder tener una forma de identificar los items mas alla
+   HashMap<String, Integer> inventory;// usamos hash map para poder tener una forma de identificar los items mas alla
     // de los nombres
-
-    public double getWeight() {
-        return weight;
-    }
-
-    public double getMaxWeight() {
-        return maxWeight;
-    }
 
     public Inventory() {
         inventory = new HashMap<String, Integer>();
@@ -72,7 +62,7 @@ public class Inventory {
     /**
      * Borra un item del inventario
      *
-     * @param el item a borrar
+     * @param i item a borrar
      * @return true en caso de poder borrar el item false en caso contrario
      */
     public boolean removeItem(Item i) {

@@ -396,8 +396,8 @@ public class Skill extends GameObject {
         manaCost = 10;
         statusChance = 50;
         stun = new Stun();
-        poison = new Poison(10, 2);
-        buff = new Buff(0, 0, -2, 0, 0, 2);
+        poison = new Poison(12, 2);
+        buff = new Buff();
     }
 
     /**
@@ -491,8 +491,8 @@ public class Skill extends GameObject {
         manaCost = 50;
         statusChance = 60;
         stun = new Stun();
-        poison = new Poison(50, 2);
-        buff = new Buff(-2, -2, -2, -2, -2, 2);
+        poison = new Poison(23, 3);
+        buff = new Buff();
     }
 
     //Habilidades del humano

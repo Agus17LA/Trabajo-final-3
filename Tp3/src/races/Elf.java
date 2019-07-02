@@ -20,9 +20,9 @@ public class Elf extends Playable implements Image {
 
     public Elf() {
         // se tiran "dados" para indicar los valores de las estadisticas
-        setMaxHp(ranNum(25, 32));
+        setMaxHp(ranNum(30, 37));
         setHp(getMaxHp());
-        setMaxMana(ranNum(25, 33));
+        setMaxMana(ranNum(50, 59));
         setMana(getMaxMana());
         setDmg(ranNum(10, 11));
         setMaxDmg(ranNum(13, 15));

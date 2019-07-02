@@ -92,7 +92,7 @@ public class Game extends Thread implements Runnable, GameState {
         e.enemigoElfo();
         enemigos.add(e);
         e = new Enemy();
-        e.enemigoElfo();
+        e.enemigoElfo2();
         enemigos.add(e);
         e = new Enemy();
         e.enemigoGnomo();
@@ -142,6 +142,8 @@ public class Game extends Thread implements Runnable, GameState {
     }
 
     public void battle(Playable player, Enemy enemy) {
+        this.player = player;
+        this.enemy = enemy;
         Constants.ESC = false;
         playerTurn = true;
         playerSkill = 0; //usamos byte no va a haber mas de 16 habilidades
@@ -216,6 +218,7 @@ public class Game extends Thread implements Runnable, GameState {
                 }
                 Constants.ESC = true;
                 Constants.BATTLESTATE = false;
+                
             } else {
                 Constants.dead = true;
                 Constants.ESC = true;
@@ -241,15 +244,13 @@ public class Game extends Thread implements Runnable, GameState {
         l3 = false;
         lootGral = false;
         do {
-            System.out.println("a");
+            System.out.println("");
             if(l1){
-                System.out.println("changeddd");
                 player.getWeapon().copyWeapon(e.getWeapon());
                 lootGral = true;
                 l1 = false;
                 drw = true;
             }else if(l2){
-                System.out.println("ChangeArmor");
                 player.getArmor().copyArmor(e.getArmor());
                 lootGral = true;
                 l2 = false;
@@ -288,112 +289,114 @@ public class Game extends Thread implements Runnable, GameState {
         //    g.setColor(Color.DARK_GRAY);
         //    g.fillRect((int)skillBoxes[i].x,(int)skillBoxes[i].y,(int)skillBoxes[i].width,(int)skillBoxes[i].height);
         //}
-        g.setColor(Color.BLACK);
-        g.fillRect(25,445,750,130);
-        if(!enemigoMuerto){
-            if(player.isAlive() && enemy.isAlive() && !pulso){
-                g.setColor(Color.YELLOW);
-                g.drawString(showHpsMana(player, enemy),30,460);
-                if(player.isStunned()){
-                    g.drawString("Te encuentras aturdido", 30, 480);
-                }else{
-                    g.drawString("No te encuentras aturdido", 30, 480);
-                    g.drawString("Seleccione habilidad: ",30,500);
-                    if(partsSkills!=null){
-                        for(int i=0;i<partsSkills.length;i++){
-                            if(partsSkills[i]!=null){
-                                g.drawString(partsSkills[i],30,(15*i)+517);
-                            }
-                        }
-                    }
-                }
-            }else if(pulso){
-                g.setColor(Color.BLACK);
-                g.fillRect(25,445,750,180);
-                g.setColor(Color.YELLOW);
-                g.drawString(showHpsMana(player, enemy),30,460);
-                if(!mana){
-                    g.drawString("No tienes mana suficiente",30,480);
-                    if(Constants.PRUEBA == 240){ //cambiar esto por un contador real
-                        mana = true;
-                        pulso = false;
-                        Constants.PRUEBA = 0;
+        if(player!=null && enemy!=null){
+            g.setColor(Color.BLACK);
+            g.fillRect(25,445,750,130);
+            if(!enemigoMuerto){
+                if(player.isAlive() && enemy.isAlive() && !pulso){
+                    g.setColor(Color.YELLOW);
+                    g.drawString(showHpsMana(player, enemy),30,460);
+                    if(player.isStunned()){
+                        g.drawString("Te encuentras aturdido", 30, 480);
                     }else{
-                        Constants.PRUEBA++;
-                    }
-                }else if(!ataque){
-                    if(partesAtaque!=null){
-                        for(int i = 0;i<partesAtaque.length;i++){
-                            g.drawString(partesAtaque[i],30,(20*i)+480);
-                        }
-                        if(partesAtaqueE!=null){
-                            for(int i =0; i<partesAtaqueE.length;i++){
-                                g.drawString(partesAtaqueE[i],30,(20*i)+520);
+                        g.drawString("No te encuentras aturdido", 30, 480);
+                        g.drawString("Seleccione habilidad: ",30,500);
+                        if(partsSkills!=null){
+                            for(int i=0;i<partsSkills.length;i++){
+                                if(partsSkills[i]!=null){
+                                    g.drawString(partsSkills[i],30,(15*i)+517);
+                                }
                             }
                         }
-                        if(Constants.PRUEBA==240){
-                            ataque = true;
+                    }
+                }else if(pulso){
+                    g.setColor(Color.BLACK);
+                    g.fillRect(25,445,750,180);
+                    g.setColor(Color.YELLOW);
+                    g.drawString(showHpsMana(player, enemy),30,460);
+                    if(!mana){
+                        g.drawString("No tienes mana suficiente",30,480);
+                        if(Constants.PRUEBA == 240){ //cambiar esto por un contador real
+                            mana = true;
                             pulso = false;
                             Constants.PRUEBA = 0;
                         }else{
                             Constants.PRUEBA++;
                         }
-                    }
-                }
-            }else if(player.isAlive()){
-                g.setColor(Color.MAGENTA);
-                g.drawString("1: Reemplazar arma, 2 reemplazar armadura, 3 continuar",30,460);
-                if(partLoot != null){
-                    for(int i = 0;i<partLoot.length;i++){
-                        g.drawString(partLoot[i],30,(20*i)+480);
-                    }
-                }
-                if(ControlManager.keyboard.l1.isPressed() && !l1){
-                    //ControlManager.keyboard.h1.keyFree();
-                    if (player.getWeapon().equals(e.getWeapon())) {
-                        g.drawString("Ya tienes esa arma",30,500);
-                        lootGral = true;
-                    } else {
-                        while(contador<240){
-                            contador++;
+                    }else if(!ataque){
+                        if(partesAtaque!=null){
+                            for(int i = 0;i<partesAtaque.length;i++){
+                                g.drawString(partesAtaque[i],30,(20*i)+480);
+                            }
+                            if(partesAtaqueE!=null){
+                                for(int i =0; i<partesAtaqueE.length;i++){
+                                    g.drawString(partesAtaqueE[i],30,(20*i)+520);
+                                }
+                            }
+                            if(Constants.PRUEBA==240){
+                                ataque = true;
+                                pulso = false;
+                                Constants.PRUEBA = 0;
+                            }else{
+                                Constants.PRUEBA++;
+                            }
                         }
-                        l1 = true;
-                        contador = 0;
                     }
-                }else if(ControlManager.keyboard.l2.isPressed() && !l2){
-                    //ControlManager.keyboard.h1.keyFree();
-                    //l2 = true;
-                    if(player.getArmor().equals(e.getArmor())){
-                        g.drawString("Ya tienes esa armadura", 30, 500);
-                        lootGral = true;
-                    }else{
-                        while(contador<240){
-                            contador++;
+                }else if(player.isAlive()){
+                    g.setColor(Color.MAGENTA);
+                    g.drawString("1: Reemplazar arma, 2 reemplazar armadura, 3 continuar",30,460);
+                    if(partLoot != null){
+                        for(int i = 0;i<partLoot.length;i++){
+                            g.drawString(partLoot[i],30,(20*i)+480);
                         }
-                        l2 = true;
-                        contador = 0;
                     }
-                }
-                if(drw){
-                    g.setColor(Color.BLUE);
-                    g.drawString("Tu arma es: "+player.getWeapon().getName(),30,550);
-                }
-                if(drw2){
-                    g.setColor(Color.BLUE);
-                    g.drawString("Tu armadura es: "+player.getArmor().getName(),30,550);
-                }
-                if(xp!=null){
-                    g.setColor(Color.CYAN);
-                    g.drawString(xp, 500,570);
-                    g.drawString("Has ganado la batalla, presione escape para salir",30,580);
+                    if(ControlManager.keyboard.l1.isPressed() && !l1){
+                        //ControlManager.keyboard.h1.keyFree();
+                        if (player.getWeapon().equals(e.getWeapon())) {
+                            g.drawString("Ya tienes esa arma",30,500);
+                            lootGral = true;
+                        } else {
+                            while(contador<240){
+                                contador++;
+                            }
+                            l1 = true;
+                            contador = 0;
+                        }
+                    }else if(ControlManager.keyboard.l2.isPressed() && !l2){
+                        //ControlManager.keyboard.h1.keyFree();
+                        //l2 = true;
+                        if(player.getArmor().equals(e.getArmor())){
+                            g.drawString("Ya tienes esa armadura", 30, 500);
+                            lootGral = true;
+                        }else{
+                            while(contador<240){
+                                contador++;
+                            }
+                            l2 = true;
+                            contador = 0;
+                        }
+                    }
+                    if(drw){
+                        g.setColor(Color.BLUE);
+                        g.drawString("Tu arma es: "+player.getWeapon().getName(),30,550);
+                    }
+                    if(drw2){
+                        g.setColor(Color.BLUE);
+                        g.drawString("Tu armadura es: "+player.getArmor().getName(),30,550);
+                    }
+                    if(xp!=null){
+                        g.setColor(Color.CYAN);
+                        g.drawString(xp, 500,570);
+                        g.drawString("Has ganado la batalla, presione escape para salir",30,580);
+                    }
+                }else{
+                    g.setColor(Color.RED);
+                    g.drawString("Estas muerto, presione escape para salir",30,460);
                 }
             }else{
                 g.setColor(Color.RED);
-                g.drawString("Estas muerto, presione escape para salir",30,460);
+                g.drawString("Ya has matado a este enemigo. Presione escape para salir", 30, 460);
             }
-        }else{
-            g.setColor(Color.RED);
-            g.drawString("Ya has matado a este enemigo. Presione escape para salir", 30, 460);
         }
     }
     

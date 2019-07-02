@@ -22,7 +22,7 @@ public class Human extends Playable implements Iwarrior {
 		// se tiran "dados" para indicar los valores de las estadisticas
 		setMaxHp(ranNum(35, 45));
 		setHp(getMaxHp());
-		setMaxMana(ranNum(9, 15));
+		setMaxMana(ranNum(29, 35));
 		setMana(getMaxMana());
 		setDmg(ranNum(6, 9));
 		setMaxDmg(ranNum(11, 17));
